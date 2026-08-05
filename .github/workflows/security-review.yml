@@ -1,9 +1,9 @@
-name: Security Review Workflow
+name: Static Security Review and Hardening Checks
 on:
   push:
-    branches: [ "main", "master", "develop" ]
+    branches: [ "main", "master", "develop", "backend" ]
   pull_request:
-    branches: [ "main", "master", "develop" ]
+    branches: [ "main", "master", "develop", "backend" ]
   workflow_dispatch:
 
 jobs:
