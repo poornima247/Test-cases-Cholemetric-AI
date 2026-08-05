@@ -1,10 +1,10 @@
-name: 🚀 Deploy, Test & Publish — Cholemetric Web CI/CD
+name: Live GitHub Pages E2E Deployment & Testing
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "web-frontend" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "web-frontend" ]
   workflow_dispatch:
 
 permissions:
