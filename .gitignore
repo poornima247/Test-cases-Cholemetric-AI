@@ -1,0 +1,11 @@
+.env
+*.log
+vendor/
+.DS_Store
+config/database.php
+*.sql
+*.sqlite
+node_modules/
+uploads/
+storage/
+cache/

@@ -1,0 +1,58 @@
+config:
+  target: 'http://localhost/gb_stone_api'
+  phases:
+    - duration: 60
+      arrivalRate: 100
+      name: "Baseline Load (100 req/sec)"
+    
+    # Uncomment to run Stress Test
+    # - duration: 120
+    #   arrivalRate: 10
+    #   rampTo: 100
+    #   name: "Ramp up to 100 req/sec"
+    # - duration: 120
+    #   arrivalRate: 100
+    #   rampTo: 500
+    #   name: "Stress ramp to 500 req/sec"
+
+    # Uncomment to run Spike Test
+    # - duration: 10
+    #   arrivalRate: 50
+    #   rampTo: 500
+    #   name: "Spike to 500"
+    # - duration: 60
+    #   arrivalRate: 500
+    #   name: "Hold Spike"
+    # - duration: 10
+    #   arrivalRate: 50
+    #   name: "Drop back to 50"
+
+  environments:
+    production:
+      target: 'https://api.cholemetric.com/gb_stone_api'
+  
+  plugins:
+    expect: {}
+
+scenarios:
+  - name: "Standard User Flow"
+    flow:
+      - get:
+          url: "/legal.php"
+          expect:
+            - statusCode: 200
+      - think: 1
+      - post:
+          url: "/login.php"
+          json:
+            email: "perf_test@example.com"
+            password: "perftestpass"
+          expect:
+            - statusCode: 200
+      - think: 2
+      - post:
+          url: "/get_profile.php"
+          json:
+            doctor_id: 1
+          expect:
+            - statusCode: 200

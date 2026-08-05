@@ -1,0 +1,337 @@
+[
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-25T10:10:53Z",
+    "sample_count": 2,
+    "samples": [
+      {
+        "patient_age": 0,
+        "largest_stone": 3.2455644607543945,
+        "stones_detected": 3,
+        "is_positive": 1,
+        "ai_confidence": 55.464141845703125
+      },
+      {
+        "largest_stone": 15.45578369140625,
+        "stones_detected": 1,
+        "ai_confidence": 81.4287781715393,
+        "is_positive": 1,
+        "patient_age": 0
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T03:28:57Z",
+    "sample_count": 1,
+    "samples": [
+      {
+        "largest_stone": 17.355186462402344,
+        "patient_age": 45,
+        "ai_confidence": 83.35065460205078,
+        "stones_detected": 1,
+        "is_positive": 1
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T03:30:39Z",
+    "sample_count": 2,
+    "samples": [
+      {
+        "patient_age": 45,
+        "ai_confidence": 83.35065460205078,
+        "is_positive": 1,
+        "largest_stone": 17.355186462402344,
+        "stones_detected": 1
+      },
+      {
+        "ai_confidence": 73.83844757080078,
+        "is_positive": 1,
+        "largest_stone": 4.279483318328857,
+        "stones_detected": 3,
+        "patient_age": 0
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T03:33:54Z",
+    "sample_count": 3,
+    "samples": [
+      {
+        "stones_detected": 1,
+        "largest_stone": 17.355186462402344,
+        "ai_confidence": 83.35065460205078,
+        "is_positive": 1,
+        "patient_age": 45
+      },
+      {
+        "stones_detected": 3,
+        "largest_stone": 4.279483318328857,
+        "is_positive": 1,
+        "patient_age": 0,
+        "ai_confidence": 73.83844757080078
+      },
+      {
+        "is_positive": 1,
+        "stones_detected": 1,
+        "largest_stone": 3.7742385864257812,
+        "ai_confidence": 29.78551483154297,
+        "patient_age": 0
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T03:35:14Z",
+    "sample_count": 4,
+    "samples": [
+      {
+        "stones_detected": 1,
+        "patient_age": 45,
+        "ai_confidence": 83.35065460205078,
+        "largest_stone": 17.355186462402344,
+        "is_positive": 1
+      },
+      {
+        "is_positive": 1,
+        "stones_detected": 3,
+        "patient_age": 0,
+        "largest_stone": 4.279483318328857,
+        "ai_confidence": 73.83844757080078
+      },
+      {
+        "stones_detected": 1,
+        "ai_confidence": 29.78551483154297,
+        "largest_stone": 3.7742385864257812,
+        "is_positive": 1,
+        "patient_age": 0
+      },
+      {
+        "largest_stone": 10.964131225585938,
+        "ai_confidence": 77.37213373184204,
+        "is_positive": 1,
+        "stones_detected": 1,
+        "patient_age": 0
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T03:57:05Z",
+    "sample_count": 1,
+    "samples": [
+      {
+        "is_positive": 1,
+        "patient_age": 0,
+        "stones_detected": 1,
+        "ai_confidence": 83.35065460205078,
+        "largest_stone": 17.355186462402344
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T03:59:15Z",
+    "sample_count": 3,
+    "samples": [
+      {
+        "patient_age": 0,
+        "ai_confidence": 83.35065460205078,
+        "stones_detected": 1,
+        "largest_stone": 17.355186462402344,
+        "is_positive": 1
+      },
+      {
+        "largest_stone": 14.327509880065918,
+        "patient_age": 0,
+        "is_positive": 1,
+        "stones_detected": 1,
+        "ai_confidence": 42.25865173339844
+      },
+      {
+        "largest_stone": 14.327509880065918,
+        "is_positive": 1,
+        "ai_confidence": 42.25865173339844,
+        "patient_age": 0,
+        "stones_detected": 1
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T04:11:19Z",
+    "sample_count": 4,
+    "samples": [
+      {
+        "is_positive": 1,
+        "patient_age": 0,
+        "ai_confidence": 83.35065460205078,
+        "largest_stone": 17.355186462402344,
+        "stones_detected": 1
+      },
+      {
+        "stones_detected": 1,
+        "patient_age": 0,
+        "largest_stone": 14.327509880065918,
+        "ai_confidence": 42.25865173339844,
+        "is_positive": 1
+      },
+      {
+        "largest_stone": 14.327509880065918,
+        "stones_detected": 1,
+        "is_positive": 1,
+        "ai_confidence": 42.25865173339844,
+        "patient_age": 0
+      },
+      {
+        "patient_age": 67,
+        "is_positive": 0,
+        "stones_detected": 0,
+        "largest_stone": 0,
+        "ai_confidence": 0
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T04:16:08Z",
+    "sample_count": 1,
+    "samples": [
+      {
+        "stones_detected": 1,
+        "ai_confidence": 89.34400939941406,
+        "is_positive": 1,
+        "largest_stone": 15.774669647216797,
+        "patient_age": 30
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T04:17:12Z",
+    "sample_count": 2,
+    "samples": [
+      {
+        "patient_age": 30,
+        "stones_detected": 1,
+        "largest_stone": 15.774669647216797,
+        "ai_confidence": 89.34400939941406,
+        "is_positive": 1
+      },
+      {
+        "stones_detected": 0,
+        "patient_age": 0,
+        "largest_stone": 0,
+        "ai_confidence": 0,
+        "is_positive": 0
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T07:40:50Z",
+    "sample_count": 4,
+    "samples": [
+      {
+        "patient_age": 45,
+        "largest_stone": 15.774669647216797,
+        "stones_detected": 1,
+        "ai_confidence": 89.34400939941406,
+        "is_positive": 1
+      },
+      {
+        "is_positive": 0,
+        "ai_confidence": 0,
+        "patient_age": 0,
+        "largest_stone": 0,
+        "stones_detected": 0
+      },
+      {
+        "ai_confidence": 89.34400939941406,
+        "stones_detected": 1,
+        "largest_stone": 15.774669647216797,
+        "is_positive": 1,
+        "patient_age": 0
+      },
+      {
+        "largest_stone": 4.279483318328857,
+        "is_positive": 1,
+        "stones_detected": 3,
+        "patient_age": 0,
+        "ai_confidence": 73.83844757080078
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T07:42:11Z",
+    "sample_count": 5,
+    "samples": [
+      {
+        "is_positive": 1,
+        "ai_confidence": 89.34400939941406,
+        "stones_detected": 1,
+        "largest_stone": 15.774669647216797,
+        "patient_age": 45
+      },
+      {
+        "is_positive": 0,
+        "ai_confidence": 0,
+        "largest_stone": 0,
+        "stones_detected": 0,
+        "patient_age": 0
+      },
+      {
+        "stones_detected": 1,
+        "largest_stone": 15.774669647216797,
+        "ai_confidence": 89.34400939941406,
+        "is_positive": 1,
+        "patient_age": 0
+      },
+      {
+        "is_positive": 1,
+        "patient_age": 0,
+        "ai_confidence": 73.83844757080078,
+        "stones_detected": 3,
+        "largest_stone": 4.279483318328857
+      },
+      {
+        "is_positive": 1,
+        "patient_age": 0,
+        "ai_confidence": 70.36042213439941,
+        "stones_detected": 2,
+        "largest_stone": 4.417181968688965
+      }
+    ]
+  },
+  {
+    "device_id": "7F98E57E-98C8-4DF3-996C-B5AF988041CB",
+    "model_version": "1.0",
+    "timestamp": "2025-11-26T08:18:58Z",
+    "sample_count": 1,
+    "samples": [
+      {
+        "ai_confidence": 29.78551483154297,
+        "patient_age": 0,
+        "largest_stone": 3.7742385864257812,
+        "is_positive": 1,
+        "stones_detected": 1
+      }
+    ]
+  }
+]
