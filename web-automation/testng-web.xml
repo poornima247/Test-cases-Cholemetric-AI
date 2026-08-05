@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cholemetric Web E2E Suite — 400+ Tests"
+       parallel="classes"
+       thread-count="4"
+       verbose="1">
+
+    <listeners>
+        <listener class-name="com.cholemetric.web.listeners.WebTestListener"/>
+        <listener class-name="com.cholemetric.web.listeners.WebRetryListener"/>
+    </listeners>
+
+    <!-- GROUP 1: Authentication & Authorization (40 + 15 = 55 tests) -->
+    <test name="Auth-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.AuthenticationTests"/>
+            <class name="com.cholemetric.web.tests.AuthorizationTests"/>
+        </classes>
+    </test>
+
+    <!-- GROUP 2: Navigation & Forms (30 + 20 = 50 tests) -->
+    <test name="Navigation-Forms-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.NavigationTests"/>
+            <class name="com.cholemetric.web.tests.FormsTests"/>
+        </classes>
+    </test>
+
+    <!-- GROUP 3: UI & CRUD (25 + 20 = 45 tests) -->
+    <test name="UI-CRUD-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.UIValidationTests"/>
+            <class name="com.cholemetric.web.tests.CrudOperationsTests"/>
+        </classes>
+    </test>
+
+    <!-- GROUP 4: Input Validation & Error Handling (15 + 15 = 30 tests) -->
+    <test name="Validation-Errors-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.InputValidationTests"/>
+            <class name="com.cholemetric.web.tests.ErrorHandlingTests"/>
+        </classes>
+    </test>
+
+    <!-- GROUP 5: Session & File (15 + 10 = 25 tests) -->
+    <test name="Session-File-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.SessionManagementTests"/>
+            <class name="com.cholemetric.web.tests.FileUploadTests"/>
+        </classes>
+    </test>
+
+    <!-- GROUP 6: Accessibility & Responsive (15 + 20 = 35 tests) -->
+    <test name="Accessibility-Responsive-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.AccessibilityTests"/>
+            <class name="com.cholemetric.web.tests.ResponsiveDesignTests"/>
+        </classes>
+    </test>
+
+    <!-- GROUP 7: Performance & Regression (20 + 20 = 40 tests) -->
+    <test name="Performance-Regression-Group" preserve-order="true">
+        <classes>
+            <class name="com.cholemetric.web.tests.PerformanceSmokeTests"/>
+            <class name="com.cholemetric.web.tests.RegressionTests"/>
+        </classes>
+    </test>
+
+</suite>
+<!--
+    TOTAL TEST CASE COUNT:
+    AuthenticationTests     : 40 tests
+    AuthorizationTests      : 15 tests
+    NavigationTests         : 30 tests
+    FormsTests              : 20 tests
+    UIValidationTests       : 25 tests
+    CrudOperationsTests     : 20 tests
+    InputValidationTests    : 15 tests
+    ErrorHandlingTests      : 15 tests
+    SessionManagementTests  : 15 tests
+    FileUploadTests         : 10 tests
+    AccessibilityTests      : 15 tests
+    ResponsiveDesignTests   : 20 tests
+    PerformanceSmokeTests   : 20 tests
+    RegressionTests         : 20 tests
+    ─────────────────────────────────
+    TOTAL                   : 280 tests
+    (Runs in parallel with 4 threads — ~70 per thread)
+-->

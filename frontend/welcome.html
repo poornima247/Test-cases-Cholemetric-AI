@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cholemetric - Welcome</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            /* Linear gradient matching the image */
+            background: linear-gradient(180deg, #5e6cbb 0%, #aab2cf 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Inter', sans-serif;
+            color: white;
+            padding: 50px 20px 40px 20px;
+        }
+
+        /* Top Header Area (Logo & Title) */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid rgba(196, 201, 232, 0.8); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .logo-container svg {
+            width: 70px;
+            height: 70px;
+            fill: white;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            letter-spacing: 0.2px;
+        }
+
+        /* Features List */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            width: 100%;
+            max-width: 340px;
+            margin-bottom: auto; /* Pushes the buttons to the bottom */
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .feature-item svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+            flex-shrink: 0;
+        }
+
+        .feature-item span {
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        /* Bottom Buttons Area */
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            width: 100%;
+            max-width: 340px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background-color: #f8f9fa; /* Off-white */
+            color: #007bff; /* Blue text */
+            border: none;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="logo-container">
+            <img src="logo.png" alt="Cholemetric Logo" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+        <h1>Cholemetric</h1>
+        <p class="subtitle">AI Calculi Detection System</p>
+    </div>
+
+    <div class="features-list">
+        <!-- AI-Powered CT Scan analysis -->
+        <div class="feature-item">
+            <!-- Psychology/Brain icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+            </svg>
+            <span>AI-Powered CT Scan analysis</span>
+        </div>
+
+        <!-- Accurate Measurements -->
+        <div class="feature-item">
+            <!-- Bar Chart icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z"/>
+            </svg>
+            <span>Accurate Measurements</span>
+        </div>
+
+        <!-- For Registered Radiologists -->
+        <div class="feature-item">
+            <!-- Person / Doctor icon -->
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+            <span>For Registered Radiologists</span>
+        </div>
+    </div>
+
+    <div class="action-buttons">
+        <a href="login_form.html" class="btn btn-primary">Login</a>
+        <a href="signup.html" class="btn btn-outline">Sign Up</a>
+    </div>
+
+</body>
+</html>
