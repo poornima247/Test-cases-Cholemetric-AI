@@ -1,0 +1,64 @@
+name: 📊 Deploy Reports to GitHub Pages
+
+on:
+  workflow_run:
+    workflows: ["🤖 Android Appium E2E Automation — Cholemetric AI"]
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      build_number:
+        description: 'Build number to deploy (leave blank for latest)'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+env:
+  GITHUB_PAGES_URL: https://poornima247.github.io/Test-cases-Cholemetric-AI
+
+jobs:
+  deploy-pages:
+    name: 🌐 Deploy Reports to GitHub Pages
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event.workflow_run.conclusion == 'failure' || github.event_name == 'workflow_dispatch' }}
+
+    steps:
+      - name: "📥 Checkout Repository"
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+        continue-on-error: true
+
+      - name: "📥 Checkout Main for Scripts"
+        uses: actions/checkout@v4
+        with:
+          path: main-repo
+        continue-on-error: true
+
+      - name: "🔍 Check Pages Deployment"
+        run: |
+          echo "## 📊 GitHub Pages Deployment Status" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Item | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Pages URL** | ${{ env.GITHUB_PAGES_URL }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Latest Report** | ${{ env.GITHUB_PAGES_URL }}/reports/latest/execution-report.html |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Dashboard** | ${{ env.GITHUB_PAGES_URL }}/reports/latest/dashboard.html |" >> $GITHUB_STEP_SUMMARY
+          echo "| **History** | ${{ env.GITHUB_PAGES_URL }}/reports/history/ |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Reports are automatically deployed on every E2E run." >> $GITHUB_STEP_SUMMARY
+
+      - name: "📊 Deployment Summary"
+        run: |
+          echo "## 📊 GitHub Pages Report Deployment" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Reports are published automatically by the main E2E workflow." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔗 Report Links" >> $GITHUB_STEP_SUMMARY
+          echo "- **Latest Report:** [${{ env.GITHUB_PAGES_URL }}/reports/latest/execution-report.html](${{ env.GITHUB_PAGES_URL }}/reports/latest/execution-report.html)" >> $GITHUB_STEP_SUMMARY
+          echo "- **Dashboard:** [${{ env.GITHUB_PAGES_URL }}/reports/latest/dashboard.html](${{ env.GITHUB_PAGES_URL }}/reports/latest/dashboard.html)" >> $GITHUB_STEP_SUMMARY
+          echo "- **History Index:** [${{ env.GITHUB_PAGES_URL }}/reports/history/](${{ env.GITHUB_PAGES_URL }}/reports/history/)" >> $GITHUB_STEP_SUMMARY

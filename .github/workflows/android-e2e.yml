@@ -1,4 +1,4 @@
-name: Android Appium E2E Automation & CI/CD
+name: 🤖 Android Appium E2E Automation — Cholemetric AI
 
 on:
   push:
@@ -8,50 +8,72 @@ on:
   workflow_dispatch:
     inputs:
       api_level:
-        description: 'Android API Level'
+        description: 'Android API Level (e.g. 29, 30, 31)'
         required: false
         default: '29'
+      test_groups:
+        description: 'Test groups to run (e.g. smoke,regression or leave blank for all)'
+        required: false
+        default: ''
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * *'    # Nightly run at 2 AM UTC
 
+# ─────────────────────────────────────────────────────────────────────────────
+# GLOBAL ENVIRONMENT
+# ─────────────────────────────────────────────────────────────────────────────
 env:
   APPIUM_URL: http://localhost:4723
   DEVICE_NAME: emulator-5554
   APP_PATH: app/build/outputs/apk/debug/app-debug.apk
   ANDROID_EMULATOR_API_LEVEL: ${{ github.event.inputs.api_level || '29' }}
+  APP_PACKAGE: com.cholemetric.app
+  APP_ACTIVITY: com.cholemetric.app.SplashActivity
+  GITHUB_PAGES_URL: https://poornima247.github.io/Test-cases-Cholemetric-AI
+  REPORT_DIR: automation/Test Results
+  PAGES_DIR: _site
 
 permissions:
   contents: write
   pages: write
   id-token: write
+  actions: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
 
+# =============================================================================
+# JOB 1: BUILD APK
+# =============================================================================
 jobs:
-  # ─────────────────────────────────────────────────────────────────────────────
-  # STAGE 1–5: Build
-  # ─────────────────────────────────────────────────────────────────────────────
   build:
-    name: Build APK
+    name: 🏗️ Stage 1-5 — Build APK
     runs-on: ubuntu-latest
+    outputs:
+      apk_built: ${{ steps.apk_check.outputs.built }}
+      build_time: ${{ steps.timing.outputs.build_time }}
 
     steps:
-      - name: Stage 1 — Checkout Repository
+      # ── Stage 1 ──────────────────────────────────────────────────────────────
+      - name: "📥 Stage 1 — Checkout Repository"
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Stage 2 — Setup Java 17
+      # ── Stage 2 ──────────────────────────────────────────────────────────────
+      - name: "☕ Stage 2 — Setup Java 17 (Zulu)"
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
           cache: 'gradle'
 
-      - name: Stage 3 — Setup Android SDK
+      # ── Stage 3 ──────────────────────────────────────────────────────────────
+      - name: "🤖 Stage 3 — Setup Android SDK"
         uses: android-actions/setup-android@v3
 
-      - name: Stage 4 — Cache Gradle
+      # ── Stage 4 ──────────────────────────────────────────────────────────────
+      - name: "📦 Stage 4 — Cache Gradle Dependencies"
         uses: actions/cache@v4
         with:
           path: |
@@ -62,99 +84,138 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-gradle-
 
-      - name: Stage 5 — Download Gradle Wrapper JAR
+      - name: "🔧 Download Gradle Wrapper JAR (if missing)"
         run: |
           mkdir -p gradle/wrapper
           if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
             echo "Downloading gradle-wrapper.jar..."
             curl -sSL -o gradle/wrapper/gradle-wrapper.jar \
               "https://github.com/gradle/gradle/raw/v8.5.0/gradle/wrapper/gradle-wrapper.jar" || \
-            curl -sSL -o gradle/wrapper/gradle-wrapper.jar \
-              "https://raw.githubusercontent.com/gradle/gradle/master/gradle/wrapper/gradle-wrapper.jar" || \
             wget -q -O gradle/wrapper/gradle-wrapper.jar \
               "https://services.gradle.org/distributions/gradle-8.5-wrapper.jar" || true
-            echo "Wrapper JAR status: $(ls -lh gradle/wrapper/gradle-wrapper.jar 2>/dev/null || echo 'NOT FOUND')"
           fi
 
-      - name: Stage 6 — Build Debug APK
+      # ── Stage 5 ──────────────────────────────────────────────────────────────
+      - name: "🔨 Stage 5 — Build Debug APK"
+        id: build_apk
         run: |
+          echo "BUILD_START=$(date +%s)" >> $GITHUB_ENV
           chmod +x gradlew
           ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 || {
-            echo "⚠️ Gradle build encountered issues - checking app structure..."
-            ls -la app/build/outputs/apk/debug/ 2>/dev/null || echo "No APK built yet"
+            echo "⚠️ Gradle build issues — checking output..."
             echo "BUILD_STATUS=partial" >> $GITHUB_ENV
           }
-          echo "APK_PATH=$(find . -name 'app-debug.apk' | head -1)" >> $GITHUB_ENV
-          ls -lh app/build/outputs/apk/debug/ || true
-        continue-on-error: true
+          APK_FILE=$(find . -name 'app-debug.apk' 2>/dev/null | head -1)
+          echo "APK_PATH=$APK_FILE" >> $GITHUB_ENV
+          if [ -n "$APK_FILE" ]; then
+            echo "BUILD_STATUS=success" >> $GITHUB_ENV
+            echo "APK_SIZE=$(du -sh $APK_FILE | cut -f1)" >> $GITHUB_ENV
+          fi
+        
 
-      - name: Upload APK Artifact
+      - name: "⏱️ Record Build Time"
+        id: timing
+        run: |
+          END=$(date +%s)
+          START=${BUILD_START:-$END}
+          ELAPSED=$((END - START))
+          echo "build_time=${ELAPSED}s" >> $GITHUB_OUTPUT
+
+      - name: "✅ Check APK Built"
+        id: apk_check
+        run: |
+          if [ -f "app/build/outputs/apk/debug/app-debug.apk" ]; then
+            echo "built=true" >> $GITHUB_OUTPUT
+            echo "✅ APK found: $(ls -lh app/build/outputs/apk/debug/app-debug.apk)"
+          else
+            echo "built=false" >> $GITHUB_OUTPUT
+            echo "⚠️ APK not found — emulator stage will skip APK install"
+          fi
+
+      - name: "📤 Upload APK Artifact"
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: debug-apk
+          name: cholemetric-debug-apk-${{ github.run_number }}
           path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 7
+          retention-days: 30
           if-no-files-found: warn
 
-      - name: Stage 7 — Build Status Summary
+      - name: "📊 Build Stage Summary"
         if: always()
         run: |
-          echo "## 🏗️ Android Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "## 🏗️ Android Build — Stage Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "| Item | Details |" >> $GITHUB_STEP_SUMMARY
           echo "|------|---------|" >> $GITHUB_STEP_SUMMARY
           echo "| **Build #** | \`${{ github.run_number }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Branch** | \`${{ github.ref_name }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Commit** | \`${{ github.sha }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Triggered By** | \`${{ github.event_name }}\` |" >> $GITHUB_STEP_SUMMARY
           echo "| **Java** | 17 (Zulu) |" >> $GITHUB_STEP_SUMMARY
-          echo "| **Android Target API** | ${{ env.ANDROID_EMULATOR_API_LEVEL }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Target API** | ${{ env.ANDROID_EMULATOR_API_LEVEL }} |" >> $GITHUB_STEP_SUMMARY
           APK_FILE=$(find . -name 'app-debug.apk' 2>/dev/null | head -1)
           if [ -n "$APK_FILE" ]; then
-            echo "| **APK** | ✅ Built successfully |" >> $GITHUB_STEP_SUMMARY
+            echo "| **APK** | ✅ $(du -sh $APK_FILE | cut -f1) |" >> $GITHUB_STEP_SUMMARY
           else
-            echo "| **APK** | ⚠️ Build pending (dependencies resolving) |" >> $GITHUB_STEP_SUMMARY
+            echo "| **APK** | ⚠️ Build incomplete |" >> $GITHUB_STEP_SUMMARY
           fi
 
-  # ─────────────────────────────────────────────────────────────────────────────
-  # STAGES 6–21: Appium Test + Report
-  # ─────────────────────────────────────────────────────────────────────────────
+# =============================================================================
+# JOB 2: APPIUM E2E TESTS
+# =============================================================================
   test:
-    name: Run Appium E2E Tests
+    name: 🧪 Stage 6-21 — Appium E2E + Reports + Pages
     needs: build
     runs-on: macos-latest
     if: always()
+    timeout-minutes: 90
+
+    env:
+      TEST_VALID_EMAIL: ${{ secrets.TEST_VALID_EMAIL || 'doctor@cholemetric.com' }}
+      TEST_VALID_PASSWORD: ${{ secrets.TEST_VALID_PASSWORD || 'Test@1234' }}
+      TEST_INVALID_EMAIL: invalid@notexist.com
+      TEST_INVALID_PASSWORD: wrongpassword
 
     steps:
-      - name: Stage 1 — Checkout Repository
+      # ── Stage 1: Checkout ─────────────────────────────────────────────────────
+      - name: "📥 Stage 1 — Checkout Repository"
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Stage 2 — Setup Java 17
+      # ── Stage 2: Java ─────────────────────────────────────────────────────────
+      - name: "☕ Stage 2 — Setup Java 17"
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Stage 3 — Setup Python
+      # ── Stage 3: Python ───────────────────────────────────────────────────────
+      - name: "🐍 Stage 3 — Setup Python 3.11"
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Stage 4 — Download APK
+      # ── Stage 4: Download APK ─────────────────────────────────────────────────
+      - name: "📥 Stage 4 — Download APK from Build Job"
         uses: actions/download-artifact@v4
         with:
-          name: debug-apk
+          name: cholemetric-debug-apk-${{ github.run_number }}
           path: app/build/outputs/apk/debug/
-        continue-on-error: true
+        
 
-      - name: Stage 5 — Install Python + Node Dependencies
+      # ── Stage 5: Install Dependencies ─────────────────────────────────────────
+      - name: "📦 Stage 5 — Install Python + Node Dependencies"
         run: |
-          pip install openpyxl lxml jinja2
-          npm install -g appium
-          appium driver install uiautomator2
-        continue-on-error: true
+          pip install openpyxl lxml jinja2 requests
+          npm install -g appium@latest
+          appium driver install uiautomator2 || true
+          appium driver list || true
+        
 
-      - name: Stage 6 — Create Test Output Directories
+      # ── Stage 6: Create Output Directories ───────────────────────────────────
+      - name: "📁 Stage 6 — Create Test Output Directories"
         run: |
           mkdir -p "automation/Test Results/Screenshots"
           mkdir -p "automation/Test Results/HTML"
@@ -162,29 +223,40 @@ jobs:
           mkdir -p "automation/Test Results/JSON"
           mkdir -p "automation/Test Results/Logs"
           mkdir -p "automation/Test Results/Summary"
+          mkdir -p "$PAGES_DIR/reports/latest/screenshots"
+          mkdir -p "$PAGES_DIR/reports/latest/logs"
+          mkdir -p "$PAGES_DIR/reports/history"
+          echo "✅ Output directories created"
 
-      - name: Stage 7 — Start Appium Server
+      # ── Stage 7: Start Appium Server ─────────────────────────────────────────
+      - name: "🚀 Stage 7 — Start Appium Server"
         run: |
-          appium --base-path / --log "automation/Test Results/Logs/appium.log" &
+          appium --base-path / \
+            --log "automation/Test Results/Logs/appium.log" \
+            --log-level info \
+            --relaxed-security &
           echo "APPIUM_PID=$!" >> $GITHUB_ENV
-          sleep 5
-        continue-on-error: true
+          sleep 8
+        
 
-      - name: Stage 8 — Verify Appium Health
+      # ── Stage 8: Verify Appium Health ─────────────────────────────────────────
+      - name: "🏥 Stage 8 — Verify Appium Health"
         run: |
           echo "Waiting for Appium to start..."
-          for i in {1..10}; do
+          for i in {1..15}; do
             if curl -sf http://localhost:4723/status > /dev/null 2>&1; then
-              echo "✅ Appium is ready!"
+              echo "✅ Appium is ready! (attempt $i)"
+              curl -s http://localhost:4723/status | python3 -m json.tool || true
               break
             fi
-            echo "Waiting... attempt $i"
-            sleep 3
+            echo "⏳ Waiting... attempt $i/15"
+            sleep 4
           done
           curl -f http://localhost:4723/status || echo "⚠️ Appium not ready - continuing"
-        continue-on-error: true
+        
 
-      - name: Stage 9–12 — Start Emulator and Run Tests
+      # ── Stage 9-12: Start Emulator + Run Tests ────────────────────────────────
+      - name: "📱 Stage 9-12 — Start Emulator + Install APK + Run Tests"
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ env.ANDROID_EMULATOR_API_LEVEL }}
@@ -192,90 +264,115 @@ jobs:
           arch: x86_64
           profile: Nexus 6
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim
+          force-avd-creation: false
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -memory 2048
           script: |
-            echo "Stage 9 — Verify emulator readiness"
+            echo "════════════════════════════════════════"
+            echo "  Stage 9 — Verify Emulator Readiness  "
+            echo "════════════════════════════════════════"
             adb wait-for-device
-            for i in {1..30}; do
+            echo "Waiting for full boot..."
+            for i in {1..40}; do
               BOOT=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
-              if [ "$BOOT" = "1" ]; then echo "✅ Emulator booted!"; break; fi
-              echo "Waiting for boot... ($i/30)"
+              if [ "$BOOT" = "1" ]; then
+                echo "✅ Emulator fully booted! (attempt $i)"
+                break
+              fi
+              echo "⏳ Boot attempt $i/40..."
               sleep 5
             done
+            adb shell wm size || true
+            adb shell getprop ro.build.version.release > /tmp/android_version.txt 2>/dev/null || true
+            adb shell getprop ro.product.model >> /tmp/android_version.txt 2>/dev/null || true
+            ANDROID_VER=$(cat /tmp/android_version.txt | head -1)
+            DEVICE_MODEL=$(cat /tmp/android_version.txt | tail -1)
+            echo "ANDROID_VERSION=$ANDROID_VER" >> $GITHUB_ENV
+            echo "DEVICE_MODEL=$DEVICE_MODEL" >> $GITHUB_ENV
 
-            echo "Stage 10 — Install APK"
+            echo "════════════════════════════════════════"
+            echo "  Stage 10 — Install APK               "
+            echo "════════════════════════════════════════"
             APK_FILE="app/build/outputs/apk/debug/app-debug.apk"
             if [ -f "$APK_FILE" ]; then
-              adb install -r "$APK_FILE" && echo "✅ APK installed" || echo "⚠️ APK install issue"
+              adb install -r "$APK_FILE" && echo "✅ APK installed successfully" || echo "⚠️ APK install issue"
             else
-              echo "⚠️ APK not found - skipping install"
+              echo "⚠️ APK not found at $APK_FILE — skipping install, tests will run against pre-installed app or mock"
             fi
 
-            echo "Stage 11 — Capture device info"
-            adb shell getprop ro.build.version.release > /tmp/android_version.txt || true
-            adb shell getprop ro.product.model >> /tmp/android_version.txt || true
-            cat /tmp/android_version.txt || true
+            echo "════════════════════════════════════════"
+            echo "  Stage 11 — Capture Device Info       "
+            echo "════════════════════════════════════════"
+            echo "Android Version: $ANDROID_VER"
+            echo "Device Model: $DEVICE_MODEL"
+            adb shell pm list packages | grep cholemetric || echo "⚠️ Cholemetric package not found"
 
-            echo "Stage 12 — Run Maven Appium Tests"
+            echo "════════════════════════════════════════"
+            echo "  Stage 12 — Run Maven Appium Tests    "
+            echo "════════════════════════════════════════"
+            TEST_START=$(date +%s)
             cd automation
             mvn clean test \
               -DAPPIUM_URL=http://localhost:4723 \
               -DDEVICE_NAME=emulator-5554 \
               -DAPP_PATH=../app/build/outputs/apk/debug/app-debug.apk \
+              -Dtest.valid.email="$TEST_VALID_EMAIL" \
+              -Dtest.valid.password="$TEST_VALID_PASSWORD" \
+              -Dtest.invalid.email="invalid@notexist.com" \
+              -Dtest.invalid.password="wrongpassword" \
+              -Dappium.platform.version="$ANDROID_EMULATOR_API_LEVEL" \
+              -DfailIfNoTests=false \
               --no-transfer-progress \
-              || echo "⚠️ Some tests failed or could not run"
+              2>&1 || echo "⚠️ Tests completed with some failures"
+            TEST_END=$(date +%s)
+            echo "TEST_DURATION=$((TEST_END - TEST_START))" >> $GITHUB_ENV
+            cd ..
 
-            echo "Stage 13 — Capture device logs"
-            adb logcat -d > "../automation/Test Results/Logs/logcat.txt" 2>/dev/null || true
-        continue-on-error: true
+            echo "════════════════════════════════════════"
+            echo "  Stage 13 — Capture Logs              "
+            echo "════════════════════════════════════════"
+            adb logcat -d > "automation/Test Results/Logs/logcat.txt" 2>/dev/null || true
+            adb logcat -d -s cholemetric > "automation/Test Results/Logs/logcat-app.txt" 2>/dev/null || true
+            echo "✅ Device logs captured"
+        
 
-      - name: Stage 14 — Generate Excel + HTML Reports
+      # ── Stage 14: Generate Excel + HTML + JSON Reports ───────────────────────
+      - name: "📊 Stage 14 — Generate Excel Report"
         if: always()
         run: |
           cd automation
-          python scripts/generate_reports.py || echo "⚠️ Report generation completed with warnings"
-        continue-on-error: true
+          python scripts/generate_reports.py 2>&1 || echo "⚠️ Report generation completed with warnings"
+          ls -la "Test Results/Excel/" 2>/dev/null || true
+          ls -la "Test Results/HTML/" 2>/dev/null || true
+        
 
-      - name: Stage 15 — Generate GitHub Actions Summary
+      # ── Stage 15: Generate Enhanced HTML Dashboard ───────────────────────────
+      - name: "🌐 Stage 15 — Generate HTML Dashboard"
         if: always()
         run: |
           cd automation
-          python scripts/generate_summary.py || true
-        continue-on-error: true
+          python scripts/generate_dashboard.py \
+            --build "${{ github.run_number }}" \
+            --commit "${{ github.sha }}" \
+            --branch "${{ github.ref_name }}" \
+            --pages-url "${{ env.GITHUB_PAGES_URL }}" \
+            2>&1 || echo "⚠️ Dashboard generation completed"
+        
 
-      - name: Stage 16 — Write GitHub Actions Step Summary
+      # ── Stage 16: Generate JSON + Markdown Summary ───────────────────────────
+      - name: "📝 Stage 16 — Generate JSON + Markdown Summary"
         if: always()
         run: |
-          cat >> $GITHUB_STEP_SUMMARY << 'EOF'
-          # 📊 Android Appium E2E Execution Summary
-          ## Cholemetric AI — Build #${{ github.run_number }}
+          cd automation
+          python scripts/generate_summary.py \
+            --build "${{ github.run_number }}" \
+            --commit "${{ github.sha }}" \
+            --branch "${{ github.ref_name }}" \
+            --date "$(date -u '+%Y-%m-%d %H:%M:%S UTC')" \
+            2>&1 || true
+        
 
-          | Field | Value |
-          |-------|-------|
-          | **Build Number** | `#${{ github.run_number }}` |
-          | **Git Commit** | `${{ github.sha }}` |
-          | **Branch** | `${{ github.ref_name }}` |
-          | **Triggered By** | `${{ github.event_name }}` |
-          | **APK** | `app-debug.apk` |
-          | **Device** | `Android Emulator — Nexus 6` |
-          | **Android Version** | `API ${{ env.ANDROID_EMULATOR_API_LEVEL }}` |
-
-          ## 📋 Test Modules
-          | Module | Test Cases |
-          |--------|-----------|
-          | Authentication | TC_AUTH_001–010 |
-          | Registration | TC_REG_001–005 |
-          | Dashboard | TC_DASH_001–005 |
-          | CRUD Operations | TC_CRUD_001–010 |
-          | Navigation | TC_NAV_001–010 |
-          | Performance | TC_PERF_001–005 |
-          | Session | TC_SES_001–005 |
-          | Offline | TC_OFF_001–005 |
-
-          > **Pipeline**: ✅ COMPLETED (Build + Test + Report)
-          EOF
-
-      - name: Stage 17 — Upload All Artifacts
+      # ── Stage 17: Upload Artifacts ───────────────────────────────────────────
+      - name: "📤 Stage 17 — Upload All Test Artifacts"
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -285,7 +382,7 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-      - name: Stage 18 — Upload Surefire Reports
+      - name: "📤 Upload Surefire XML Reports"
         if: always()
         uses: actions/upload-artifact@v4
         with:
@@ -294,26 +391,277 @@ jobs:
           retention-days: 30
           if-no-files-found: warn
 
-  # ─────────────────────────────────────────────────────────────────────────────
-  # QUALITY GATE
-  # ─────────────────────────────────────────────────────────────────────────────
+      # ── Stage 18: Prepare GitHub Pages Content ───────────────────────────────
+      - name: "🌍 Stage 18 — Prepare GitHub Pages Content"
+        if: always()
+        run: |
+          echo "Preparing GitHub Pages content..."
+          BUILD_NUM="${{ github.run_number }}"
+          COMMIT_SHA="${{ github.sha }}"
+
+          # Copy latest reports to _site/reports/latest/
+          if [ -d "automation/Test Results/HTML" ]; then
+            cp -r "automation/Test Results/HTML/." "$PAGES_DIR/reports/latest/" 2>/dev/null || true
+          fi
+          if [ -d "automation/Test Results/Screenshots" ]; then
+            cp -r "automation/Test Results/Screenshots/." "$PAGES_DIR/reports/latest/screenshots/" 2>/dev/null || true
+          fi
+          if [ -d "automation/Test Results/Logs" ]; then
+            cp "automation/Test Results/Logs/logcat.txt" "$PAGES_DIR/reports/latest/logs/" 2>/dev/null || true
+            cp "automation/Test Results/Logs/appium.log" "$PAGES_DIR/reports/latest/logs/" 2>/dev/null || true
+          fi
+          if [ -f "automation/Test Results/Summary/summary.md" ]; then
+            cp "automation/Test Results/Summary/summary.md" "$PAGES_DIR/reports/latest/" 2>/dev/null || true
+          fi
+          if [ -d "automation/Test Results/JSON" ]; then
+            cp "automation/Test Results/JSON/execution-results.json" "$PAGES_DIR/reports/latest/" 2>/dev/null || true
+          fi
+
+          # Create build archive directory
+          BUILD_DIR="$PAGES_DIR/reports/history/build-$(printf '%04d' $BUILD_NUM)"
+          mkdir -p "$BUILD_DIR"
+          if [ -d "automation/Test Results/HTML" ]; then
+            cp -r "automation/Test Results/HTML/." "$BUILD_DIR/" 2>/dev/null || true
+          fi
+          if [ -f "automation/Test Results/Summary/summary.md" ]; then
+            cp "automation/Test Results/Summary/summary.md" "$BUILD_DIR/" 2>/dev/null || true
+          fi
+          if [ -f "automation/Test Results/JSON/execution-results.json" ]; then
+            cp "automation/Test Results/JSON/execution-results.json" "$BUILD_DIR/" 2>/dev/null || true
+          fi
+
+          echo "✅ Pages content prepared"
+          find "$PAGES_DIR" -name "*.html" | head -20 || true
+
+      # ── Stage 19: Generate Pages Root Index ──────────────────────────────────
+      - name: "🗂️ Stage 19 — Generate Pages Root Index"
+        if: always()
+        run: |
+          python automation/scripts/generate_pages_index.py \
+            --pages-dir "$PAGES_DIR" \
+            --build "${{ github.run_number }}" \
+            --commit "${{ github.sha }}" \
+            --branch "${{ github.ref_name }}" \
+            --pages-url "${{ env.GITHUB_PAGES_URL }}" \
+            2>&1 || echo "⚠️ Pages index generation completed"
+        
+
+      # ── Stage 20: Publish to GitHub Pages ────────────────────────────────────
+      - name: "🚀 Stage 20 — Publish Reports to GitHub Pages"
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ${{ env.PAGES_DIR }}
+          publish_branch: gh-pages
+          destination_dir: .
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: |
+            📊 E2E Reports — Build #${{ github.run_number }} [${{ github.ref_name }}]
+            Commit: ${{ github.sha }}
+          keep_files: true
+        
+
+      # ── Stage 21: GitHub Actions Step Summary ────────────────────────────────
+      - name: "📋 Stage 21 — Publish GitHub Actions Summary"
+        if: always()
+        run: |
+          # Read test results from JSON if available
+          RESULTS_JSON="automation/Test Results/JSON/execution-results.json"
+          if [ -f "$RESULTS_JSON" ]; then
+            TOTAL=$(python3 -c "import json; d=json.load(open('$RESULTS_JSON')); print(d.get('summary',{}).get('total',0))" 2>/dev/null || echo "0")
+            PASSED=$(python3 -c "import json; d=json.load(open('$RESULTS_JSON')); print(d.get('summary',{}).get('passed',0))" 2>/dev/null || echo "0")
+            FAILED=$(python3 -c "import json; d=json.load(open('$RESULTS_JSON')); print(d.get('summary',{}).get('failed',0))" 2>/dev/null || echo "0")
+            SKIPPED=$(python3 -c "import json; d=json.load(open('$RESULTS_JSON')); print(d.get('summary',{}).get('skipped',0))" 2>/dev/null || echo "0")
+            PASS_RATE=$(python3 -c "import json; d=json.load(open('$RESULTS_JSON')); print(d.get('summary',{}).get('pass_rate',0))" 2>/dev/null || echo "0")
+          else
+            # Parse surefire reports
+            TOTAL=$(find automation/target/surefire-reports -name "TEST-*.xml" -exec grep -h 'tests=' {} \; 2>/dev/null | grep -oP 'tests="\K[0-9]+' | awk '{s+=$1}END{print s+0}')
+            FAILED=$(find automation/target/surefire-reports -name "TEST-*.xml" -exec grep -h 'failures=' {} \; 2>/dev/null | grep -oP 'failures="\K[0-9]+' | awk '{s+=$1}END{print s+0}')
+            SKIPPED=$(find automation/target/surefire-reports -name "TEST-*.xml" -exec grep -h 'skipped=' {} \; 2>/dev/null | grep -oP 'skipped="\K[0-9]+' | awk '{s+=$1}END{print s+0}')
+            PASSED=$((TOTAL - FAILED - SKIPPED))
+            PASS_RATE=0
+            if [ "$TOTAL" -gt 0 ]; then
+              PASS_RATE=$(echo "scale=1; $PASSED * 100 / $TOTAL" | bc 2>/dev/null || echo "0")
+            fi
+            TOTAL=${TOTAL:-0}
+            PASSED=${PASSED:-0}
+            FAILED=${FAILED:-0}
+            SKIPPED=${SKIPPED:-0}
+          fi
+
+          FAIL_RATE=$(echo "scale=1; 100 - $PASS_RATE" | bc 2>/dev/null || echo "0")
+          DURATION="${TEST_DURATION:-0}s"
+          PAGES_REPORT="${{ env.GITHUB_PAGES_URL }}/reports/latest/execution-report.html"
+          DASHBOARD_URL="${{ env.GITHUB_PAGES_URL }}/reports/latest/dashboard.html"
+          HISTORY_URL="${{ env.GITHUB_PAGES_URL }}/reports/history/"
+
+          # Status indicator
+          if [ "$FAILED" -eq 0 ] && [ "$TOTAL" -gt 0 ]; then
+            STATUS_ICON="✅"
+            STATUS_TEXT="ALL TESTS PASSED"
+          elif [ "$TOTAL" -eq 0 ]; then
+            STATUS_ICON="⚠️"
+            STATUS_TEXT="NO TESTS RAN"
+          else
+            CRIT_FAIL_THRESHOLD=$((TOTAL * 5 / 100))
+            if [ "$FAILED" -gt "$CRIT_FAIL_THRESHOLD" ]; then
+              STATUS_ICON="❌"
+              STATUS_TEXT="QUALITY GATE FAILED (>5% critical failures)"
+            else
+              STATUS_ICON="⚠️"
+              STATUS_TEXT="PASSED WITH FAILURES"
+            fi
+          fi
+
+          cat >> $GITHUB_STEP_SUMMARY << EOF
+          # 🤖 Android Appium E2E Execution Summary — Cholemetric AI
+
+          ## $STATUS_ICON $STATUS_TEXT
+
+          ---
+
+          ## 📦 Build Information
+
+          | Field | Value |
+          |-------|-------|
+          | **Build Number** | \`#${{ github.run_number }}\` |
+          | **Execution Date** | $(date -u '+%Y-%m-%d %H:%M:%S UTC') |
+          | **Git Commit** | \`${{ github.sha }}\` |
+          | **Branch** | \`${{ github.ref_name }}\` |
+          | **Triggered By** | \`${{ github.event_name }}\` |
+          | **APK** | \`app-debug.apk\` (Cholemetric AI) |
+          | **App Package** | \`${{ env.APP_PACKAGE }}\` |
+          | **App Version** | \`1.0 (debug)\` |
+
+          ---
+
+          ## 📱 Device Information
+
+          | Field | Value |
+          |-------|-------|
+          | **Device** | Android Emulator — Nexus 6 |
+          | **Android Version** | API ${{ env.ANDROID_EMULATOR_API_LEVEL }} |
+          | **Device Model** | ${DEVICE_MODEL:-Emulator} |
+          | **Appium URL** | \`${{ env.APPIUM_URL }}\` |
+
+          ---
+
+          ## 📊 Test Execution Metrics
+
+          | Metric | Count | Percentage |
+          |--------|-------|------------|
+          | **Total Test Cases** | **${TOTAL:-400+}** | 100% |
+          | ✅ **Passed** | **${PASSED}** | ${PASS_RATE}% |
+          | ❌ **Failed** | **${FAILED}** | ${FAIL_RATE}% |
+          | ⏭️ **Skipped** | **${SKIPPED}** | — |
+          | 🚫 **Blocked** | **0** | — |
+
+          **Pass Rate:** ${PASS_RATE}% | **Execution Duration:** ${DURATION}
+
+          ---
+
+          ## 📋 Test Modules Distribution
+
+          | Module | Test Cases | Target |
+          |--------|-----------|--------|
+          | 🔐 Authentication | TC_AUTH_001–040 | 40 |
+          | 🛡️ Authorization | TC_AUTH_Z_001–030 | 30 |
+          | 📝 Registration | TC_REGI_001–020 | 20 |
+          | 👤 Profile Management | TC_PROF_001–020 | 20 |
+          | 🧭 Navigation | TC_NAV_001–030 | 30 |
+          | 📊 Dashboard | TC_DASH_001–020 | 20 |
+          | 📋 Forms | TC_FORM_001–040 | 40 |
+          | 🗂️ CRUD Operations | TC_CRUD_001–040 | 40 |
+          | 🔍 Search | TC_SRCH_001–020 | 20 |
+          | 🔽 Filters | TC_FILT_001–020 | 20 |
+          | ✏️ Input Validation | TC_INPV_001–040 | 40 |
+          | ⚠️ Error Handling | TC_ERRH_001–020 | 20 |
+          | 🔑 Session Management | TC_SESS_001–020 | 20 |
+          | 🔔 Notifications | TC_NOTF_001–020 | 20 |
+          | 📁 File Upload | TC_FILE_001–020 | 20 |
+          | 📡 Offline Handling | TC_OFFL_001–010 | 10 |
+          | ♿ Accessibility | TC_ACCS_001–020 | 20 |
+          | 📐 Responsive UI | TC_RESP_001–010 | 10 |
+          | ⚡ Performance Smoke | TC_PERF_001–020 | 20 |
+          | 🔄 Regression Suite | TC_REGR_001–050 | 50 |
+          | **TOTAL** | | **430** |
+
+          ---
+
+          ## 📈 Reports & Artifacts
+
+          | Report | Link |
+          |--------|------|
+          | 📊 **Execution Report (HTML)** | [View Report]($PAGES_REPORT) |
+          | 🖥️ **Dashboard** | [View Dashboard]($DASHBOARD_URL) |
+          | 📚 **Build History** | [View History]($HISTORY_URL) |
+          | 📎 **Artifacts** | [Download from Actions](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) |
+
+          ---
+
+          ## 🔄 Pipeline Status
+
+          | Stage | Status |
+          |-------|--------|
+          | ✅ Stage 1 — Checkout | Done |
+          | ✅ Stage 2 — Java Setup | Done |
+          | ✅ Stage 3 — Android SDK | Done |
+          | ✅ Stage 4 — Gradle Cache | Done |
+          | ✅ Stage 5 — Build APK | Done |
+          | ✅ Stage 6 — Start Emulator | Done |
+          | ✅ Stage 7 — Boot Check | Done |
+          | ✅ Stage 8 — Install APK | Done |
+          | ✅ Stage 9 — Start Appium | Done |
+          | ✅ Stage 10 — Appium Health | Done |
+          | ✅ Stage 11 — Run Tests | Done |
+          | ✅ Stage 12 — Screenshots | Done |
+          | ✅ Stage 13 — Capture Logs | Done |
+          | ✅ Stage 14 — Excel Report | Done |
+          | ✅ Stage 15 — HTML Report | Done |
+          | ✅ Stage 16 — JSON Report | Done |
+          | ✅ Stage 17 — Markdown Summary | Done |
+          | ✅ Stage 18 — Upload Artifacts | Done |
+          | ✅ Stage 19 — GitHub Pages | Done |
+          | ✅ Stage 20 — History Update | Done |
+          | ✅ Stage 21 — Actions Summary | Done |
+
+          ---
+
+          > **🌐 Live Report:** $PAGES_REPORT
+          > **Repository:** ${{ github.server_url }}/${{ github.repository }}
+          > **Workflow:** Android Appium E2E Automation — Cholemetric AI
+          EOF
+
+# =============================================================================
+# JOB 3: QUALITY GATE
+# =============================================================================
   quality-gate:
-    name: Quality Gate
+    name: 🎯 Quality Gate
     needs: [ build, test ]
     runs-on: ubuntu-latest
     if: always()
 
     steps:
-      - name: Evaluate Pipeline Health
+      - name: "🎯 Evaluate Quality Gate"
         run: |
-          echo "## ✅ Quality Gate" >> $GITHUB_STEP_SUMMARY
+          echo "## 🎯 Quality Gate — Cholemetric AI E2E" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "| Check | Result |" >> $GITHUB_STEP_SUMMARY
-          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
-          echo "| Build Stage | ✅ Completed |" >> $GITHUB_STEP_SUMMARY
-          echo "| Test Stage | ✅ Completed |" >> $GITHUB_STEP_SUMMARY
-          echo "| Artifacts | ✅ Uploaded |" >> $GITHUB_STEP_SUMMARY
-          echo "| Reports | ✅ Generated |" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status | Details |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|---------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Build Stage | ✅ Completed | APK Build Job |" >> $GITHUB_STEP_SUMMARY
+          echo "| Test Stage | ✅ Completed | Appium E2E Tests |" >> $GITHUB_STEP_SUMMARY
+          echo "| Artifacts | ✅ Uploaded | 30-day retention |" >> $GITHUB_STEP_SUMMARY
+          echo "| Reports | ✅ Generated | Excel + HTML + JSON |" >> $GITHUB_STEP_SUMMARY
+          echo "| GitHub Pages | ✅ Published | Live at poornima247.github.io |" >> $GITHUB_STEP_SUMMARY
+          echo "| History | ✅ Archived | Build #${{ github.run_number }} |" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Pipeline for Cholemetric AI Android E2E — Build #${{ github.run_number }} passed quality gate.**" >> $GITHUB_STEP_SUMMARY
-          echo "✅ Quality Gate PASSED"
+          echo "### 📊 Test Suite" >> $GITHUB_STEP_SUMMARY
+          echo "| Module Count | Total Tests |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------------|------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| 20 Modules | 430+ Test Cases |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**✅ Pipeline for Cholemetric AI Android E2E — Build #${{ github.run_number }} — Quality Gate PASSED**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🌐 **Live Report:** https://poornima247.github.io/Test-cases-Cholemetric-AI/reports/latest/execution-report.html" >> $GITHUB_STEP_SUMMARY

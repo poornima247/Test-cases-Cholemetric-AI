@@ -1,46 +1,174 @@
-import json
+#!/usr/bin/env python3
+"""
+generate_summary.py — GitHub Actions Step Summary + Markdown Summary Generator
+"""
 import os
+import sys
+import json
+import argparse
+import datetime
 
-JSON_PATH = "Test Results/JSON/execution-results.json"
-SUMMARY_FILE = os.environ.get("GITHUB_STEP_SUMMARY", "github_step_summary.md")
+OUTPUT_DIR  = "Test Results"
+JSON_DIR    = os.path.join(OUTPUT_DIR, "JSON")
+SUMMARY_DIR = os.path.join(OUTPUT_DIR, "Summary")
+os.makedirs(SUMMARY_DIR, exist_ok=True)
 
-if not os.path.exists(JSON_PATH):
-    print(f"JSON file not found at {JSON_PATH}")
-    exit(0)
+def load_results():
+    try:
+        with open(os.path.join(JSON_DIR, "execution-results.json")) as f:
+            data = json.load(f)
+        return data.get("summary", {}), data.get("results", [])
+    except Exception:
+        return {}, []
 
-with open(JSON_PATH, "r") as f:
-    data = json.load(f)
+def main(build="", commit="", branch="", date="", pages_url=""):
+    summary, results = load_results()
 
-summary = data.get("summary", {})
-results = data.get("results", [])
+    total   = summary.get("total", len(results))
+    passed  = summary.get("passed", sum(1 for r in results if r.get("status") == "PASS"))
+    failed  = summary.get("failed", sum(1 for r in results if r.get("status") == "FAIL"))
+    skipped = summary.get("skipped", sum(1 for r in results if r.get("status") == "SKIP"))
+    pass_rate = summary.get("pass_rate", round(passed / total * 100, 2) if total > 0 else 0)
+    fail_rate = round(100 - pass_rate, 2)
+    exec_date = date or datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S UTC")
 
-content = "## 📊 Appium Test Execution Summary\n\n"
+    failed_list  = [r for r in results if r.get("status") == "FAIL"]
+    passed_list  = [r for r in results if r.get("status") == "PASS"]
+    skipped_list = [r for r in results if r.get("status") == "SKIP"]
 
-content += "| Metric | Count |\n"
-content += "|--------|-------|\n"
-content += f"| **Total Tests** | {summary.get('total', 0)} |\n"
-content += f"| 🟢 **Passed** | {summary.get('passed', 0)} |\n"
-content += f"| 🔴 **Failed** | {summary.get('failed', 0)} |\n"
-content += f"| 🟡 **Skipped** | {summary.get('skipped', 0)} |\n"
-content += f"| **Pass Rate** | {summary.get('pass_rate', 0)}% |\n\n"
+    # Build passed/failed text
+    passed_text  = "\n".join([f"✓ {r.get('test_id','')} — {r.get('test_name','')[:70]}" for r in passed_list[:25]])
+    failed_text  = "\n".join([
+        f"✗ {r.get('test_id','')} — {r.get('test_name','')[:60]}\n  Reason: {r.get('failure_reason','Unknown')[:100]}"
+        for r in failed_list
+    ])
+    skipped_text = "\n".join([f"- {r.get('test_id','')} — {r.get('failure_reason','Skipped')[:80]}" for r in skipped_list[:15]])
 
-content += "### 🔴 Failed Tests\n\n"
-failed_tests = [r for r in results if r["status"] == "FAIL"]
-if failed_tests:
-    for r in failed_tests:
-        content += f"- ✗ **{r['test_id']}**: `{r['name']}` ({r['module']})\n"
-else:
-    content += "No failed tests! 🎉\n"
+    pages_report = f"{pages_url}/reports/latest/execution-report.html"
+    dashboard_url = f"{pages_url}/reports/latest/dashboard.html"
 
-content += "\n### 🟢 Passed Tests\n\n"
-passed_tests = [r for r in results if r["status"] == "PASS"]
-if passed_tests:
-    content += "<details><summary>Click to view passed tests</summary>\n\n"
-    for r in passed_tests:
-        content += f"- ✓ **{r['test_id']}**: `{r['name']}`\n"
-    content += "\n</details>\n"
+    md = f"""# 🤖 Android Appium E2E — Execution Summary
 
-with open(SUMMARY_FILE, "a") as f:
-    f.write(content)
+**Cholemetric AI — Build #{build}**
 
-print(f"Wrote summary to {SUMMARY_FILE}")
+---
+
+## 📦 Build Information
+
+| Field | Value |
+|-------|-------|
+| Build Number | #{build} |
+| Execution Date | {exec_date} |
+| Git Commit | {commit[:12] if commit else 'N/A'} |
+| Branch | {branch} |
+| APK | app-debug.apk |
+| App Package | com.cholemetric.app |
+| App Version | 1.0 (debug) |
+| Device | Android Emulator — Nexus 6 |
+| Android Version | API 29 |
+| Framework | Appium 2.x + Java 17 + TestNG 7.8 |
+
+---
+
+## 📊 Execution Metrics
+
+| Metric | Count | Percentage |
+|--------|-------|------------|
+| **Total Test Cases** | **{total}** | 100% |
+| ✅ Passed | {passed} | {pass_rate}% |
+| ❌ Failed | {failed} | {fail_rate}% |
+| ⏭️ Skipped | {skipped} | — |
+| 🚫 Blocked | 0 | — |
+
+**Pass Rate: {pass_rate}% | Target: ≥95%**
+
+---
+
+## 📋 Module Breakdown
+
+| Module | Tests | Target |
+|--------|-------|--------|
+| Authentication | 40 | TC_AUTH_001–040 |
+| Authorization | 30 | TC_AUTH_Z_001–030 |
+| Registration | 20 | TC_REGI_001–020 |
+| Profile Management | 20 | TC_PROF_001–020 |
+| Navigation | 30 | TC_NAV_001–030 |
+| Dashboard | 20 | TC_DASH_001–020 |
+| Forms | 40 | TC_FORM_001–040 |
+| CRUD Operations | 40 | TC_CRUD_001–040 |
+| Search | 20 | TC_SRCH_001–020 |
+| Filters | 20 | TC_FILT_001–020 |
+| Input Validation | 40 | TC_INPV_001–040 |
+| Error Handling | 20 | TC_ERRH_001–020 |
+| Session Management | 20 | TC_SESS_001–020 |
+| Notifications | 20 | TC_NOTF_001–020 |
+| File Upload | 20 | TC_FILE_001–020 |
+| Offline Handling | 10 | TC_OFFL_001–010 |
+| Accessibility | 20 | TC_ACCS_001–020 |
+| Responsive UI | 10 | TC_RESP_001–010 |
+| Performance Smoke | 20 | TC_PERF_001–020 |
+| Regression Suite | 50 | TC_REGR_001–050 |
+| **TOTAL** | **430** | |
+
+---
+
+## 📈 Reports
+
+- 📊 [Execution Report]({pages_report})
+- 🖥️ [Dashboard]({dashboard_url})
+- 📚 [History]({pages_url}/reports/history/)
+
+---
+
+## PASSED TESTS (first 25)
+
+```
+{passed_text if passed_text else 'No passing tests recorded yet.'}
+```
+
+---
+
+## FAILED TESTS
+
+```
+{failed_text if failed_text else '🎉 No failed tests! All tests passed.'}
+```
+
+---
+
+## SKIPPED TESTS
+
+```
+{skipped_text if skipped_text else 'No skipped tests.'}
+```
+
+---
+
+*Generated by Cholemetric AI Automation Framework | Build #{build} | {exec_date}*
+"""
+
+    path = os.path.join(SUMMARY_DIR, "summary.md")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(md)
+    print(f"✅ Summary markdown: {path}")
+
+    # Also print to stdout for GitHub Actions
+    print("\n" + "="*60)
+    print(f"  CHOLEMETRIC AI — E2E SUMMARY — BUILD #{build}")
+    print("="*60)
+    print(f"  Total:    {total}")
+    print(f"  Passed:   {passed} ({pass_rate}%)")
+    print(f"  Failed:   {failed} ({fail_rate}%)")
+    print(f"  Skipped:  {skipped}")
+    print(f"  Report:   {pages_report}")
+    print("="*60)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--build", default="")
+    parser.add_argument("--commit", default="")
+    parser.add_argument("--branch", default="")
+    parser.add_argument("--date", default="")
+    parser.add_argument("--pages-url", default="https://poornima247.github.io/Test-cases-Cholemetric-AI")
+    args = parser.parse_args()
+    main(build=args.build, commit=args.commit, branch=args.branch, date=args.date, pages_url=args.pages_url)
