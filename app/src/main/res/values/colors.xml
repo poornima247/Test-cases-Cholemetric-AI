@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background">#5E6CBB</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="teal_green">#2CC295</color>
+    <color name="bg_light_gray">#EEEEEE</color>
+    <color name="text_dark">#111111</color>
+    <color name="text_gray">#888888</color>
+    <color name="input_border">#CCCCCC</color>
+</resources>

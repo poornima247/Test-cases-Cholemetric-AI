@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cholemetric.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="Cholemetric"
+        android:usesCleartextTraffic="true"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Cholemetric">
+        
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Cholemetric.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity 
+            android:name=".WelcomeActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+        <activity
+            android:name=".SignUpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+        <activity
+            android:name=".ForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+        <activity
+            android:name=".DashboardActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+        <activity
+            android:name=".NewAnalysisActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+        <activity
+            android:name=".ScanResultsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+
+        <activity
+            android:name=".PatientScansActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+
+        <activity
+            android:name=".ScanReportActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+
+        <activity
+            android:name=".EditProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+
+        <activity
+            android:name=".ChangePasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+
+        <activity
+            android:name=".HelpFaqActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Cholemetric.NoActionBar" />
+            
+    </application>
+</manifest>

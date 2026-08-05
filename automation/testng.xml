@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Cholemetric E2E Test Suite" parallel="classes" thread-count="2">
+    <listeners>
+        <listener class-name="com.cholemetric.automation.utils.TestListener" />
+        <listener class-name="com.cholemetric.automation.utils.RetryListener" />
+    </listeners>
+
+    <test name="Appium E2E Tests">
+        <classes>
+            <class name="com.cholemetric.automation.tests.AuthenticationTests" />
+            <class name="com.cholemetric.automation.tests.AuthorizationTests" />
+            <class name="com.cholemetric.automation.tests.RegistrationTests" />
+            <class name="com.cholemetric.automation.tests.ProfileManagementTests" />
+            <class name="com.cholemetric.automation.tests.NavigationTests" />
+            <class name="com.cholemetric.automation.tests.DashboardTests" />
+            <class name="com.cholemetric.automation.tests.FormsTests" />
+            <class name="com.cholemetric.automation.tests.CrudOperationsTests" />
+            <class name="com.cholemetric.automation.tests.SearchTests" />
+            <class name="com.cholemetric.automation.tests.FiltersTests" />
+            <class name="com.cholemetric.automation.tests.InputValidationTests" />
+            <class name="com.cholemetric.automation.tests.ErrorHandlingTests" />
+            <class name="com.cholemetric.automation.tests.SessionManagementTests" />
+            <class name="com.cholemetric.automation.tests.NotificationsTests" />
+            <class name="com.cholemetric.automation.tests.FileUploadTests" />
+            <class name="com.cholemetric.automation.tests.OfflineHandlingTests" />
+            <class name="com.cholemetric.automation.tests.AccessibilityTests" />
+            <class name="com.cholemetric.automation.tests.ResponsiveUITests" />
+            <class name="com.cholemetric.automation.tests.PerformanceSmokeTests" />
+            <class name="com.cholemetric.automation.tests.RegressionTests" />
+        </classes>
+    </test>
+</suite>
