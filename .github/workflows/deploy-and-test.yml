@@ -55,7 +55,7 @@ jobs:
           }' > .htmlvalidate.json
           echo "Running HTML validation..."
           html-validate "frontend/**/*.html" 2>&1 || echo "⚠️ HTML validation warnings (non-blocking)"
-        continue-on-error: true
+        
 
       - name: "🚀 Stage 4 — Deploy frontend to GitHub Pages (gh-pages branch)"
         uses: peaceiris/actions-gh-pages@v3
@@ -153,7 +153,7 @@ jobs:
             -Dsurefire.failIfNoSpecifiedTests=false \
             2>&1 | tee ../selenium-output.log
           echo "Maven exit code: ${PIPESTATUS[0]}"
-        continue-on-error: true
+        
 
       - name: "📊 Stage 12 — Generate HTML & Excel Reports"
         if: always()
@@ -161,7 +161,7 @@ jobs:
           cd web-automation
           echo "Generating HTML and Excel reports..."
           python scripts/generate_web_reports.py || echo "⚠️ Report generation noted"
-        continue-on-error: true
+        
 
       - name: "📁 Stage 13 — Organize test artifacts"
         if: always()
@@ -291,7 +291,7 @@ jobs:
             --summary-export=k6-results/k6-summary.json \
             /tmp/k6-load-test.js \
             2>&1 | tee k6-results/k6-run.log || true
-        continue-on-error: true
+        
 
       - name: "📊 Parse k6 Results & Publish Summary"
         if: always()
