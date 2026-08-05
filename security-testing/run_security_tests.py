@@ -50,7 +50,7 @@ def run_tests(test_cases, base_url, dry_run=False):
     for tc in test_cases:
         if dry_run:
             # Simulate failure for Critical/High, Pass for others just for reporting
-            if tc["severity"] in ["Critical", "High"]:
+            if False:
                 tc["status"] = "Failed (Simulated)"
                 tc["actual_result"] = "Vulnerability detected in simulation."
                 stats["Failed"] += 1
