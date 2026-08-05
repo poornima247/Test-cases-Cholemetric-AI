@@ -1,10 +1,10 @@
-name: Android E2E Tests — Cholemetric AI
+name: Android Appium E2E Automation & CI/CD
 
 on:
   push:
-    branches: [ main, master, develop ]
+    branches: [ main, master, develop, android-frontend ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, android-frontend ]
   workflow_dispatch:
     inputs:
       api_level:
