@@ -9,11 +9,12 @@
         .summary { display: flex; justify-content: space-around; margin: 20px 0; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .metric { text-align: center; }
         .metric h3 { margin: 0; color: #6c757d; font-size: 16px; }
-        .metric p { margin: 5px 0 0 0; font-size: 24px; font-weight: bold; color: #28a745; } /* Green for all passes */
+        .metric p { margin: 5px 0 0 0; font-size: 24px; font-weight: bold; }
+        .pass-text { color: #28a745; }
+        .fail-text { color: #dc3545; }
         table { width: 100%; border-collapse: collapse; background: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         th, td { padding: 12px; text-align: left; border-bottom: 1px solid #dee2e6; }
         th { background-color: #343a40; color: white; }
-        .pass { color: #28a745; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -22,10 +23,10 @@
     
     <div class="summary">
         <div class="metric"><h3>Total Tests Executed</h3><p style="color:#007bff;">300</p></div>
-        <div class="metric"><h3>Passed</h3><p>300</p></div>
-        <div class="metric"><h3>Failed</h3><p style="color:#dc3545;">0</p></div>
-        <div class="metric"><h3>Pass Percentage</h3><p>100%</p></div>
-        <div class="metric"><h3>Execution Date</h3><p style="color:#6c757d; font-size:18px;">2026-08-09 00:31:56</p></div>
+        <div class="metric"><h3>Passed</h3><p class="pass-text">285</p></div>
+        <div class="metric"><h3>Failed</h3><p class="fail-text">15</p></div>
+        <div class="metric"><h3>Pass Percentage</h3><p class="pass-text">95%</p></div>
+        <div class="metric"><h3>Execution Date</h3><p style="color:#6c757d; font-size:18px;">2026-08-09 00:40:15</p></div>
     </div>
 
     <table>
@@ -36,6 +37,7 @@
             <th>Priority</th>
             <th>Execution Time</th>
             <th>Status</th>
+            <th>Reason</th>
         </tr>
 
         <tr>
@@ -43,8 +45,9 @@
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 1</td>
             <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -52,8 +55,9 @@
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 2</td>
             <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -62,52 +66,58 @@
             <td>Verify authentication functionality - Scenario 3</td>
             <td>Medium</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_004</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 4</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_005</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 5</td>
-            <td>High</td>
+            <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_006</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 6</td>
-            <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_007</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 7</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_008</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 8</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -116,7 +126,8 @@
             <td>Verify authentication functionality - Scenario 9</td>
             <td>Medium</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -124,17 +135,19 @@
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 10</td>
             <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_011</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 11</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -143,43 +156,48 @@
             <td>Verify authentication functionality - Scenario 12</td>
             <td>Medium</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_013</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 13</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_014</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 14</td>
-            <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_015</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 15</td>
-            <td>High</td>
+            <td>Low</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_016</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 16</td>
-            <td>Low</td>
+            <td>High</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -188,70 +206,78 @@
             <td>Verify authentication functionality - Scenario 17</td>
             <td>High</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_018</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 18</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_019</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 19</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_020</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 20</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_021</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 21</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_022</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 22</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_023</td>
             <td>Authentication</td>
             <td>Verify authentication functionality - Scenario 23</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_024</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 1</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -259,8 +285,9 @@
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 2</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -269,34 +296,38 @@
             <td>Verify authorization functionality - Scenario 3</td>
             <td>High</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_027</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 4</td>
-            <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_028</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 5</td>
-            <td>Low</td>
+            <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_029</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 6</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -304,8 +335,9 @@
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 7</td>
             <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -313,17 +345,19 @@
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 8</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_032</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 9</td>
-            <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Database constraint violation</td>
         </tr>
 
         <tr>
@@ -332,16 +366,18 @@
             <td>Verify authorization functionality - Scenario 10</td>
             <td>Medium</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_034</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 11</td>
-            <td>Medium</td>
+            <td>Low</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Validation message mismatch</td>
         </tr>
 
         <tr>
@@ -349,62 +385,69 @@
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 12</td>
             <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_036</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 13</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_037</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 14</td>
-            <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_038</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 15</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_039</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 16</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_AUTH_040</td>
             <td>Authorization</td>
             <td>Verify authorization functionality - Scenario 17</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_041</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 1</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -412,44 +455,49 @@
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 2</td>
             <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_043</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 3</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_044</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 4</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_045</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 5</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_046</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 6</td>
-            <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -457,26 +505,29 @@
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 7</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_048</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 8</td>
-            <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_049</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 9</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -484,116 +535,129 @@
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 10</td>
             <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGI_051</td>
             <td>Registration</td>
             <td>Verify registration functionality - Scenario 11</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_052</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 1</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_053</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 2</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_054</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 3</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_055</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 4</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_056</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 5</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_057</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 6</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_058</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 7</td>
-            <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_059</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 8</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_060</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 9</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_061</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 10</td>
-            <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PROF_062</td>
             <td>Profile Management</td>
             <td>Verify profile management functionality - Scenario 11</td>
-            <td>High</td>
+            <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -601,26 +665,29 @@
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 1</td>
             <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_064</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 2</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_065</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 3</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -628,8 +695,9 @@
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 4</td>
             <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -637,8 +705,9 @@
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 5</td>
             <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -647,79 +716,88 @@
             <td>Verify navigation functionality - Scenario 6</td>
             <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_069</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 7</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_070</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 8</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_071</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 9</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_072</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 10</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_073</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 11</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_074</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 12</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_075</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 13</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_076</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 14</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -727,17 +805,19 @@
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 15</td>
             <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NAVI_078</td>
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 16</td>
-            <td>Low</td>
+            <td>Medium</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -745,17 +825,19 @@
             <td>Navigation</td>
             <td>Verify navigation functionality - Scenario 17</td>
             <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_DASH_080</td>
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 1</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -763,17 +845,19 @@
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 2</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_DASH_082</td>
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 3</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -781,17 +865,19 @@
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 4</td>
             <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_DASH_084</td>
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 5</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -799,17 +885,19 @@
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 6</td>
             <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_DASH_086</td>
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 7</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -818,7 +906,8 @@
             <td>Verify dashboard functionality - Scenario 8</td>
             <td>Low</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -826,17 +915,19 @@
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 9</td>
             <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_DASH_089</td>
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 10</td>
-            <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -844,8 +935,9 @@
             <td>Dashboard</td>
             <td>Verify dashboard functionality - Scenario 11</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -853,35 +945,39 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 1</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_092</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 2</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_093</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 3</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_094</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 4</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -889,17 +985,19 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 5</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_096</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 6</td>
-            <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -908,34 +1006,38 @@
             <td>Verify forms functionality - Scenario 7</td>
             <td>Low</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_098</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 8</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_099</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 9</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Element not found on screen</td>
         </tr>
 
         <tr>
             <td>TC_FORM_100</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 10</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -943,26 +1045,29 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 11</td>
             <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Validation message mismatch</td>
         </tr>
 
         <tr>
             <td>TC_FORM_102</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 12</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_103</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 13</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -970,8 +1075,9 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 14</td>
             <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -979,8 +1085,9 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 15</td>
             <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -988,8 +1095,9 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 16</td>
             <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -997,62 +1105,69 @@
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 17</td>
             <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_108</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 18</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_109</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 19</td>
-            <td>Medium</td>
+            <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_110</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 20</td>
-            <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_111</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 21</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_112</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 22</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FORM_113</td>
             <td>Forms</td>
             <td>Verify forms functionality - Scenario 23</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1060,17 +1175,19 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 1</td>
             <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_115</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 2</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1078,26 +1195,29 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 3</td>
             <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_117</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 4</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_118</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 5</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1106,52 +1226,58 @@
             <td>Verify crud operations functionality - Scenario 6</td>
             <td>High</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_120</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 7</td>
-            <td>High</td>
+            <td>Low</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_121</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 8</td>
-            <td>Low</td>
+            <td>High</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_122</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 9</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_123</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 10</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Validation message mismatch</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_124</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 11</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1159,35 +1285,39 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 12</td>
             <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_126</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 13</td>
-            <td>Medium</td>
+            <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_127</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 14</td>
-            <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_128</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 15</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1195,17 +1325,19 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 16</td>
             <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_130</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 17</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1213,8 +1345,9 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 18</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1222,8 +1355,9 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 19</td>
             <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1231,8 +1365,9 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 20</td>
             <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1240,26 +1375,29 @@
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 21</td>
             <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_135</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 22</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_CRUD_136</td>
             <td>CRUD Operations</td>
             <td>Verify crud operations functionality - Scenario 23</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1268,25 +1406,28 @@
             <td>Verify search functionality - Scenario 1</td>
             <td>Medium</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_138</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 2</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_139</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 3</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1294,26 +1435,29 @@
             <td>Search</td>
             <td>Verify search functionality - Scenario 4</td>
             <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_141</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 5</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_142</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 6</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1321,62 +1465,69 @@
             <td>Search</td>
             <td>Verify search functionality - Scenario 7</td>
             <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_144</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 8</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_145</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 9</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Timeout waiting for response</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_146</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 10</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SEAR_147</td>
             <td>Search</td>
             <td>Verify search functionality - Scenario 11</td>
-            <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_148</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 1</td>
-            <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_149</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 2</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1384,53 +1535,59 @@
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 3</td>
             <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_151</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 4</td>
-            <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_152</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 5</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_153</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 6</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_154</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 7</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILT_155</td>
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 8</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1438,8 +1595,9 @@
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 9</td>
             <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1447,8 +1605,9 @@
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 10</td>
             <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1456,17 +1615,19 @@
             <td>Filters</td>
             <td>Verify filters functionality - Scenario 11</td>
             <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_159</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 1</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1474,8 +1635,9 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 2</td>
             <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Database constraint violation</td>
         </tr>
 
         <tr>
@@ -1483,8 +1645,9 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 3</td>
             <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1492,8 +1655,9 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 4</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1502,7 +1666,8 @@
             <td>Verify input validation functionality - Scenario 5</td>
             <td>Low</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1510,8 +1675,9 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 6</td>
             <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1519,26 +1685,29 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 7</td>
             <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_166</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 8</td>
-            <td>Medium</td>
+            <td>Low</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Timeout waiting for response</td>
         </tr>
 
         <tr>
             <td>TC_INPU_167</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 9</td>
-            <td>Medium</td>
+            <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1546,44 +1715,49 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 10</td>
             <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_169</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 11</td>
-            <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_170</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 12</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_171</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 13</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_172</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 14</td>
-            <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1591,26 +1765,29 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 15</td>
             <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_174</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 16</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_175</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 17</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Application crashed during action</td>
         </tr>
 
         <tr>
@@ -1618,8 +1795,9 @@
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 18</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1628,16 +1806,18 @@
             <td>Verify input validation functionality - Scenario 19</td>
             <td>Low</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_178</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 20</td>
-            <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1646,61 +1826,68 @@
             <td>Verify input validation functionality - Scenario 21</td>
             <td>Medium</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_180</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 22</td>
-            <td>Low</td>
+            <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_INPU_181</td>
             <td>Input Validation</td>
             <td>Verify input validation functionality - Scenario 23</td>
-            <td>Low</td>
+            <td>Medium</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_182</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 1</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_183</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 2</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_184</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 3</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Validation message mismatch</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_185</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 4</td>
-            <td>Low</td>
+            <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1708,8 +1895,9 @@
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 5</td>
             <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1717,26 +1905,29 @@
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 6</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_188</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 7</td>
-            <td>High</td>
+            <td>Medium</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_189</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 8</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1744,26 +1935,29 @@
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 9</td>
             <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_191</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 10</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ERRO_192</td>
             <td>Error Handling</td>
             <td>Verify error handling functionality - Scenario 11</td>
-            <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1771,8 +1965,9 @@
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 1</td>
             <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1780,8 +1975,9 @@
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 2</td>
             <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1790,7 +1986,8 @@
             <td>Verify session management functionality - Scenario 3</td>
             <td>Medium</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Application crashed during action</td>
         </tr>
 
         <tr>
@@ -1798,8 +1995,9 @@
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 4</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1808,7 +2006,8 @@
             <td>Verify session management functionality - Scenario 5</td>
             <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1816,26 +2015,29 @@
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 6</td>
             <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SESS_199</td>
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 7</td>
-            <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SESS_200</td>
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 8</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1843,8 +2045,9 @@
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 9</td>
             <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Validation message mismatch</td>
         </tr>
 
         <tr>
@@ -1853,34 +2056,38 @@
             <td>Verify session management functionality - Scenario 10</td>
             <td>High</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_SESS_203</td>
             <td>Session Management</td>
             <td>Verify session management functionality - Scenario 11</td>
-            <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NOTI_204</td>
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 1</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NOTI_205</td>
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 2</td>
-            <td>High</td>
+            <td>Low</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1888,8 +2095,9 @@
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 3</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1897,26 +2105,29 @@
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 4</td>
             <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NOTI_208</td>
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 5</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NOTI_209</td>
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 6</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1925,7 +2136,8 @@
             <td>Verify notifications functionality - Scenario 7</td>
             <td>Low</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1933,8 +2145,9 @@
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 8</td>
             <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1942,17 +2155,19 @@
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 9</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_NOTI_213</td>
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 10</td>
-            <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1960,35 +2175,39 @@
             <td>Notifications</td>
             <td>Verify notifications functionality - Scenario 11</td>
             <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_215</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 1</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_216</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 2</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_217</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 3</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -1997,7 +2216,8 @@
             <td>Verify file upload functionality - Scenario 4</td>
             <td>Low</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2005,35 +2225,39 @@
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 5</td>
             <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_220</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 6</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_221</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 7</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_222</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 8</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2042,7 +2266,8 @@
             <td>Verify file upload functionality - Scenario 9</td>
             <td>High</td>
             <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2051,25 +2276,28 @@
             <td>Verify file upload functionality - Scenario 10</td>
             <td>Medium</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_FILE_225</td>
             <td>File Upload</td>
             <td>Verify file upload functionality - Scenario 11</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_OFFL_226</td>
             <td>Offline Handling</td>
             <td>Verify offline handling functionality - Scenario 1</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2078,7 +2306,8 @@
             <td>Verify offline handling functionality - Scenario 2</td>
             <td>Medium</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2086,8 +2315,9 @@
             <td>Offline Handling</td>
             <td>Verify offline handling functionality - Scenario 3</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2095,17 +2325,19 @@
             <td>Offline Handling</td>
             <td>Verify offline handling functionality - Scenario 4</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_OFFL_230</td>
             <td>Offline Handling</td>
             <td>Verify offline handling functionality - Scenario 5</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2113,17 +2345,19 @@
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 1</td>
             <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ACCE_232</td>
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 2</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2131,8 +2365,9 @@
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 3</td>
             <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2140,8 +2375,9 @@
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 4</td>
             <td>High</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2149,26 +2385,29 @@
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 5</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ACCE_236</td>
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 6</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>2.1s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Database constraint violation</td>
         </tr>
 
         <tr>
             <td>TC_ACCE_237</td>
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 7</td>
-            <td>Low</td>
+            <td>High</td>
             <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2176,26 +2415,29 @@
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 8</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ACCE_239</td>
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 9</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_ACCE_240</td>
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 10</td>
-            <td>Medium</td>
+            <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2203,8 +2445,9 @@
             <td>Accessibility</td>
             <td>Verify accessibility functionality - Scenario 11</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2212,8 +2455,9 @@
             <td>Responsive UI</td>
             <td>Verify responsive ui functionality - Scenario 1</td>
             <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2222,7 +2466,8 @@
             <td>Verify responsive ui functionality - Scenario 2</td>
             <td>Medium</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2231,16 +2476,18 @@
             <td>Verify responsive ui functionality - Scenario 3</td>
             <td>Low</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_RESP_245</td>
             <td>Responsive UI</td>
             <td>Verify responsive ui functionality - Scenario 4</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2249,34 +2496,38 @@
             <td>Verify responsive ui functionality - Scenario 5</td>
             <td>Medium</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_247</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 1</td>
-            <td>Medium</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_248</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 2</td>
-            <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_249</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 3</td>
-            <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2284,8 +2535,9 @@
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 4</td>
             <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2293,26 +2545,29 @@
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 5</td>
             <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_252</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 6</td>
-            <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_253</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 7</td>
-            <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2321,34 +2576,38 @@
             <td>Verify performance smoke tests functionality - Scenario 8</td>
             <td>High</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_255</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 9</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_256</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 10</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_PERF_257</td>
             <td>Performance Smoke Tests</td>
             <td>Verify performance smoke tests functionality - Scenario 11</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2356,26 +2615,29 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 1</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_259</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 2</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_260</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 3</td>
-            <td>Low</td>
+            <td>Medium</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2383,26 +2645,29 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 4</td>
             <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_262</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 5</td>
-            <td>Medium</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_263</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 6</td>
-            <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2411,34 +2676,38 @@
             <td>Verify regression suite functionality - Scenario 7</td>
             <td>High</td>
             <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_265</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 8</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>3.4s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_266</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 9</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_267</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 10</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2447,34 +2716,38 @@
             <td>Verify regression suite functionality - Scenario 11</td>
             <td>High</td>
             <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_269</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 12</td>
-            <td>Low</td>
+            <td>Medium</td>
             <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_270</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 13</td>
-            <td>Low</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_271</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 14</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2483,25 +2756,28 @@
             <td>Verify regression suite functionality - Scenario 15</td>
             <td>Medium</td>
             <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_273</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 16</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_274</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 17</td>
-            <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2509,8 +2785,9 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 18</td>
             <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2518,44 +2795,49 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 19</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_277</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 20</td>
-            <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_278</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 21</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_279</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 22</td>
-            <td>Low</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_280</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 23</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2563,17 +2845,19 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 24</td>
             <td>High</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_282</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 25</td>
-            <td>Low</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2581,8 +2865,9 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 26</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2590,17 +2875,19 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 27</td>
             <td>High</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_285</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 28</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2608,17 +2895,19 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 29</td>
             <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_287</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 287</td>
-            <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2626,26 +2915,29 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 288</td>
             <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_289</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 289</td>
-            <td>Medium</td>
-            <td>3.4s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_290</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 290</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2653,17 +2945,19 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 291</td>
             <td>High</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_292</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 292</td>
-            <td>High</td>
-            <td>0.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>0.8s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2671,8 +2965,9 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 293</td>
             <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2680,26 +2975,29 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 294</td>
             <td>Low</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_295</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 295</td>
-            <td>Medium</td>
-            <td>1.2s</td>
-            <td class="pass">PASS</td>
+            <td>Low</td>
+            <td>1.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_296</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 296</td>
-            <td>Low</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>1.2s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2707,17 +3005,19 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 297</td>
             <td>Low</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>0.5s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
             <td>TC_REGR_298</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 298</td>
-            <td>High</td>
-            <td>1.5s</td>
-            <td class="pass">PASS</td>
+            <td>Medium</td>
+            <td>2.1s</td>
+            <td class="pass-text"><b>PASS</b></td>
+            <td class="pass-text">N/A</td>
         </tr>
 
         <tr>
@@ -2725,17 +3025,19 @@
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 299</td>
             <td>Medium</td>
-            <td>2.1s</td>
-            <td class="pass">PASS</td>
+            <td>3.4s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Database constraint violation</td>
         </tr>
 
         <tr>
             <td>TC_REGR_300</td>
             <td>Regression Suite</td>
             <td>Verify regression suite functionality - Scenario 300</td>
-            <td>Medium</td>
-            <td>0.8s</td>
-            <td class="pass">PASS</td>
+            <td>High</td>
+            <td>1.2s</td>
+            <td class="fail-text"><b>FAILED</b></td>
+            <td class="fail-text">Timeout waiting for response</td>
         </tr>
 
     </table>
