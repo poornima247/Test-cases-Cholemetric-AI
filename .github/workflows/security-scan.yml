@@ -1,0 +1,39 @@
+name: OWASP ZAP Security Scan
+
+on:
+  push:
+    branches: [ "backend", "main" ]
+  pull_request:
+    branches: [ "backend", "main" ]
+  schedule:
+    - cron: '0 2 * * *' # Run daily at 2am
+
+jobs:
+  zap_scan:
+    runs-on: ubuntu-latest
+    name: Scan backend API
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Start Backend Services
+        run: |
+          # Start the backend API locally so ZAP can scan it
+          # Assuming there's a script or docker-compose to start it
+          # docker-compose up -d
+          echo "Starting backend server (placeholder)"
+          sleep 10
+
+      - name: ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.9.0
+        with:
+          target: 'http://localhost:8080/' # Replace with actual API URL
+          rules_file_name: '.zap/rules.tsv'
+          cmd_options: '-a'
+
+      - name: Upload ZAP Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ZAP-Security-Report
+          path: report_html.html
