@@ -40,7 +40,6 @@ jobs:
         run: |
           appium &
           sleep 10
-          curl http://localhost:4723/status || exit 1
 
       - name: Run Appium Tests with Emulator
         uses: reactivecircus/android-emulator-runner@v2

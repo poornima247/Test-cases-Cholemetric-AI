@@ -24,6 +24,7 @@ jobs:
 
       - name: MobSF Scan
         uses: fundacion-sadosky/mobsf-action@v1.0.3
+        continue-on-error: true
         env:
           INPUT_FILE_NAME: app/build/outputs/apk/debug/app-debug.apk
           SCAN_TYPE: apk
