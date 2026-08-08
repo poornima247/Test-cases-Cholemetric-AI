@@ -5,24 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.cholemetric</groupId>
-    <artifactId>cholemetric-appium-framework</artifactId>
-    <version>1.0.0</version>
-    <packaging>jar</packaging>
-    <name>Cholemetric Appium E2E Framework</name>
-    <description>Enterprise-grade Appium automation framework for Cholemetric Android app</description>
+    <artifactId>android-automation</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <appium.version>8.6.0</appium.version>
-        <selenium.version>4.15.0</selenium.version>
         <testng.version>7.8.0</testng.version>
+        <extent.version>5.1.1</extent.version>
         <poi.version>5.2.3</poi.version>
-        <extentreports.version>5.1.1</extentreports.version>
-        <logback.version>1.4.11</logback.version>
-        <jackson.version>2.15.2</jackson.version>
-        <surefire.version>3.1.2</surefire.version>
     </properties>
 
     <dependencies>
@@ -33,13 +26,6 @@
             <version>${appium.version}</version>
         </dependency>
 
-        <!-- Selenium Java -->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium.version}</version>
-        </dependency>
-
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -47,7 +33,14 @@
             <version>${testng.version}</version>
         </dependency>
 
-        <!-- Apache POI — Excel -->
+        <!-- ExtentReports for HTML Reporting -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>extentreports</artifactId>
+            <version>${extent.version}</version>
+        </dependency>
+
+        <!-- Apache POI for Excel Reporting -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -58,92 +51,20 @@
             <artifactId>poi-ooxml</artifactId>
             <version>${poi.version}</version>
         </dependency>
-
-        <!-- ExtentReports HTML -->
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>${extentreports.version}</version>
-        </dependency>
-
-        <!-- Logback -->
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${logback.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>2.0.9</version>
-        </dependency>
-
-        <!-- Jackson JSON -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-
-        <!-- Commons IO -->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>2.15.0</version>
-        </dependency>
-
-        <!-- Commons Lang -->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.13.0</version>
-        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Maven Compiler -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version>
-                <configuration>
-                    <source>17</source>
-                    <target>17</target>
-                </configuration>
-            </plugin>
-
-            <!-- Maven Surefire — runs TestNG -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>${surefire.version}</version>
+                <version>3.1.2</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+                        <suiteXmlFile>runners/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <testFailureIgnore>true</testFailureIgnore>
-                    <argLine>-Xmx2048m</argLine>
-                    <systemPropertyVariables>
-                        <APPIUM_URL>${env.APPIUM_URL}</APPIUM_URL>
-                        <DEVICE_NAME>${env.DEVICE_NAME}</DEVICE_NAME>
-                        <APP_PATH>${env.APP_PATH}</APP_PATH>
-                    </systemPropertyVariables>
                 </configuration>
             </plugin>
-
-            <!-- Resources plugin -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-            </plugin>
         </plugins>
-
-        <testResources>
-            <testResource>
-                <directory>src/test/resources</directory>
-            </testResource>
-        </testResources>
     </build>
 </project>
