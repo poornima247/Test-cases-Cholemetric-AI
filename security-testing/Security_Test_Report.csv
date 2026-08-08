@@ -1,0 +1,301 @@
+Test ID,Module,Test Name,Priority,Preconditions,Test Steps,Test Data,Expected Result,Actual Result,Status,Pass/Fail,Execution Time
+SEC_AUTH_001,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 1,Critical,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_AUTH_002,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 2,Critical,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_AUTH_003,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 3,High,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_AUTH_004,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 4,High,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_AUTH_005,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 5,Critical,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_AUTH_006,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 6,Critical,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_AUTH_007,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 7,High,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_AUTH_008,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 8,Critical,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_AUTH_009,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 9,High,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_AUTH_010,Authentication (Brute Force),Verify protection against Authentication (Brute Force) - Scenario 10,High,System is accessible and Authentication (Brute Force) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_AUTH_011,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 1,Critical,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_AUTH_012,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 2,High,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_AUTH_013,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 3,Critical,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_AUTH_014,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 4,Critical,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_AUTH_015,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 5,High,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_AUTH_016,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 6,Critical,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_AUTH_017,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 7,High,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_AUTH_018,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 8,High,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_AUTH_019,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 9,Critical,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_AUTH_020,Authorization (IDOR),Verify protection against Authorization (IDOR) - Scenario 10,High,System is accessible and Authorization (IDOR) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_DATA_021,Data Exposure,Verify protection against Data Exposure - Scenario 1,High,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_DATA_022,Data Exposure,Verify protection against Data Exposure - Scenario 2,Critical,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_DATA_023,Data Exposure,Verify protection against Data Exposure - Scenario 3,High,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_DATA_024,Data Exposure,Verify protection against Data Exposure - Scenario 4,Critical,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_DATA_025,Data Exposure,Verify protection against Data Exposure - Scenario 5,High,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_DATA_026,Data Exposure,Verify protection against Data Exposure - Scenario 6,Critical,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_DATA_027,Data Exposure,Verify protection against Data Exposure - Scenario 7,Critical,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_DATA_028,Data Exposure,Verify protection against Data Exposure - Scenario 8,High,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_DATA_029,Data Exposure,Verify protection against Data Exposure - Scenario 9,High,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_DATA_030,Data Exposure,Verify protection against Data Exposure - Scenario 10,Critical,System is accessible and Data Exposure surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_SQL_031,SQL Injection,Verify protection against SQL Injection - Scenario 1,Critical,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_SQL_032,SQL Injection,Verify protection against SQL Injection - Scenario 2,Critical,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_SQL_033,SQL Injection,Verify protection against SQL Injection - Scenario 3,Critical,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_SQL_034,SQL Injection,Verify protection against SQL Injection - Scenario 4,High,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_SQL_035,SQL Injection,Verify protection against SQL Injection - Scenario 5,High,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_SQL_036,SQL Injection,Verify protection against SQL Injection - Scenario 6,Critical,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_SQL_037,SQL Injection,Verify protection against SQL Injection - Scenario 7,High,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_SQL_038,SQL Injection,Verify protection against SQL Injection - Scenario 8,Critical,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_SQL_039,SQL Injection,Verify protection against SQL Injection - Scenario 9,Critical,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_SQL_040,SQL Injection,Verify protection against SQL Injection - Scenario 10,High,System is accessible and SQL Injection surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_CROS_041,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 1,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_CROS_042,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 2,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_CROS_043,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 3,Critical,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_CROS_044,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 4,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_CROS_045,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 5,Critical,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_CROS_046,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 6,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_CROS_047,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 7,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_CROS_048,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 8,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_CROS_049,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 9,Critical,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_CROS_050,Cross-Site Scripting (XSS),Verify protection against Cross-Site Scripting (XSS) - Scenario 10,High,System is accessible and Cross-Site Scripting (XSS) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_INSE_051,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 1,Critical,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_INSE_052,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 2,Critical,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_INSE_053,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 3,Critical,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_INSE_054,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 4,High,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_INSE_055,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 5,Critical,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_INSE_056,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 6,Critical,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_INSE_057,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 7,Critical,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_INSE_058,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 8,High,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_INSE_059,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 9,High,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_INSE_060,Insecure Data Storage,Verify protection against Insecure Data Storage - Scenario 10,High,System is accessible and Insecure Data Storage surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_BROK_061,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 1,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_BROK_062,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 2,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_BROK_063,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 3,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_BROK_064,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 4,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_BROK_065,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 5,Critical,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_BROK_066,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 6,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_BROK_067,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 7,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_BROK_068,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 8,Critical,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_BROK_069,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 9,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_BROK_070,Broken Cryptography,Verify protection against Broken Cryptography - Scenario 10,High,System is accessible and Broken Cryptography surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_INSE_071,Insecure Communication,Verify protection against Insecure Communication - Scenario 1,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_INSE_072,Insecure Communication,Verify protection against Insecure Communication - Scenario 2,High,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_INSE_073,Insecure Communication,Verify protection against Insecure Communication - Scenario 3,High,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_INSE_074,Insecure Communication,Verify protection against Insecure Communication - Scenario 4,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_INSE_075,Insecure Communication,Verify protection against Insecure Communication - Scenario 5,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_INSE_076,Insecure Communication,Verify protection against Insecure Communication - Scenario 6,High,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_INSE_077,Insecure Communication,Verify protection against Insecure Communication - Scenario 7,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_INSE_078,Insecure Communication,Verify protection against Insecure Communication - Scenario 8,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_INSE_079,Insecure Communication,Verify protection against Insecure Communication - Scenario 9,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_INSE_080,Insecure Communication,Verify protection against Insecure Communication - Scenario 10,Critical,System is accessible and Insecure Communication surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_API_081,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 1,High,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_API_082,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 2,High,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_API_083,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 3,Critical,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_API_084,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 4,High,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_API_085,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 5,Critical,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_API_086,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 6,High,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_API_087,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 7,Critical,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_API_088,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 8,Critical,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_API_089,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 9,Critical,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_API_090,API Security (Rate Limiting),Verify protection against API Security (Rate Limiting) - Scenario 10,Critical,System is accessible and API Security (Rate Limiting) surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_SESS_091,Session Management,Verify protection against Session Management - Scenario 1,High,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_SESS_092,Session Management,Verify protection against Session Management - Scenario 2,High,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.2s
+SEC_SESS_093,Session Management,Verify protection against Session Management - Scenario 3,High,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.3s
+SEC_SESS_094,Session Management,Verify protection against Session Management - Scenario 4,Critical,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,1.5s
+SEC_SESS_095,Session Management,Verify protection against Session Management - Scenario 5,High,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.8s
+SEC_SESS_096,Session Management,Verify protection against Session Management - Scenario 6,High,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_SESS_097,Session Management,Verify protection against Session Management - Scenario 7,Critical,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_SESS_098,Session Management,Verify protection against Session Management - Scenario 8,Critical,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
+SEC_SESS_099,Session Management,Verify protection against Session Management - Scenario 9,Critical,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,2.1s
+SEC_SESS_100,Session Management,Verify protection against Session Management - Scenario 10,Critical,System is accessible and Session Management surface is exposed,"1. Initialize security scanner/payload
+2. Inject payload/perform attack
+3. Observe system response","Malicious payload (e.g., ' OR 1=1 --, <script>alert(1)</script>)",System should block the attack and respond with generic error,"Attack blocked successfully, no sensitive data exposed",Executed,Pass,0.5s
