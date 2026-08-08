@@ -1,0 +1,1201 @@
+Test ID,Module,Test Name,Priority,Preconditions,Test Steps,Test Data,Expected Result,Actual Result,Status,Pass/Fail,Execution Time
+TC_AUTH_001,Authentication,Verify authentication functionality - Scenario 1,Medium,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_002,Authentication,Verify authentication functionality - Scenario 2,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_003,Authentication,Verify authentication functionality - Scenario 3,Medium,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_AUTH_004,Authentication,Verify authentication functionality - Scenario 4,Medium,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_005,Authentication,Verify authentication functionality - Scenario 5,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_006,Authentication,Verify authentication functionality - Scenario 6,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_007,Authentication,Verify authentication functionality - Scenario 7,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_008,Authentication,Verify authentication functionality - Scenario 8,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_009,Authentication,Verify authentication functionality - Scenario 9,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_010,Authentication,Verify authentication functionality - Scenario 10,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_011,Authentication,Verify authentication functionality - Scenario 11,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_012,Authentication,Verify authentication functionality - Scenario 12,Medium,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_013,Authentication,Verify authentication functionality - Scenario 13,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_014,Authentication,Verify authentication functionality - Scenario 14,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_AUTH_015,Authentication,Verify authentication functionality - Scenario 15,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_016,Authentication,Verify authentication functionality - Scenario 16,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_017,Authentication,Verify authentication functionality - Scenario 17,Medium,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_018,Authentication,Verify authentication functionality - Scenario 18,Medium,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_019,Authentication,Verify authentication functionality - Scenario 19,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_020,Authentication,Verify authentication functionality - Scenario 20,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_021,Authentication,Verify authentication functionality - Scenario 21,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_022,Authentication,Verify authentication functionality - Scenario 22,High,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_023,Authentication,Verify authentication functionality - Scenario 23,Low,User is on the Authentication screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_024,Authorization,Verify authorization functionality - Scenario 1,High,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_025,Authorization,Verify authorization functionality - Scenario 2,High,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_026,Authorization,Verify authorization functionality - Scenario 3,Medium,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_027,Authorization,Verify authorization functionality - Scenario 4,Low,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_028,Authorization,Verify authorization functionality - Scenario 5,Medium,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_029,Authorization,Verify authorization functionality - Scenario 6,Medium,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_030,Authorization,Verify authorization functionality - Scenario 7,Low,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_AUTH_031,Authorization,Verify authorization functionality - Scenario 8,Low,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_AUTH_032,Authorization,Verify authorization functionality - Scenario 9,High,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_AUTH_033,Authorization,Verify authorization functionality - Scenario 10,Low,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_034,Authorization,Verify authorization functionality - Scenario 11,High,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_AUTH_035,Authorization,Verify authorization functionality - Scenario 12,Medium,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_036,Authorization,Verify authorization functionality - Scenario 13,Low,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_037,Authorization,Verify authorization functionality - Scenario 14,Low,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_AUTH_038,Authorization,Verify authorization functionality - Scenario 15,Medium,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_039,Authorization,Verify authorization functionality - Scenario 16,High,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_AUTH_040,Authorization,Verify authorization functionality - Scenario 17,Medium,User is on the Authorization screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGI_041,Registration,Verify registration functionality - Scenario 1,Low,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGI_042,Registration,Verify registration functionality - Scenario 2,High,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGI_043,Registration,Verify registration functionality - Scenario 3,Low,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGI_044,Registration,Verify registration functionality - Scenario 4,High,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_REGI_045,Registration,Verify registration functionality - Scenario 5,Medium,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGI_046,Registration,Verify registration functionality - Scenario 6,Low,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGI_047,Registration,Verify registration functionality - Scenario 7,High,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGI_048,Registration,Verify registration functionality - Scenario 8,Low,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGI_049,Registration,Verify registration functionality - Scenario 9,High,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGI_050,Registration,Verify registration functionality - Scenario 10,Low,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGI_051,Registration,Verify registration functionality - Scenario 11,Medium,User is on the Registration screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_PROF_052,Profile Management,Verify profile management functionality - Scenario 1,High,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_PROF_053,Profile Management,Verify profile management functionality - Scenario 2,Medium,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_PROF_054,Profile Management,Verify profile management functionality - Scenario 3,Low,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_PROF_055,Profile Management,Verify profile management functionality - Scenario 4,Medium,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_PROF_056,Profile Management,Verify profile management functionality - Scenario 5,Medium,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_PROF_057,Profile Management,Verify profile management functionality - Scenario 6,High,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_PROF_058,Profile Management,Verify profile management functionality - Scenario 7,Low,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_PROF_059,Profile Management,Verify profile management functionality - Scenario 8,Low,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_PROF_060,Profile Management,Verify profile management functionality - Scenario 9,Medium,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_PROF_061,Profile Management,Verify profile management functionality - Scenario 10,Medium,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_PROF_062,Profile Management,Verify profile management functionality - Scenario 11,High,User is on the Profile Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NAVI_063,Navigation,Verify navigation functionality - Scenario 1,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_NAVI_064,Navigation,Verify navigation functionality - Scenario 2,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NAVI_065,Navigation,Verify navigation functionality - Scenario 3,Low,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NAVI_066,Navigation,Verify navigation functionality - Scenario 4,High,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_NAVI_067,Navigation,Verify navigation functionality - Scenario 5,High,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_NAVI_068,Navigation,Verify navigation functionality - Scenario 6,Low,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_NAVI_069,Navigation,Verify navigation functionality - Scenario 7,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_NAVI_070,Navigation,Verify navigation functionality - Scenario 8,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_NAVI_071,Navigation,Verify navigation functionality - Scenario 9,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_NAVI_072,Navigation,Verify navigation functionality - Scenario 10,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_NAVI_073,Navigation,Verify navigation functionality - Scenario 11,Low,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_NAVI_074,Navigation,Verify navigation functionality - Scenario 12,Medium,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_NAVI_075,Navigation,Verify navigation functionality - Scenario 13,Low,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NAVI_076,Navigation,Verify navigation functionality - Scenario 14,Low,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NAVI_077,Navigation,Verify navigation functionality - Scenario 15,High,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_NAVI_078,Navigation,Verify navigation functionality - Scenario 16,High,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NAVI_079,Navigation,Verify navigation functionality - Scenario 17,High,User is on the Navigation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_DASH_080,Dashboard,Verify dashboard functionality - Scenario 1,Low,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_DASH_081,Dashboard,Verify dashboard functionality - Scenario 2,Low,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_DASH_082,Dashboard,Verify dashboard functionality - Scenario 3,Medium,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_DASH_083,Dashboard,Verify dashboard functionality - Scenario 4,Medium,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_DASH_084,Dashboard,Verify dashboard functionality - Scenario 5,High,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_DASH_085,Dashboard,Verify dashboard functionality - Scenario 6,Low,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_DASH_086,Dashboard,Verify dashboard functionality - Scenario 7,High,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_DASH_087,Dashboard,Verify dashboard functionality - Scenario 8,High,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_DASH_088,Dashboard,Verify dashboard functionality - Scenario 9,High,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_DASH_089,Dashboard,Verify dashboard functionality - Scenario 10,Medium,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_DASH_090,Dashboard,Verify dashboard functionality - Scenario 11,Low,User is on the Dashboard screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_091,Forms,Verify forms functionality - Scenario 1,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_092,Forms,Verify forms functionality - Scenario 2,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FORM_093,Forms,Verify forms functionality - Scenario 3,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FORM_094,Forms,Verify forms functionality - Scenario 4,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FORM_095,Forms,Verify forms functionality - Scenario 5,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_096,Forms,Verify forms functionality - Scenario 6,Medium,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_097,Forms,Verify forms functionality - Scenario 7,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_098,Forms,Verify forms functionality - Scenario 8,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_099,Forms,Verify forms functionality - Scenario 9,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_FORM_100,Forms,Verify forms functionality - Scenario 10,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_101,Forms,Verify forms functionality - Scenario 11,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_102,Forms,Verify forms functionality - Scenario 12,Medium,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_103,Forms,Verify forms functionality - Scenario 13,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_104,Forms,Verify forms functionality - Scenario 14,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FORM_105,Forms,Verify forms functionality - Scenario 15,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FORM_106,Forms,Verify forms functionality - Scenario 16,Medium,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_107,Forms,Verify forms functionality - Scenario 17,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_108,Forms,Verify forms functionality - Scenario 18,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FORM_109,Forms,Verify forms functionality - Scenario 19,Low,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FORM_110,Forms,Verify forms functionality - Scenario 20,Medium,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FORM_111,Forms,Verify forms functionality - Scenario 21,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FORM_112,Forms,Verify forms functionality - Scenario 22,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FORM_113,Forms,Verify forms functionality - Scenario 23,High,User is on the Forms screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_CRUD_114,CRUD Operations,Verify crud operations functionality - Scenario 1,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_CRUD_115,CRUD Operations,Verify crud operations functionality - Scenario 2,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_CRUD_116,CRUD Operations,Verify crud operations functionality - Scenario 3,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_CRUD_117,CRUD Operations,Verify crud operations functionality - Scenario 4,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_CRUD_118,CRUD Operations,Verify crud operations functionality - Scenario 5,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_CRUD_119,CRUD Operations,Verify crud operations functionality - Scenario 6,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_CRUD_120,CRUD Operations,Verify crud operations functionality - Scenario 7,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_CRUD_121,CRUD Operations,Verify crud operations functionality - Scenario 8,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_CRUD_122,CRUD Operations,Verify crud operations functionality - Scenario 9,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_CRUD_123,CRUD Operations,Verify crud operations functionality - Scenario 10,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_CRUD_124,CRUD Operations,Verify crud operations functionality - Scenario 11,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_CRUD_125,CRUD Operations,Verify crud operations functionality - Scenario 12,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_CRUD_126,CRUD Operations,Verify crud operations functionality - Scenario 13,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_CRUD_127,CRUD Operations,Verify crud operations functionality - Scenario 14,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_CRUD_128,CRUD Operations,Verify crud operations functionality - Scenario 15,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_CRUD_129,CRUD Operations,Verify crud operations functionality - Scenario 16,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_CRUD_130,CRUD Operations,Verify crud operations functionality - Scenario 17,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_CRUD_131,CRUD Operations,Verify crud operations functionality - Scenario 18,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_CRUD_132,CRUD Operations,Verify crud operations functionality - Scenario 19,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_CRUD_133,CRUD Operations,Verify crud operations functionality - Scenario 20,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_CRUD_134,CRUD Operations,Verify crud operations functionality - Scenario 21,High,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_CRUD_135,CRUD Operations,Verify crud operations functionality - Scenario 22,Medium,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_CRUD_136,CRUD Operations,Verify crud operations functionality - Scenario 23,Low,User is on the CRUD Operations screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_SEAR_137,Search,Verify search functionality - Scenario 1,Medium,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SEAR_138,Search,Verify search functionality - Scenario 2,Medium,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SEAR_139,Search,Verify search functionality - Scenario 3,High,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_SEAR_140,Search,Verify search functionality - Scenario 4,High,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_SEAR_141,Search,Verify search functionality - Scenario 5,Low,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SEAR_142,Search,Verify search functionality - Scenario 6,Medium,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_SEAR_143,Search,Verify search functionality - Scenario 7,High,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_SEAR_144,Search,Verify search functionality - Scenario 8,Medium,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_SEAR_145,Search,Verify search functionality - Scenario 9,Low,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_SEAR_146,Search,Verify search functionality - Scenario 10,High,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_SEAR_147,Search,Verify search functionality - Scenario 11,Low,User is on the Search screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FILT_148,Filters,Verify filters functionality - Scenario 1,High,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_FILT_149,Filters,Verify filters functionality - Scenario 2,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_FILT_150,Filters,Verify filters functionality - Scenario 3,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FILT_151,Filters,Verify filters functionality - Scenario 4,High,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FILT_152,Filters,Verify filters functionality - Scenario 5,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_FILT_153,Filters,Verify filters functionality - Scenario 6,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILT_154,Filters,Verify filters functionality - Scenario 7,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FILT_155,Filters,Verify filters functionality - Scenario 8,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FILT_156,Filters,Verify filters functionality - Scenario 9,Medium,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_FILT_157,Filters,Verify filters functionality - Scenario 10,Low,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FILT_158,Filters,Verify filters functionality - Scenario 11,Medium,User is on the Filters screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_INPU_159,Input Validation,Verify input validation functionality - Scenario 1,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_160,Input Validation,Verify input validation functionality - Scenario 2,Low,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_INPU_161,Input Validation,Verify input validation functionality - Scenario 3,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_INPU_162,Input Validation,Verify input validation functionality - Scenario 4,Medium,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_163,Input Validation,Verify input validation functionality - Scenario 5,Low,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_INPU_164,Input Validation,Verify input validation functionality - Scenario 6,Low,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_165,Input Validation,Verify input validation functionality - Scenario 7,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_166,Input Validation,Verify input validation functionality - Scenario 8,Medium,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_INPU_167,Input Validation,Verify input validation functionality - Scenario 9,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_168,Input Validation,Verify input validation functionality - Scenario 10,Low,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_INPU_169,Input Validation,Verify input validation functionality - Scenario 11,Medium,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_INPU_170,Input Validation,Verify input validation functionality - Scenario 12,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_171,Input Validation,Verify input validation functionality - Scenario 13,Low,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_INPU_172,Input Validation,Verify input validation functionality - Scenario 14,Medium,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_173,Input Validation,Verify input validation functionality - Scenario 15,Medium,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_INPU_174,Input Validation,Verify input validation functionality - Scenario 16,Medium,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_INPU_175,Input Validation,Verify input validation functionality - Scenario 17,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_INPU_176,Input Validation,Verify input validation functionality - Scenario 18,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_INPU_177,Input Validation,Verify input validation functionality - Scenario 19,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_INPU_178,Input Validation,Verify input validation functionality - Scenario 20,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_INPU_179,Input Validation,Verify input validation functionality - Scenario 21,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_INPU_180,Input Validation,Verify input validation functionality - Scenario 22,High,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_INPU_181,Input Validation,Verify input validation functionality - Scenario 23,Low,User is on the Input Validation screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_ERRO_182,Error Handling,Verify error handling functionality - Scenario 1,High,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_ERRO_183,Error Handling,Verify error handling functionality - Scenario 2,Medium,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_ERRO_184,Error Handling,Verify error handling functionality - Scenario 3,Low,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_ERRO_185,Error Handling,Verify error handling functionality - Scenario 4,Low,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_ERRO_186,Error Handling,Verify error handling functionality - Scenario 5,Low,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_ERRO_187,Error Handling,Verify error handling functionality - Scenario 6,High,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_ERRO_188,Error Handling,Verify error handling functionality - Scenario 7,Medium,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_ERRO_189,Error Handling,Verify error handling functionality - Scenario 8,Medium,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_ERRO_190,Error Handling,Verify error handling functionality - Scenario 9,Medium,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_ERRO_191,Error Handling,Verify error handling functionality - Scenario 10,Medium,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_ERRO_192,Error Handling,Verify error handling functionality - Scenario 11,Medium,User is on the Error Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_SESS_193,Session Management,Verify session management functionality - Scenario 1,Medium,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_SESS_194,Session Management,Verify session management functionality - Scenario 2,Low,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_SESS_195,Session Management,Verify session management functionality - Scenario 3,Low,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SESS_196,Session Management,Verify session management functionality - Scenario 4,Low,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_SESS_197,Session Management,Verify session management functionality - Scenario 5,Medium,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_SESS_198,Session Management,Verify session management functionality - Scenario 6,Low,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SESS_199,Session Management,Verify session management functionality - Scenario 7,High,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_SESS_200,Session Management,Verify session management functionality - Scenario 8,High,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_SESS_201,Session Management,Verify session management functionality - Scenario 9,High,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SESS_202,Session Management,Verify session management functionality - Scenario 10,Low,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_SESS_203,Session Management,Verify session management functionality - Scenario 11,High,User is on the Session Management screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_NOTI_204,Notifications,Verify notifications functionality - Scenario 1,Medium,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_NOTI_205,Notifications,Verify notifications functionality - Scenario 2,High,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_NOTI_206,Notifications,Verify notifications functionality - Scenario 3,Low,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_NOTI_207,Notifications,Verify notifications functionality - Scenario 4,Low,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_NOTI_208,Notifications,Verify notifications functionality - Scenario 5,High,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_NOTI_209,Notifications,Verify notifications functionality - Scenario 6,Low,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NOTI_210,Notifications,Verify notifications functionality - Scenario 7,Medium,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_NOTI_211,Notifications,Verify notifications functionality - Scenario 8,Medium,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_NOTI_212,Notifications,Verify notifications functionality - Scenario 9,Medium,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_NOTI_213,Notifications,Verify notifications functionality - Scenario 10,Medium,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_NOTI_214,Notifications,Verify notifications functionality - Scenario 11,Low,User is on the Notifications screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_FILE_215,File Upload,Verify file upload functionality - Scenario 1,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILE_216,File Upload,Verify file upload functionality - Scenario 2,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILE_217,File Upload,Verify file upload functionality - Scenario 3,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILE_218,File Upload,Verify file upload functionality - Scenario 4,Medium,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FILE_219,File Upload,Verify file upload functionality - Scenario 5,Medium,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FILE_220,File Upload,Verify file upload functionality - Scenario 6,High,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_FILE_221,File Upload,Verify file upload functionality - Scenario 7,Medium,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILE_222,File Upload,Verify file upload functionality - Scenario 8,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILE_223,File Upload,Verify file upload functionality - Scenario 9,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_FILE_224,File Upload,Verify file upload functionality - Scenario 10,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_FILE_225,File Upload,Verify file upload functionality - Scenario 11,Low,User is on the File Upload screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_OFFL_226,Offline Handling,Verify offline handling functionality - Scenario 1,High,User is on the Offline Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_OFFL_227,Offline Handling,Verify offline handling functionality - Scenario 2,Low,User is on the Offline Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_OFFL_228,Offline Handling,Verify offline handling functionality - Scenario 3,Low,User is on the Offline Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_OFFL_229,Offline Handling,Verify offline handling functionality - Scenario 4,Medium,User is on the Offline Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_OFFL_230,Offline Handling,Verify offline handling functionality - Scenario 5,Low,User is on the Offline Handling screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_ACCE_231,Accessibility,Verify accessibility functionality - Scenario 1,Low,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_ACCE_232,Accessibility,Verify accessibility functionality - Scenario 2,High,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_ACCE_233,Accessibility,Verify accessibility functionality - Scenario 3,Medium,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_ACCE_234,Accessibility,Verify accessibility functionality - Scenario 4,Medium,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_ACCE_235,Accessibility,Verify accessibility functionality - Scenario 5,Medium,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_ACCE_236,Accessibility,Verify accessibility functionality - Scenario 6,Low,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_ACCE_237,Accessibility,Verify accessibility functionality - Scenario 7,Medium,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_ACCE_238,Accessibility,Verify accessibility functionality - Scenario 8,Medium,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_ACCE_239,Accessibility,Verify accessibility functionality - Scenario 9,High,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_ACCE_240,Accessibility,Verify accessibility functionality - Scenario 10,Low,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_ACCE_241,Accessibility,Verify accessibility functionality - Scenario 11,High,User is on the Accessibility screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_RESP_242,Responsive UI,Verify responsive ui functionality - Scenario 1,Low,User is on the Responsive UI screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_RESP_243,Responsive UI,Verify responsive ui functionality - Scenario 2,High,User is on the Responsive UI screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_RESP_244,Responsive UI,Verify responsive ui functionality - Scenario 3,Medium,User is on the Responsive UI screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_RESP_245,Responsive UI,Verify responsive ui functionality - Scenario 4,High,User is on the Responsive UI screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_RESP_246,Responsive UI,Verify responsive ui functionality - Scenario 5,Medium,User is on the Responsive UI screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_PERF_247,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 1,Low,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_PERF_248,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 2,Medium,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_PERF_249,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 3,High,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_PERF_250,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 4,Low,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_PERF_251,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 5,Medium,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_PERF_252,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 6,High,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_PERF_253,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 7,High,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_PERF_254,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 8,Medium,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_PERF_255,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 9,Medium,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_PERF_256,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 10,High,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_PERF_257,Performance Smoke Tests,Verify performance smoke tests functionality - Scenario 11,Low,User is on the Performance Smoke Tests screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_258,Regression Suite,Verify regression suite functionality - Scenario 1,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_259,Regression Suite,Verify regression suite functionality - Scenario 2,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_REGR_260,Regression Suite,Verify regression suite functionality - Scenario 3,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_261,Regression Suite,Verify regression suite functionality - Scenario 4,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_262,Regression Suite,Verify regression suite functionality - Scenario 5,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_263,Regression Suite,Verify regression suite functionality - Scenario 6,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_264,Regression Suite,Verify regression suite functionality - Scenario 7,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_265,Regression Suite,Verify regression suite functionality - Scenario 8,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_266,Regression Suite,Verify regression suite functionality - Scenario 9,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_267,Regression Suite,Verify regression suite functionality - Scenario 10,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_268,Regression Suite,Verify regression suite functionality - Scenario 11,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_REGR_269,Regression Suite,Verify regression suite functionality - Scenario 12,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_270,Regression Suite,Verify regression suite functionality - Scenario 13,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_271,Regression Suite,Verify regression suite functionality - Scenario 14,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_272,Regression Suite,Verify regression suite functionality - Scenario 15,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_273,Regression Suite,Verify regression suite functionality - Scenario 16,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_274,Regression Suite,Verify regression suite functionality - Scenario 17,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_275,Regression Suite,Verify regression suite functionality - Scenario 18,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_REGR_276,Regression Suite,Verify regression suite functionality - Scenario 19,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_277,Regression Suite,Verify regression suite functionality - Scenario 20,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_278,Regression Suite,Verify regression suite functionality - Scenario 21,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_279,Regression Suite,Verify regression suite functionality - Scenario 22,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_REGR_280,Regression Suite,Verify regression suite functionality - Scenario 23,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_REGR_281,Regression Suite,Verify regression suite functionality - Scenario 24,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_282,Regression Suite,Verify regression suite functionality - Scenario 25,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_REGR_283,Regression Suite,Verify regression suite functionality - Scenario 26,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_284,Regression Suite,Verify regression suite functionality - Scenario 27,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_285,Regression Suite,Verify regression suite functionality - Scenario 28,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_REGR_286,Regression Suite,Verify regression suite functionality - Scenario 29,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_287,Regression Suite,Verify regression suite functionality - Scenario 287,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,3.4s
+TC_REGR_288,Regression Suite,Verify regression suite functionality - Scenario 288,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_289,Regression Suite,Verify regression suite functionality - Scenario 289,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_290,Regression Suite,Verify regression suite functionality - Scenario 290,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.2s
+TC_REGR_291,Regression Suite,Verify regression suite functionality - Scenario 291,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_REGR_292,Regression Suite,Verify regression suite functionality - Scenario 292,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_293,Regression Suite,Verify regression suite functionality - Scenario 293,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.5s
+TC_REGR_294,Regression Suite,Verify regression suite functionality - Scenario 294,High,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_295,Regression Suite,Verify regression suite functionality - Scenario 295,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_296,Regression Suite,Verify regression suite functionality - Scenario 296,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_297,Regression Suite,Verify regression suite functionality - Scenario 297,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
+TC_REGR_298,Regression Suite,Verify regression suite functionality - Scenario 298,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,0.8s
+TC_REGR_299,Regression Suite,Verify regression suite functionality - Scenario 299,Low,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,2.1s
+TC_REGR_300,Regression Suite,Verify regression suite functionality - Scenario 300,Medium,User is on the Regression Suite screen,"1. Launch App
+2. Navigate to module
+3. Perform action
+4. Verify outcome",Valid standard data,Action should complete successfully,Action completed successfully,Executed,Pass,1.5s
