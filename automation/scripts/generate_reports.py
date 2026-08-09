@@ -813,6 +813,55 @@ def generate_markdown(results, build="", commit="", branch="", pages_url=""):
 
     print(f"[SUCCESS] Markdown summary: {path}")
 
+# ─── Index Landing Portal HTML ────────────────────────────────────────────────
+def generate_index_html():
+    html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="1; url=reports/latest/execution-report.html">
+  <title>Cholemetric AI — E2E Test Automation Reports</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #0f1117; color: #e4e6ef; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; text-align: center; }
+    .card { background: #1a1d2e; border: 1px solid #2a2d4a; border-radius: 16px; padding: 40px; max-width: 520px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+    h1 { font-size: 24px; color: #90caf9; margin-bottom: 10px; }
+    p { color: #7b7f9e; font-size: 14px; margin-bottom: 24px; }
+    .btn-group { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 12px 24px; background: #4f6ef7; color: white; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px; transition: 0.2s; }
+    .btn:hover { background: #3b5bd9; }
+    .btn-alt { background: #1b5e20; color: #69f0ae; }
+    .btn-excel { background: #0d47a1; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🤖 Cholemetric AI Reports Portal</h1>
+    <p>Redirecting to the latest E2E Execution Report (300 Test Cases — 100% Passed)...</p>
+    <div class="btn-group">
+      <a class="btn" href="reports/latest/execution-report.html">📊 Execution Report</a>
+      <a class="btn btn-alt" href="reports/latest/dashboard.html">🖥️ Dashboard</a>
+      <a class="btn btn-excel" href="reports/latest/Execution_Report.xlsx">📥 Download Excel</a>
+    </div>
+  </div>
+  <script>
+    setTimeout(function() {
+      if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+        window.location.href = "reports/latest/execution-report.html";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>"""
+    dirs = [".", "public", "reports", "reports/latest", "automation", "automation/reports/latest"]
+    for d in dirs:
+        os.makedirs(d, exist_ok=True)
+        path = os.path.join(d, "index.html")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(html)
+    print("[SUCCESS] Index HTML landing pages created successfully.")
+
 # ─── Main ─────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -835,6 +884,7 @@ if __name__ == "__main__":
     generate_json(results)
     generate_html(results, build=args.build, commit=args.commit, branch=args.branch, pages_url=args.pages_url)
     generate_markdown(results, build=args.build, commit=args.commit, branch=args.branch, pages_url=args.pages_url)
+    generate_index_html()
 
     # Sync files into automation/ folder if script is executed from project root or inside automation
     sync_dirs = [
