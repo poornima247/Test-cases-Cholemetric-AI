@@ -122,9 +122,6 @@ jobs:
     needs: build-and-test
     runs-on: ubuntu-latest
     if: always()
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -182,7 +179,7 @@ jobs:
           cp public/index.html public/reports/latest/index.html || true
 
       - name: Stage 19 - Publish Reports to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
         continue-on-error: true
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
