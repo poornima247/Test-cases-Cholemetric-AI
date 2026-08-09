@@ -788,36 +788,93 @@
                 btnStart.disabled = false;
                 btnStart.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm1.61-4.91c-.43.2-.76.51-.98.88-.23.36-.35.79-.35 1.25h-2c0-.79.25-1.5.73-2.12.48-.62 1.15-1.09 1.95-1.39.56-.21 1.03-.49 1.4-.85.37-.36.56-.8.56-1.32 0-.61-.22-1.11-.64-1.48-.42-.37-1-.56-1.74-.56-.76 0-1.35.21-1.78.64-.42.42-.64 1.02-.64 1.79h-2c0-1.18.39-2.13 1.15-2.85C9.04 4.54 10.23 4.2 11.66 4.2c1.47 0 2.65.34 3.49 1.02.85.68 1.27 1.58 1.27 2.69 0 .61-.13 1.14-.38 1.58-.26.44-.65.85-1.17 1.23-.62.45-1.04.81-1.26 1.07z"/></svg>Start AI Analysis<svg style="margin-left:auto; margin-right:0" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
 
-                const mockData = {
-                    status: 'success',
-                    patient_id: patientIdVal || 'P-84920',
-                    scan_date: scanDateVal || new Date().toISOString().split('T')[0],
-                    annotated_image_url: 'annotated_sample_ct_scan.png',
-                    stone_count: 2,
-                    max_size_mm: 8.4,
-                    confidence: 96.8,
-                    result: 'Positive',
-                    notes: 'Choledocholithiasis detected in distal common bile duct. High density acoustic shadowing observed. Recommend surgical/laparoscopic evaluation.'
+                const uploadedFile = fileUpload.files[0];
+                const renderResult = function(annotatedUrl) {
+                    const mockData = {
+                        status: 'success',
+                        patient_id: patientIdVal || 'P-84920',
+                        scan_date: scanDateVal || new Date().toISOString().split('T')[0],
+                        annotated_image_url: annotatedUrl,
+                        stone_count: 2,
+                        max_size_mm: 8.4,
+                        confidence: 96.8,
+                        result: 'Positive',
+                        notes: 'Choledocholithiasis detected in distal common bile duct. High density acoustic shadowing observed. Recommend surgical/laparoscopic evaluation.'
+                    };
+                    lastAnalysisResult = mockData;
+
+                    document.getElementById('res_patient_id').innerText = mockData.patient_id;
+                    document.getElementById('res_scan_date').innerText = mockData.scan_date;
+                    document.getElementById('res_annotated_image').src = mockData.annotated_image_url;
+                    document.getElementById('res_stone_count').innerText = mockData.stone_count;
+                    document.getElementById('res_max_size').innerText = mockData.max_size_mm + ' mm';
+                    document.getElementById('res_confidence').innerText = mockData.confidence + '%';
+                    document.getElementById('res_progress_bar').style.width = mockData.confidence + '%';
+                    document.getElementById('res_notes').value = mockData.notes;
+
+                    const resBadge = document.getElementById('res_badge');
+                    resBadge.innerText = mockData.result;
+                    resBadge.style.backgroundColor = '#FDE8E8';
+                    resBadge.style.color = '#E02424';
+
+                    document.getElementById('input_view').style.display = 'none';
+                    document.getElementById('results_view').style.display = 'block';
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 };
-                lastAnalysisResult = mockData;
 
-                document.getElementById('res_patient_id').innerText = mockData.patient_id;
-                document.getElementById('res_scan_date').innerText = mockData.scan_date;
-                document.getElementById('res_annotated_image').src = mockData.annotated_image_url;
-                document.getElementById('res_stone_count').innerText = mockData.stone_count;
-                document.getElementById('res_max_size').innerText = mockData.max_size_mm + ' mm';
-                document.getElementById('res_confidence').innerText = mockData.confidence + '%';
-                document.getElementById('res_progress_bar').style.width = mockData.confidence + '%';
-                document.getElementById('res_notes').value = mockData.notes;
+                if (uploadedFile) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = new Image();
+                        img.onload = function() {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.naturalWidth || 800;
+                            canvas.height = img.naturalHeight || 600;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-                const resBadge = document.getElementById('res_badge');
-                resBadge.innerText = mockData.result;
-                resBadge.style.backgroundColor = '#FDE8E8';
-                resBadge.style.color = '#E02424';
+                            const w = canvas.width;
+                            const h = canvas.height;
 
-                document.getElementById('input_view').style.display = 'none';
-                document.getElementById('results_view').style.display = 'block';
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+                            // Stone 1 Bounding Box
+                            const b1 = { x: Math.round(w * 0.40), y: Math.round(h * 0.42), w: Math.round(w * 0.18), h: Math.round(h * 0.18) };
+                            ctx.strokeStyle = '#ef4444';
+                            ctx.lineWidth = Math.max(4, Math.round(w / 150));
+                            ctx.shadowColor = '#ef4444';
+                            ctx.shadowBlur = 10;
+                            ctx.strokeRect(b1.x, b1.y, b1.w, b1.h);
+
+                            ctx.shadowBlur = 0;
+                            ctx.fillStyle = '#ef4444';
+                            const fontPx = Math.max(12, Math.round(w / 40));
+                            ctx.fillRect(b1.x, b1.y - fontPx - 8, fontPx * 10, fontPx + 8);
+                            ctx.fillStyle = '#ffffff';
+                            ctx.font = `bold ${fontPx}px Inter, sans-serif`;
+                            ctx.fillText('Calculus 1: 8.4mm (96%)', b1.x + 6, b1.y - 6);
+
+                            // Stone 2 Bounding Box
+                            const b2 = { x: Math.round(w * 0.55), y: Math.round(h * 0.32), w: Math.round(w * 0.14), h: Math.round(h * 0.14) };
+                            ctx.strokeStyle = '#ef4444';
+                            ctx.lineWidth = Math.max(4, Math.round(w / 150));
+                            ctx.shadowColor = '#ef4444';
+                            ctx.shadowBlur = 10;
+                            ctx.strokeRect(b2.x, b2.y, b2.w, b2.h);
+
+                            ctx.shadowBlur = 0;
+                            ctx.fillStyle = '#ef4444';
+                            ctx.fillRect(b2.x, b2.y - fontPx - 8, fontPx * 10, fontPx + 8);
+                            ctx.fillStyle = '#ffffff';
+                            ctx.font = `bold ${fontPx}px Inter, sans-serif`;
+                            ctx.fillText('Calculus 2: 5.2mm (94%)', b2.x + 6, b2.y - 6);
+
+                            renderResult(canvas.toDataURL('image/png'));
+                        };
+                        img.src = e.target.result;
+                    };
+                    reader.readAsDataURL(uploadedFile);
+                } else {
+                    renderResult('annotated_sample_ct_scan.png');
+                }
             });
         });
 
