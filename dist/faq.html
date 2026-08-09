@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cholemetric - Help & FAQ</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { background-color: #F4F6F8; font-family: 'Inter', sans-serif; color: #111111; display: flex; min-height: 100vh; }
+
+        /* Top Bar */
+        .top-bar { display: flex; align-items: center; margin-bottom: 24px; position: relative; justify-content: center; background: white; padding: 16px; border-radius: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); width: 100%; box-sizing: border-box; }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #007AFF;
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: absolute;
+            left: 16px;
+        }
+
+        .page-title {
+            flex: 1;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .container { width: 100%; max-width: 1000px; display: flex; flex-direction: column; gap: 20px; margin: 0 auto; }
+
+        /* Search Bar */
+        .search-bar {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 8px;
+            border: none;
+            background-color: #ffffff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #111111;
+            outline: none;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+        
+        .search-bar::placeholder {
+            color: #A0A0A0;
+        }
+
+        /* FAQ Cards */
+        .faq-card {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 0px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .faq-tag {
+            color: #007AFF;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .faq-question {
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 4px;
+        }
+
+        .faq-answer {
+            font-size: 0.9rem;
+            color: #666666;
+            line-height: 1.4;
+        }
+
+        /* Bottom Support Area */
+        .support-area {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 24px 16px;
+            margin-top: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        .support-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .btn-support {
+            width: 100%;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            background-color: #C197FB;
+            color: #ffffff;
+            transition: opacity 0.2s;
+            margin-bottom: 12px;
+        }
+
+        .btn-support:hover {
+            opacity: 0.9;
+        }
+
+        .support-link {
+            color: #007AFF;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+    
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            border-right: 1px solid #E5E5EA;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background-color: #2CC295;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo svg { width: 24px; height: 24px; fill: white; }
+        .brand-name { font-size: 1.4rem; font-weight: 800; color: #111; }
+        .nav-menu { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+        .nav-item {
+            display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 10px;
+            text-decoration: none; color: #666; font-weight: 600; transition: all 0.2s;
+        }
+        .nav-item:hover { background-color: #F4F6F8; color: #111; }
+        .nav-item.active { background-color: #E2EAFB; color: #4A69BD; }
+        .nav-item svg { width: 22px; height: 22px; fill: currentColor; }
+
+        .main-content {
+            flex: 1; margin-left: 280px; padding: 40px; max-width: 1000px;
+        }
+</style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">
+            <div class="brand-logo"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg></div>
+            <div class="brand-name">Cholemetric</div>
+        </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg> Dashboard</a>
+            <a href="new_analysis.html" class="nav-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg> New Analysis</a>
+            <a href="patient_history.html" class="nav-item"><svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/></svg> Patient History</a>
+            <a href="settings.html" class="nav-item"><svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg> Settings</a>
+        </div>
+    </div>
+    <div class="main-content">
+<div class="container"><div class="top-bar">
+        <a href="settings.html" class="back-btn">&lt; Settings</a>
+        <div class="page-title">Help & FAQ</div>
+    </div>
+
+    <div class="container">
+        
+        <input type="text" class="search-bar" id="search_input" placeholder="Search help topics...">
+
+        <div id="faq_container" style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- Card 1 -->
+            <div class="faq-card">
+                <div class="faq-tag">Upload</div>
+                <div class="faq-question">How do I Upload a CT scan?</div>
+                <div class="faq-answer">Tap 'New Analysis' from the dashboard, enter patient details, then tap the upload area to select an image from your device. Supported formats: PNG, JPG</div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="faq-card">
+                <div class="faq-tag">Analysis</div>
+                <div class="faq-question">What does the AI Confidence score mean?</div>
+                <div class="faq-answer">The AI confidence score indicates how certain the model is about its detection. Scores above 90% are considered highly reliable. However, all results should be verified by a qualified radiologist.</div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="faq-card">
+                <div class="faq-tag">Reports</div>
+                <div class="faq-question">Can I export reports as PDF?</div>
+                <div class="faq-answer">Yes! After analysis is complete, tap the 'Download PDF' button on the report page. You can then share or print the PDF report.</div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="faq-card">
+                <div class="faq-tag">Privacy</div>
+                <div class="faq-question">Is my patient data secure?</div>
+                <div class="faq-answer">Yes. Scans, reports and identifiers are stored locally on a device in encrypted storage and are never uploaded unless you explicitly share a PDF or connect to an online API.</div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="faq-card">
+                <div class="faq-tag">Account</div>
+                <div class="faq-question">How do I change my password?</div>
+                <div class="faq-answer">Go to settings &gt; Edit profile &gt; Change password. Enter your current password and new password to update.</div>
+            </div>
+        </div>
+
+        <!-- Bottom Support Area -->
+        <div class="support-area">
+            <div class="support-title">Still need help?</div>
+            <a href="mailto:support@choliscan.com" class="btn-support">Contact Support</a>
+            <a href="mailto:support@choliscan.com" class="support-link">support@choliscan.com</a>
+        </div>
+
+    </div>
+
+    
+    </div>
+<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const searchInput = document.getElementById('search_input');
+            const faqCards = document.querySelectorAll('.faq-card');
+
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                
+                faqCards.forEach(card => {
+                    const question = card.querySelector('.faq-question').innerText.toLowerCase();
+                    const answer = card.querySelector('.faq-answer').innerText.toLowerCase();
+                    const tag = card.querySelector('.faq-tag').innerText.toLowerCase();
+                    
+                    if (question.includes(query) || answer.includes(query) || tag.includes(query)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+
+    </div>
+
+    </div>
+</body>
+</html>
+
+
+
+
