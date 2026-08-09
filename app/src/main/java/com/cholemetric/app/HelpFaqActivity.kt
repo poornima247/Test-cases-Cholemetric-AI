@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.content.Intent
 import android.net.Uri

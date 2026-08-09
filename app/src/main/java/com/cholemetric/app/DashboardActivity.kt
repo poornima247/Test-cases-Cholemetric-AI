@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.os.Bundle
 import android.widget.TextView
@@ -64,6 +64,11 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
+        val userName = sharedPref.getString("USER_NAME", "Doctor")
+        val tvName = findViewById<TextView>(R.id.tv_dashboard_name)
+        tvName?.text = userName
+
         if (doctorId != -1) {
             fetchDashboardStats(doctorId, tvTotalScans, tvPositiveScans, tvNegativeScans, tvDetectionRate)
         }
@@ -80,7 +85,7 @@ class DashboardActivity : AppCompatActivity() {
             try {
                 val client = OkHttpClient()
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/dashboard_stats.php?doctor_id=$doctorId")
+                    .url(ApiConfig.BASE_URL + "dashboard_stats.php?doctor_id=$doctorId")
                     .get()
                     .build()
 

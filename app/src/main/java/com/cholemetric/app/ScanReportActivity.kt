@@ -298,43 +298,45 @@ class ScanReportActivity : AppCompatActivity() {
         paint.color = Color.parseColor("#AAAAAA")
         paint.textSize = 10f
         paint.isFakeBoldText = false
-        canvas.drawText("CholeMetric Gallbladder Scan Report • Generated automatically by AI Diagnostics", 297.5f, 810f, paint)
+        canvas.drawText("CholeMetric Gallbladder Scan Report â€¢ Generated automatically by AI Diagnostics", 297.5f, 810f, paint)
 
         pdfDocument.finishPage(page)
 
         // Save PDF to downloads folder
         try {
-            // Robust primary path: Public Downloads folder
-            val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-            var file = File(downloadsDir, "Cholemetric_Report_${patientId}.pdf")
-            
-            // Fail-safe secondary path (App internal external folder) in case of security exceptions on Android 10+
-            if (!downloadsDir.exists() || !downloadsDir.canWrite()) {
-                val fallbackDir = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-                file = File(fallbackDir, "Cholemetric_Report_${patientId}.pdf")
+            val fileName = "Cholemetric_Report_${patientId}.pdf"
+            var outputStream: java.io.OutputStream? = null
+
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.Q) {
+                val contentValues = android.content.ContentValues().apply {
+                    put(android.provider.MediaStore.MediaColumns.DISPLAY_NAME, fileName)
+                    put(android.provider.MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
+                    put(android.provider.MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS)
+                }
+                
+                val uri = contentResolver.insert(android.provider.MediaStore.Downloads.EXTERNAL_CONTENT_URI, contentValues)
+                if (uri != null) {
+                    outputStream = contentResolver.openOutputStream(uri)
+                }
+            } else {
+                val downloadsDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                if (!downloadsDir.exists()) downloadsDir.mkdirs()
+                val file = File(downloadsDir, fileName)
+                outputStream = FileOutputStream(file)
             }
 
-            val fileOutputStream = FileOutputStream(file)
-            pdfDocument.writeTo(fileOutputStream)
-            pdfDocument.close()
-            fileOutputStream.close()
-
-            Toast.makeText(this, "Report downloaded to: ${file.name}", Toast.LENGTH_LONG).show()
+            if (outputStream != null) {
+                pdfDocument.writeTo(outputStream)
+                pdfDocument.close()
+                outputStream.close()
+                Toast.makeText(this, "Report downloaded to Downloads folder", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Failed to create file", Toast.LENGTH_LONG).show()
+                pdfDocument.close()
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            // Dynamic absolute fallback
-            try {
-                val fallbackDir = getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
-                val file = File(fallbackDir, "Cholemetric_Report_${patientId}.pdf")
-                val fileOutputStream = FileOutputStream(file)
-                pdfDocument.writeTo(fileOutputStream)
-                pdfDocument.close()
-                fileOutputStream.close()
-                Toast.makeText(this, "Saved to App Folder: ${file.name}", Toast.LENGTH_LONG).show()
-            } catch (ex: Exception) {
-                ex.printStackTrace()
-                Toast.makeText(this, "Failed to download PDF: ${ex.message}", Toast.LENGTH_LONG).show()
-            }
+            Toast.makeText(this, "Failed to download PDF: ${e.message}", Toast.LENGTH_LONG).show()
         }
     }
 }

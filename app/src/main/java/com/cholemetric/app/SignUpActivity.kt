@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.content.Intent
 import android.os.Bundle
@@ -79,7 +79,7 @@ class SignUpActivity : AppCompatActivity() {
 
                     val requestBody = json.toString().toRequestBody("application/json".toMediaType())
                     val request = Request.Builder()
-                        .url("http://172.23.19.66:8080/backend/gb_stone_api/register.php")
+                        .url(ApiConfig.BASE_URL + "register.php")
                         .post(requestBody)
                         .build()
 

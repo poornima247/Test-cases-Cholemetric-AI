@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.os.Bundle
 import android.widget.Button
@@ -61,7 +61,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
                     val requestBody = json.toString().toRequestBody("application/json".toMediaType())
                     val request = Request.Builder()
-                        .url("http://172.23.19.66:8080/backend/gb_stone_api/reset_password.php")
+                        .url(ApiConfig.BASE_URL + "reset_password.php")
                         .post(requestBody)
                         .build()
 

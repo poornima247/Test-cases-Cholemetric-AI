@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -92,7 +92,7 @@ class PatientScansActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/get_scans.php?doctor_id=$doctorId")
+                    .url(ApiConfig.BASE_URL + "get_scans.php?doctor_id=$doctorId")
                     .get()
                     .build()
 
@@ -178,7 +178,7 @@ class PatientScansActivity : AppCompatActivity() {
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val requestBody = payload.toString().toRequestBody(mediaType)
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/delete_scan.php")
+                    .url(ApiConfig.BASE_URL + "delete_scan.php")
                     .post(requestBody)
                     .build()
 
@@ -229,7 +229,7 @@ class PatientScansActivity : AppCompatActivity() {
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val requestBody = payload.toString().toRequestBody(mediaType)
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/clear_all_scans.php")
+                    .url(ApiConfig.BASE_URL + "clear_all_scans.php")
                     .post(requestBody)
                     .build()
 
@@ -278,6 +278,7 @@ class PatientScansActivity : AppCompatActivity() {
 
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val tvPatientId: TextView = view.findViewById(R.id.tv_item_patient_id)
+            val tvPatientName: TextView = view.findViewById(R.id.tv_item_patient_name)
             val tvBadge: TextView = view.findViewById(R.id.tv_item_badge)
             val tvScanDate: TextView = view.findViewById(R.id.tv_item_scan_date)
             val tvMaxMeasurement: TextView = view.findViewById(R.id.tv_item_max_measurement)
@@ -294,7 +295,8 @@ class PatientScansActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = list[position]
 
-            holder.tvPatientId.text = "Patient ID:${item.patientId}"
+            holder.tvPatientId.text = "Patient ID: ${item.patientId}"
+            holder.tvPatientName.text = if (item.patientName.isEmpty()) "Anonymous" else item.patientName
             holder.tvMaxMeasurement.text = "${item.largestStoneMm} mm"
             holder.tvConfidence.text = "${item.aiConfidence}%"
 

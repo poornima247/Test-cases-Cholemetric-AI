@@ -83,7 +83,7 @@ class SettingsActivity : AppCompatActivity() {
         llLegal.setOnClickListener {
             Toast.makeText(this, "Opening Privacy Policy & Terms of Service...", Toast.LENGTH_SHORT).show()
             try {
-                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://172.23.19.66:8080/backend/gb_stone_api/legal.php"))
+                val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(ApiConfig.BASE_URL + "legal.php"))
                 startActivity(browserIntent)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -101,6 +101,18 @@ class SettingsActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        
+        val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
+        val userName = sharedPref.getString("USER_NAME", "")
+        if (!userName.isNullOrEmpty()) {
+            tvName.text = userName
+        }
+        
+        val userEmail = sharedPref.getString("DOCTOR_EMAIL", "")
+        if (!userEmail.isNullOrEmpty()) {
+            tvEmail.text = userEmail
+        }
+        
         // Refresh doctor profile details on return
         fetchProfile()
     }
@@ -109,7 +121,7 @@ class SettingsActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/get_profile.php?doctor_id=$doctorId")
+                    .url(ApiConfig.BASE_URL + "get_profile.php?doctor_id=$doctorId")
                     .get()
                     .build()
 
@@ -212,7 +224,7 @@ class SettingsActivity : AppCompatActivity() {
                 val requestBody = payload.toString().toRequestBody(mediaType)
                 
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/delete.php")
+                    .url(ApiConfig.BASE_URL + "delete.php")
                     .post(requestBody)
                     .build()
 

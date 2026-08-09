@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -82,7 +82,7 @@ class EditProfileActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/get_profile.php?doctor_id=$doctorId")
+                    .url(ApiConfig.BASE_URL + "get_profile.php?doctor_id=$doctorId")
                     .get()
                     .build()
 
@@ -140,7 +140,7 @@ class EditProfileActivity : AppCompatActivity() {
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val requestBody = payload.toString().toRequestBody(mediaType)
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/update_profile.php")
+                    .url(ApiConfig.BASE_URL + "update_profile.php")
                     .post(requestBody)
                     .build()
 

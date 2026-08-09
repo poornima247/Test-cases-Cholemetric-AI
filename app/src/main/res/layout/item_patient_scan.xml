@@ -27,6 +27,17 @@
             android:layout_centerVertical="true" />
 
         <TextView
+            android:id="@+id/tv_item_patient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_item_patient_id"
+            android:layout_marginTop="2dp"
+            android:text="John Doe"
+            android:textColor="#555555"
+            android:textSize="14sp"
+            android:layout_alignParentStart="true" />
+
+        <TextView
             android:id="@+id/tv_item_badge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

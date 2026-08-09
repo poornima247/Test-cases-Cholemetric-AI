@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.os.Bundle
 import android.text.InputType
@@ -130,7 +130,7 @@ class ChangePasswordActivity : AppCompatActivity() {
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val requestBody = payload.toString().toRequestBody(mediaType)
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/change_password.php")
+                    .url(ApiConfig.BASE_URL + "change_password.php")
                     .post(requestBody)
                     .build()
 

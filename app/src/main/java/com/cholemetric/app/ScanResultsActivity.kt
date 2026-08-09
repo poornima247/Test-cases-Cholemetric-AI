@@ -1,7 +1,8 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -42,6 +43,7 @@ class ScanResultsActivity : AppCompatActivity() {
         val notes = intent.getStringExtra("NOTES") ?: ""
         val originalImageUrl = intent.getStringExtra("ORIGINAL_IMAGE_URL") ?: ""
         val annotatedImageUrl = intent.getStringExtra("ANNOTATED_IMAGE_URL") ?: ""
+        Log.d("Image_test", annotatedImageUrl)
 
         // Find views
         val tvPatientId = findViewById<TextView>(R.id.tv_res_patient_id)
@@ -179,7 +181,7 @@ class ScanResultsActivity : AppCompatActivity() {
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val requestBody = payload.toString().toRequestBody(mediaType)
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/save_scan.php")
+                    .url(ApiConfig.BASE_URL + "save_scan.php")
                     .post(requestBody)
                     .build()
 

@@ -1,4 +1,4 @@
-package com.cholemetric.app
+﻿package com.cholemetric.app
 
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
@@ -165,7 +165,7 @@ class NewAnalysisActivity : AppCompatActivity() {
                     .build()
 
                 val request = Request.Builder()
-                    .url("http://172.23.19.66:8080/backend/gb_stone_api/analyze.php")
+                    .url(ApiConfig.BASE_URL + "analyze.php")
                     .post(multipartBody)
                     .build()
 
