@@ -110,11 +110,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: android-automation-reports
-          path: |
-            automation/reports/
-            automation/Test Results/
-            automation/screenshots/
-            automation/logs/
+          path: automation/reports/latest/
           retention-days: 30
 
   deploy-reports:
@@ -132,9 +128,24 @@ jobs:
           name: android-automation-reports
           path: public/reports/latest
 
-      - name: Stage 18.5 - Prepare Landing Portal & Root Index HTML
+      - name: Stage 18.5 - Flatten & Organize Public Directory for GitHub Pages
         run: |
           mkdir -p public/reports/latest
+          
+          # If artifact extracted into nested reports/latest, move contents up
+          if [ -d "public/reports/latest/reports/latest" ]; then
+            cp -r public/reports/latest/reports/latest/* public/reports/latest/ || true
+          fi
+          
+          # Ensure local reports are copied into public/reports/latest
+          if [ -d "automation/reports/latest" ]; then
+            cp -r automation/reports/latest/* public/reports/latest/ || true
+          fi
+          
+          # Mirror reports to public root so both /execution-report.html and /reports/latest/execution-report.html work
+          cp -r public/reports/latest/* public/ || true
+
+          # Generate index.html landing page that auto-redirects to reports/latest/execution-report.html
           cat << 'EOF' > public/index.html
           <!DOCTYPE html>
           <html lang="en">
@@ -177,6 +188,8 @@ jobs:
           </html>
           EOF
           cp public/index.html public/reports/latest/index.html || true
+          mkdir -p public/reports/
+          cp public/index.html public/reports/index.html || true
 
       - name: Stage 19 - Publish Reports to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
