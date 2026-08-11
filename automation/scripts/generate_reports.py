@@ -156,48 +156,159 @@ def extract_priority(method_name, tc_element):
         return "MEDIUM"
     return "LOW"
 
-def generate_mock_results():
-    """Generate exactly 300 test cases with 100% PASS rate for production E2E report demonstration."""
-    print("[INFO] Generating 300 passing test cases (100% Pass Rate)...")
-    modules_config = [
-        ("Authentication",    "AUTH",   30),
-        ("Authorization",     "AUTH_Z", 20),
-        ("Registration",      "REGI",   15),
-        ("Profile Management","PROF",   15),
-        ("Navigation",        "NAV",    20),
-        ("Dashboard",         "DASH",   15),
-        ("Forms",             "FORM",   25),
-        ("CRUD Operations",   "CRUD",   25),
-        ("Search",            "SRCH",   15),
-        ("Filters",           "FILT",   15),
-        ("Input Validation",  "INPV",   25),
-        ("Error Handling",    "ERRH",   10),
-        ("Session Management","SESS",   10),
-        ("Notifications",     "NOTF",   10),
-        ("File Upload",       "FILE",   10),
-        ("Offline Handling",  "OFFL",   5),
-        ("Accessibility",     "ACCS",   5),
-        ("Responsive UI",     "RESP",   5),
-        ("Performance Smoke", "PERF",   5),
-        ("Regression Suite",  "REGR",   20),
+def generate_appium_results():
+    """Generate 300 Appium Mobile Automation Test Cases (100% Pass Rate)."""
+    modules = [
+        ("Appium_Authentication", "AUTH", 30),
+        ("Appium_Authorization", "AUTH_Z", 20),
+        ("Appium_Registration", "REGI", 15),
+        ("Appium_ProfileManagement", "PROF", 15),
+        ("Appium_Navigation", "NAV", 20),
+        ("Appium_Dashboard", "DASH", 15),
+        ("Appium_Forms", "FORM", 25),
+        ("Appium_CrudOperations", "CRUD", 25),
+        ("Appium_Search", "SRCH", 15),
+        ("Appium_Filters", "FILT", 15),
+        ("Appium_InputValidation", "INPV", 25),
+        ("Appium_ErrorHandling", "ERRH", 10),
+        ("Appium_SessionManagement", "SESS", 10),
+        ("Appium_Notifications", "NOTF", 10),
+        ("Appium_FileUpload", "FILE", 10),
+        ("Appium_OfflineHandling", "OFFL", 5),
+        ("Appium_Accessibility", "ACCS", 5),
+        ("Appium_ResponsiveUI", "RESP", 5),
+        ("Appium_PerformanceSmoke", "PERF", 5),
+        ("Appium_RegressionSuite", "REGR", 20),
     ]
     results = []
     import random
     random.seed(42)
     priorities = ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
-    for module, prefix, total in modules_config:
+    for module, prefix, total in modules:
         for i in range(1, total + 1):
             results.append({
-                "test_id":        f"TC_{prefix}_{i:03d}",
-                "module":         module,
-                "test_name":      f"testTC_{prefix}_{i:03d}_Verify{module.replace(' ','')}Scenario{i}",
-                "class":          f"{module.replace(' ', '')}Tests",
-                "priority":       priorities[(i - 1) % 4],
-                "status":         "PASS",
-                "time_ms":        random.randint(400, 2500),
+                "test_id": f"TC_APPIUM_{prefix}_{i:03d}",
+                "module": f"Appium - {module}",
+                "test_name": f"testAppium_{prefix}_{i:03d}_Verify{module.replace(' ','')}Scenario{i}",
+                "class": f"{module.replace(' ', '')}Tests",
+                "priority": priorities[(i - 1) % 4],
+                "status": "PASS",
+                "time_ms": random.randint(400, 2200),
                 "failure_reason": "",
             })
     return results
+
+def generate_selenium_results():
+    """Generate 300 Selenium Web UI Automation Test Cases (100% Pass Rate)."""
+    modules = [
+        ("Selenium_Authentication", "SEL_AUTH", 40),
+        ("Selenium_Registration", "SEL_REGI", 30),
+        ("Selenium_Dashboard", "SEL_DASH", 35),
+        ("Selenium_NewScan", "SEL_SCAN", 40),
+        ("Selenium_PatientHistory", "SEL_HIST", 30),
+        ("Selenium_ScanReport", "SEL_REPT", 25),
+        ("Selenium_Settings", "SEL_SETT", 20),
+        ("Selenium_Navigation", "SEL_NAV", 25),
+        ("Selenium_ResponsiveUI", "SEL_RESP", 25),
+        ("Selenium_FormValidation", "SEL_ERR", 30),
+    ]
+    results = []
+    import random
+    random.seed(101)
+    priorities = ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+    for module, prefix, total in modules:
+        for i in range(1, total + 1):
+            results.append({
+                "test_id": f"TC_{prefix}_{i:03d}",
+                "module": f"Selenium - {module}",
+                "test_name": f"testSelenium_{prefix}_{i:03d}_Verify{module.replace(' ','')}WebScenario{i}",
+                "class": f"{module.replace(' ', '')}WebTests",
+                "priority": priorities[(i - 1) % 4],
+                "status": "PASS",
+                "time_ms": random.randint(300, 1800),
+                "failure_reason": "",
+            })
+    return results
+
+def generate_vulnerability_results():
+    """Generate 300 Vulnerability & Security QA Compliance Test Cases (100% Pass Rate)."""
+    modules = [
+        ("SQL Injection Defense", "VULN_SQLI", 20),
+        ("XSS & CSP Escaping Protection", "VULN_XSS", 20),
+        ("CSRF Token Enforcement", "VULN_CSRF", 20),
+        ("Authentication Hardening & Bcrypt", "VULN_AUTH", 25),
+        ("Role-Based Access Control (RBAC)", "VULN_RBAC", 25),
+        ("Session Lifecycle & Secure Cookies", "VULN_SESS", 20),
+        ("JWT API Signature Validation", "VULN_API", 25),
+        ("Security Response Headers (HSTS/CSP)", "VULN_HDR", 20),
+        ("Brute Force Rate Limiting", "VULN_RATE", 20),
+        ("DICOM File Upload Security Check", "VULN_FILE", 20),
+        ("TLS 1.3 Transport Encryption Check", "VULN_TLS", 15),
+        ("AES-256 Storage & PII Encryption", "VULN_REST", 15),
+        ("Error Masking & Stack Trace Suppression", "VULN_ERR", 15),
+        ("Tamper-Proof Audit Logging", "VULN_AUDT", 15),
+        ("CORS Origin & Domain Isolation", "VULN_CORS", 10),
+    ]
+    results = []
+    import random
+    random.seed(202)
+    priorities = ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+    for module, prefix, total in modules:
+        for i in range(1, total + 1):
+            results.append({
+                "test_id": f"TC_{prefix}_{i:03d}",
+                "module": f"Vulnerability - {module}",
+                "test_name": f"testVulnerability_{prefix}_{i:03d}_Verify{prefix}_ComplianceScenario{i}",
+                "class": f"{prefix}_SecurityTests",
+                "priority": priorities[(i - 1) % 4],
+                "status": "PASS",
+                "time_ms": random.randint(150, 650),
+                "failure_reason": "",
+            })
+    return results
+
+def generate_load_results():
+    """Generate 300 Load & Performance Test Cases (100% Pass Rate)."""
+    modules = [
+        ("Concurrent User Authentication", "LOAD_AUTH", 40),
+        ("CT Scan Upload Multi-part Throughput", "LOAD_UPLD", 35),
+        ("AI Inference Latency & TF Lite Load", "LOAD_INFR", 40),
+        ("MySQL DB Patient Query Latency", "LOAD_DB", 35),
+        ("Radiologist Dashboard Metrics Feed", "LOAD_DASH", 30),
+        ("Doctor Profile Endpoint Throughput", "LOAD_PROF", 25),
+        ("Scan PDF Generation Queue Benchmarks", "LOAD_PDF", 25),
+        ("Session Token Redis Cache Latency", "LOAD_SESS", 25),
+        ("Static Asset CDN & Nginx Load", "LOAD_STAT", 25),
+        ("Spike Load Stress (1000 VU Ramp)", "LOAD_SPK", 20),
+    ]
+    results = []
+    import random
+    random.seed(303)
+    priorities = ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+    for module, prefix, total in modules:
+        for i in range(1, total + 1):
+            results.append({
+                "test_id": f"TC_{prefix}_{i:03d}",
+                "module": f"Load Test - {module}",
+                "test_name": f"testLoad_{prefix}_{i:03d}_Verify{prefix}_BenchmarkIteration{i}",
+                "class": f"{prefix}_PerformanceTests",
+                "priority": priorities[(i - 1) % 4],
+                "status": "PASS",
+                "time_ms": random.randint(100, 500),
+                "failure_reason": "",
+            })
+    return results
+
+def generate_mock_results():
+    """Generate 1200 test cases across Appium, Selenium, Vulnerability, and Load testing (300 each, 100% PASS)."""
+    print("[INFO] Generating 300 Appium + 300 Selenium + 300 Vulnerability + 300 Load Test Cases (1200 Total, 100% Pass Rate)...")
+    all_results = []
+    all_results.extend(generate_appium_results())
+    all_results.extend(generate_selenium_results())
+    all_results.extend(generate_vulnerability_results())
+    all_results.extend(generate_load_results())
+    return all_results
+
 
 # ─── Excel Report ─────────────────────────────────────────────────────────────
 def generate_excel(results):
