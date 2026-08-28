@@ -59,7 +59,8 @@ reportSrcDirs.forEach(srcDir => {
       const srcFile = path.join(srcDir, file);
       const stat = fs.statSync(srcFile);
       if (stat.isFile()) {
-        fs.copyFileSync(srcFile, path.join(reportsDir, file));
+        const destFileName = file === 'dashboard.html' ? 'qa-dashboard.html' : file;
+        fs.copyFileSync(srcFile, path.join(reportsDir, destFileName));
       }
     });
   }
