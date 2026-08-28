@@ -32,12 +32,17 @@ const filesToCopy = [
   'annotated_sample_ct_scan.png'
 ];
 
+const docsDir = path.join(__dirname, 'docs');
+fs.mkdirSync(docsDir, { recursive: true });
+
 filesToCopy.forEach(file => {
   const srcPath = path.join(__dirname, file);
   const destPath = path.join(distDir, file);
+  const docsPath = path.join(docsDir, file);
   if (fs.existsSync(srcPath)) {
     fs.copyFileSync(srcPath, destPath);
-    console.log(`[BUILD] Copied ${file} -> dist/`);
+    fs.copyFileSync(srcPath, docsPath);
+    console.log(`[BUILD] Copied ${file} -> dist/ & docs/`);
   }
 });
 
