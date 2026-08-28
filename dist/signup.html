@@ -427,6 +427,13 @@
 
                 CholemetricSync.registerUser(full_name, hospital, email, password);
 
+                const isHttpsOrGithub = window.location.protocol === 'https:' || window.location.hostname.includes('github.io');
+                if (isHttpsOrGithub) {
+                    alert('Account created successfully! Please log in.');
+                    window.location.href = 'login_form.html';
+                    return;
+                }
+
                 try {
                     const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/register.php`, {
                         method: 'POST',

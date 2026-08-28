@@ -323,6 +323,19 @@
                 btn.innerHTML = 'Signing In...';
                 btn.style.pointerEvents = 'none';
 
+                const isHttpsOrGithub = window.location.protocol === 'https:' || window.location.hostname.includes('github.io');
+                if (isHttpsOrGithub) {
+                    const authRes = CholemetricSync.authenticateUser(email, password);
+                    if (authRes.success) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(authRes.error);
+                        btn.innerHTML = originalText;
+                        btn.style.pointerEvents = 'auto';
+                    }
+                    return;
+                }
+
                 try {
                     const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/login.php`, {
                         method: 'POST',
