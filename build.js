@@ -25,6 +25,7 @@ const filesToCopy = [
   'faq.html',
   'forgot_password.html',
   'splash.html',
+  'sync_manager.js',
   'logo.png',
   'favicon.png',
   'sample_ct_scan.png',

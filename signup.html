@@ -397,35 +397,49 @@
             if (password !== confirmPassword) {
                 alert('Passwords do not match.');
                 return;
-            }
+    <script src="sync_manager.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            CholemetricSync.attachEyePasswordToggles();
 
-            const btn = document.getElementById('btn_signup');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Creating...';
-            btn.style.pointerEvents = 'none';
+            document.getElementById('btn_signup').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const full_name = document.getElementById('signup_name').value.trim();
+                const hospital = document.getElementById('signup_hospital').value.trim();
+                const email = document.getElementById('signup_email').value.trim();
+                const password = document.getElementById('signup_password').value;
 
-            try {
-                const response = await fetch('http://localhost/backend/gb_stone_api/register.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ full_name, hospital, email, password })
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    window.location.href = 'login_form.html';
-                } else {
-                    alert(data.error || 'Registration failed.');
-                    btn.innerHTML = originalText;
-                    btn.style.pointerEvents = 'auto';
+                if (!full_name || !email || !password) {
+                    alert('Please fill all required fields.');
+                    return;
                 }
-            } catch (err) {
-                console.warn('Backend API unreachable, registering client session:', err);
-                localStorage.setItem('user_name', full_name || 'Dr. Poornima Mandandu');
-                localStorage.setItem('doctor_id', '1');
+
+                const rules = CholemetricSync.validatePasswordRules(password);
+                if (!rules.isValid) {
+                    alert('Password must be at least 6 characters long, contain at least 1 uppercase letter and 1 special character.');
+                    return;
+                }
+
+                const btn = document.getElementById('btn_signup');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Creating...';
+                btn.style.pointerEvents = 'none';
+
+                CholemetricSync.registerUser(full_name, hospital, email, password);
+
+                try {
+                    const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/register.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ full_name, hospital, email, password })
+                    });
+                } catch (err) {
+                    console.warn('[SignUp] Backend API unreachable, registered user in local account registry.');
+                }
+
+                alert('Account created successfully! Please log in.');
                 window.location.href = 'login_form.html';
-            }
+            });
         });
     </script>
 </body>

@@ -303,48 +303,61 @@
         </div>
     </div>
 
+    <script src="sync_manager.js"></script>
     <script>
-        document.getElementById('btn_signin').addEventListener('click', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('login_email').value.trim();
-            const password = document.getElementById('login_password').value;
+        document.addEventListener("DOMContentLoaded", function() {
+            CholemetricSync.attachEyePasswordToggles();
 
-            if (!email || !password) {
-                alert('Please enter both email and password.');
-                return;
-            }
+            document.getElementById('btn_signin').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login_email').value.trim();
+                const password = document.getElementById('login_password').value;
 
-            const btn = document.getElementById('btn_signin');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = 'Signing In...';
-            btn.style.pointerEvents = 'none';
-
-            try {
-                const response = await fetch('http://localhost:8080/backend/gb_stone_api/login.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
-
-                const data = await response.json();
-
-                if (response.ok && data.success) {
-                    localStorage.setItem('user_name', data.doctor.full_name);
-                    localStorage.setItem('doctor_id', data.doctor.id);
-                    window.location.href = 'dashboard.html';
-                } else {
-                    alert(data.error || 'Login failed.');
-                    btn.innerHTML = originalText;
-                    btn.style.pointerEvents = 'auto';
+                if (!email || !password) {
+                    alert('Please enter both email and password.');
+                    return;
                 }
-            } catch (err) {
-                console.warn('Backend API unreachable, switching to interactive session:', err);
-                const doctorName = email.split('@')[0].replace('.', ' ') || 'Dr. Poornima Mandandu';
-                const formattedName = 'Dr. ' + doctorName.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-                localStorage.setItem('user_name', formattedName);
-                localStorage.setItem('doctor_id', '1');
-                window.location.href = 'dashboard.html';
-            }
+
+                const btn = document.getElementById('btn_signin');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Signing In...';
+                btn.style.pointerEvents = 'none';
+
+                try {
+                    const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/login.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        CholemetricSync.registerUser(data.doctor.full_name, '', data.doctor.email, password);
+                        localStorage.setItem('user_name', data.doctor.full_name);
+                        localStorage.setItem('doctor_email', data.doctor.email);
+                        localStorage.setItem('doctor_id', data.doctor.id);
+                        localStorage.setItem('cholemetric_logged_in', 'true');
+                        window.location.href = 'dashboard.html';
+                    } else if (response.status === 401) {
+                        alert(data.error || 'Invalid credentials');
+                        btn.innerHTML = originalText;
+                        btn.style.pointerEvents = 'auto';
+                    } else {
+                        throw new Error(`Server returned ${response.status}`);
+                    }
+                } catch (err) {
+                    console.warn('[Login] Backend API unreachable, authenticating via local account registry:', err);
+                    const authRes = CholemetricSync.authenticateUser(email, password);
+                    if (authRes.success) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(authRes.error);
+                        btn.innerHTML = originalText;
+                        btn.style.pointerEvents = 'auto';
+                    }
+                }
+            });
         });
     </script>
 </body>

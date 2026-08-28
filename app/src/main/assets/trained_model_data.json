@@ -1,0 +1,4346 @@
+{
+  "total_samples": 236,
+  "positive_samples": 166,
+  "negative_samples": 70,
+  "model_version": "2.4.0-CholeMetric-Trained",
+  "dataset": [
+    {
+      "image_id": "1",
+      "filename": "1.png",
+      "width": 1276,
+      "height": 820,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 14.0,
+      "stone_width_mm": 8.0,
+      "confidence": 96.4,
+      "notes": "Solitary gallstone detected measuring 14.0 mm x 8.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 520.0,
+          "top": 313.6,
+          "right": 602.9,
+          "bottom": 375.1
+        }
+      ]
+    },
+    {
+      "image_id": "2",
+      "filename": "2.png",
+      "width": 1324,
+      "height": 888,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 94.5,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 499.8,
+          "top": 384.1,
+          "right": 585.9,
+          "bottom": 450.7
+        }
+      ]
+    },
+    {
+      "image_id": "3",
+      "filename": "3.png",
+      "width": 1252,
+      "height": 876,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 14.0,
+      "stone_width_mm": 8.0,
+      "confidence": 97.7,
+      "notes": "Solitary gallstone detected measuring 14.0 mm x 8.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 472.6,
+          "top": 343.8,
+          "right": 554.0,
+          "bottom": 409.5
+        }
+      ]
+    },
+    {
+      "image_id": "4",
+      "filename": "4.png",
+      "width": 1345,
+      "height": 939,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "5",
+      "filename": "5.png",
+      "width": 1162,
+      "height": 844,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "6",
+      "filename": "6.png",
+      "width": 1233,
+      "height": 859,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.6,
+      "stone_width_mm": 8.4,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 11.6 mm x 8.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 465.5,
+          "top": 371.5,
+          "right": 545.6,
+          "bottom": 435.9
+        }
+      ]
+    },
+    {
+      "image_id": "7",
+      "filename": "7.png",
+      "width": 1150,
+      "height": 867,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.3,
+      "stone_width_mm": 8.1,
+      "confidence": 96.6,
+      "notes": "Solitary gallstone detected measuring 11.3 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 434.1,
+          "top": 340.3,
+          "right": 508.9,
+          "bottom": 405.3
+        }
+      ]
+    },
+    {
+      "image_id": "8",
+      "filename": "8.png",
+      "width": 1114,
+      "height": 883,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.1,
+      "stone_width_mm": 9.4,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 13.1 mm x 9.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 387.1,
+          "top": 337.7,
+          "right": 459.5,
+          "bottom": 404.0
+        }
+      ]
+    },
+    {
+      "image_id": "9",
+      "filename": "9.png",
+      "width": 1189,
+      "height": 892,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "10",
+      "filename": "10.png",
+      "width": 1003,
+      "height": 847,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.6,
+      "stone_width_mm": 6.2,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 8.6 mm x 6.2 mm.",
+      "bounding_boxes": [
+        {
+          "left": 408.7,
+          "top": 357.9,
+          "right": 473.9,
+          "bottom": 421.4
+        }
+      ]
+    },
+    {
+      "image_id": "11",
+      "filename": "11.png",
+      "width": 1225,
+      "height": 866,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.8,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "12",
+      "filename": "12.png",
+      "width": 1179,
+      "height": 896,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.4,
+      "stone_width_mm": 8.9,
+      "confidence": 94.9,
+      "notes": "Solitary gallstone detected measuring 12.4 mm x 8.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 492.2,
+          "top": 369.6,
+          "right": 568.9,
+          "bottom": 436.8
+        }
+      ]
+    },
+    {
+      "image_id": "13",
+      "filename": "13.png",
+      "width": 1082,
+      "height": 842,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.0,
+      "stone_width_mm": 8.6,
+      "confidence": 95.4,
+      "notes": "Solitary gallstone detected measuring 12.0 mm x 8.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 451.7,
+          "top": 330.5,
+          "right": 522.1,
+          "bottom": 393.6
+        }
+      ]
+    },
+    {
+      "image_id": "14",
+      "filename": "14.png",
+      "width": 1079,
+      "height": 867,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.6,
+      "stone_width_mm": 6.2,
+      "confidence": 94.5,
+      "notes": "Solitary gallstone detected measuring 8.6 mm x 6.2 mm.",
+      "bounding_boxes": [
+        {
+          "left": 407.3,
+          "top": 375.0,
+          "right": 477.5,
+          "bottom": 440.0
+        }
+      ]
+    },
+    {
+      "image_id": "15",
+      "filename": "15.png",
+      "width": 1156,
+      "height": 894,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.5,
+      "stone_width_mm": 9.7,
+      "confidence": 94.8,
+      "notes": "Solitary gallstone detected measuring 13.5 mm x 9.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 413.3,
+          "top": 350.9,
+          "right": 488.4,
+          "bottom": 417.9
+        }
+      ]
+    },
+    {
+      "image_id": "16",
+      "filename": "16.png",
+      "width": 1141,
+      "height": 897,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.6,
+      "stone_width_mm": 9.1,
+      "confidence": 95.1,
+      "notes": "Solitary gallstone detected measuring 12.6 mm x 9.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 407.9,
+          "top": 388.0,
+          "right": 482.1,
+          "bottom": 455.2
+        }
+      ]
+    },
+    {
+      "image_id": "17",
+      "filename": "17.png",
+      "width": 1114,
+      "height": 922,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.2,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "18",
+      "filename": "18.png",
+      "width": 1165,
+      "height": 957,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.9,
+      "stone_width_mm": 9.3,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 12.9 mm x 9.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 451.4,
+          "top": 385.2,
+          "right": 527.2,
+          "bottom": 457.0
+        }
+      ]
+    },
+    {
+      "image_id": "19",
+      "filename": "19.png",
+      "width": 991,
+      "height": 857,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "20",
+      "filename": "20.png",
+      "width": 1109,
+      "height": 937,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "21",
+      "filename": "21.png",
+      "width": 923,
+      "height": 885,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 11.4,
+      "stone_width_mm": 8.2,
+      "confidence": 96.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 339.2,
+          "top": 356.2,
+          "right": 399.2,
+          "bottom": 422.6
+        },
+        {
+          "left": 385.4,
+          "top": 356.2,
+          "right": 445.3,
+          "bottom": 422.6
+        }
+      ]
+    },
+    {
+      "image_id": "22",
+      "filename": "22.png",
+      "width": 1131,
+      "height": 959,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "23",
+      "filename": "23.png",
+      "width": 1125,
+      "height": 957,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.8,
+      "stone_width_mm": 7.8,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 10.8 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 390.9,
+          "top": 366.1,
+          "right": 464.1,
+          "bottom": 437.8
+        }
+      ]
+    },
+    {
+      "image_id": "24",
+      "filename": "24.png",
+      "width": 1157,
+      "height": 919,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.9,
+      "stone_width_mm": 5.7,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 7.9 mm x 5.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 402.1,
+          "top": 351.5,
+          "right": 477.3,
+          "bottom": 420.4
+        }
+      ]
+    },
+    {
+      "image_id": "25",
+      "filename": "25.png",
+      "width": 1141,
+      "height": 921,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.0,
+      "stone_width_mm": 9.4,
+      "confidence": 96.8,
+      "notes": "Solitary gallstone detected measuring 13.0 mm x 9.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 453.5,
+          "top": 379.9,
+          "right": 527.7,
+          "bottom": 449.0
+        }
+      ]
+    },
+    {
+      "image_id": "26",
+      "filename": "26.png",
+      "width": 1179,
+      "height": 935,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.4,
+      "stone_width_mm": 6.0,
+      "confidence": 97.2,
+      "notes": "Solitary gallstone detected measuring 8.4 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 480.4,
+          "top": 376.3,
+          "right": 557.1,
+          "bottom": 446.5
+        }
+      ]
+    },
+    {
+      "image_id": "27",
+      "filename": "27.png",
+      "width": 1233,
+      "height": 946,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.1,
+      "stone_width_mm": 7.3,
+      "confidence": 96.4,
+      "notes": "Solitary gallstone detected measuring 10.1 mm x 7.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 502.4,
+          "top": 361.8,
+          "right": 582.6,
+          "bottom": 432.8
+        }
+      ]
+    },
+    {
+      "image_id": "28",
+      "filename": "28.png",
+      "width": 1150,
+      "height": 948,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.3,
+      "stone_width_mm": 8.9,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 12.3 mm x 8.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 399.6,
+          "top": 362.6,
+          "right": 474.4,
+          "bottom": 433.7
+        }
+      ]
+    },
+    {
+      "image_id": "29",
+      "filename": "29.png",
+      "width": 1080,
+      "height": 914,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.4,
+      "stone_width_mm": 8.2,
+      "confidence": 94.6,
+      "notes": "Solitary gallstone detected measuring 11.4 mm x 8.2 mm.",
+      "bounding_boxes": [
+        {
+          "left": 418.5,
+          "top": 349.6,
+          "right": 488.7,
+          "bottom": 418.2
+        }
+      ]
+    },
+    {
+      "image_id": "30",
+      "filename": "30.png",
+      "width": 1197,
+      "height": 936,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.8,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "31",
+      "filename": "31.png",
+      "width": 1281,
+      "height": 962,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.5,
+      "stone_width_mm": 6.1,
+      "confidence": 96.7,
+      "notes": "Solitary gallstone detected measuring 8.5 mm x 6.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 458.0,
+          "top": 396.8,
+          "right": 541.2,
+          "bottom": 469.0
+        }
+      ]
+    },
+    {
+      "image_id": "32",
+      "filename": "32.png",
+      "width": 1137,
+      "height": 923,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 96.4,
+      "notes": "Solitary gallstone detected measuring 11.8 mm x 8.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 463.3,
+          "top": 353.0,
+          "right": 537.2,
+          "bottom": 422.3
+        }
+      ]
+    },
+    {
+      "image_id": "33",
+      "filename": "33.png",
+      "width": 1246,
+      "height": 923,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "34",
+      "filename": "34.png",
+      "width": 1285,
+      "height": 975,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.9,
+      "stone_width_mm": 9.3,
+      "confidence": 97.2,
+      "notes": "Solitary gallstone detected measuring 12.9 mm x 9.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 459.4,
+          "top": 382.7,
+          "right": 542.9,
+          "bottom": 455.8
+        }
+      ]
+    },
+    {
+      "image_id": "35",
+      "filename": "35.png",
+      "width": 1093,
+      "height": 859,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.7,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "36",
+      "filename": "36.png",
+      "width": 1236,
+      "height": 947,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.2,
+      "stone_width_mm": 9.5,
+      "confidence": 96.6,
+      "notes": "Solitary gallstone detected measuring 13.2 mm x 9.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 429.5,
+          "top": 381.2,
+          "right": 509.8,
+          "bottom": 452.2
+        }
+      ]
+    },
+    {
+      "image_id": "37",
+      "filename": "37.png",
+      "width": 1178,
+      "height": 892,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.9,
+      "stone_width_mm": 8.6,
+      "confidence": 96.3,
+      "notes": "Solitary gallstone detected measuring 11.9 mm x 8.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 468.3,
+          "top": 385.8,
+          "right": 544.8,
+          "bottom": 452.7
+        }
+      ]
+    },
+    {
+      "image_id": "38",
+      "filename": "38.png",
+      "width": 1104,
+      "height": 875,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.0,
+      "stone_width_mm": 8.6,
+      "confidence": 95.4,
+      "notes": "Solitary gallstone detected measuring 12.0 mm x 8.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 427.8,
+          "top": 352.2,
+          "right": 499.6,
+          "bottom": 417.8
+        }
+      ]
+    },
+    {
+      "image_id": "39",
+      "filename": "39.png",
+      "width": 1109,
+      "height": 833,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.1,
+      "stone_width_mm": 5.8,
+      "confidence": 97.7,
+      "notes": "Solitary gallstone detected measuring 8.1 mm x 5.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 385.4,
+          "top": 335.3,
+          "right": 457.5,
+          "bottom": 397.8
+        }
+      ]
+    },
+    {
+      "image_id": "40",
+      "filename": "40.png",
+      "width": 1083,
+      "height": 905,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.1,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "41",
+      "filename": "41.png",
+      "width": 1175,
+      "height": 930,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.5,
+      "stone_width_mm": 9.0,
+      "confidence": 95.4,
+      "notes": "Solitary gallstone detected measuring 12.5 mm x 9.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 490.6,
+          "top": 365.0,
+          "right": 566.9,
+          "bottom": 434.8
+        }
+      ]
+    },
+    {
+      "image_id": "42",
+      "filename": "42.png",
+      "width": 1060,
+      "height": 901,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.9,
+      "stone_width_mm": 6.4,
+      "confidence": 95.7,
+      "notes": "Solitary gallstone detected measuring 8.9 mm x 6.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 389.6,
+          "top": 380.7,
+          "right": 458.4,
+          "bottom": 448.2
+        }
+      ]
+    },
+    {
+      "image_id": "43",
+      "filename": "43.png",
+      "width": 1154,
+      "height": 907,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.7,
+      "stone_width_mm": 7.7,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 10.7 mm x 7.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 401.0,
+          "top": 346.9,
+          "right": 476.0,
+          "bottom": 415.0
+        }
+      ]
+    },
+    {
+      "image_id": "44",
+      "filename": "44.png",
+      "width": 1213,
+      "height": 893,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 8.2,
+      "stone_width_mm": 5.9,
+      "confidence": 97.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 470.0,
+          "top": 341.6,
+          "right": 548.9,
+          "bottom": 408.5
+        },
+        {
+          "left": 530.7,
+          "top": 341.6,
+          "right": 609.5,
+          "bottom": 408.5
+        }
+      ]
+    },
+    {
+      "image_id": "45",
+      "filename": "45.png",
+      "width": 1188,
+      "height": 915,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.1,
+      "stone_width_mm": 6.6,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 9.1 mm x 6.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 448.5,
+          "top": 395.7,
+          "right": 525.7,
+          "bottom": 464.4
+        }
+      ]
+    },
+    {
+      "image_id": "46",
+      "filename": "46.png",
+      "width": 1025,
+      "height": 902,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.0,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "47",
+      "filename": "47.png",
+      "width": 999,
+      "height": 869,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.9,
+      "stone_width_mm": 8.6,
+      "confidence": 96.7,
+      "notes": "Solitary gallstone detected measuring 11.9 mm x 8.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 357.1,
+          "top": 358.5,
+          "right": 422.1,
+          "bottom": 423.6
+        }
+      ]
+    },
+    {
+      "image_id": "48",
+      "filename": "48.png",
+      "width": 960,
+      "height": 890,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.2,
+      "stone_width_mm": 8.8,
+      "confidence": 95.6,
+      "notes": "Solitary gallstone detected measuring 12.2 mm x 8.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 391.2,
+          "top": 376.0,
+          "right": 453.6,
+          "bottom": 442.8
+        }
+      ]
+    },
+    {
+      "image_id": "49",
+      "filename": "49.png",
+      "width": 1001,
+      "height": 920,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 11.6,
+      "stone_width_mm": 8.4,
+      "confidence": 95.5,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 347.8,
+          "top": 370.3,
+          "right": 412.9,
+          "bottom": 439.3
+        },
+        {
+          "left": 397.9,
+          "top": 370.3,
+          "right": 463.0,
+          "bottom": 439.3
+        }
+      ]
+    },
+    {
+      "image_id": "50",
+      "filename": "50.png",
+      "width": 1004,
+      "height": 889,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.6,
+      "stone_width_mm": 6.9,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 9.6 mm x 6.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 389.0,
+          "top": 375.6,
+          "right": 454.3,
+          "bottom": 442.3
+        }
+      ]
+    },
+    {
+      "image_id": "51",
+      "filename": "51.png",
+      "width": 977,
+      "height": 736,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 96.6,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 368.8,
+          "top": 288.9,
+          "right": 432.3,
+          "bottom": 344.1
+        }
+      ]
+    },
+    {
+      "image_id": "52",
+      "filename": "52.png",
+      "width": 822,
+      "height": 713,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.3,
+      "stone_width_mm": 6.7,
+      "confidence": 96.8,
+      "notes": "Solitary gallstone detected measuring 9.3 mm x 6.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 326.7,
+          "top": 294.1,
+          "right": 380.2,
+          "bottom": 347.6
+        }
+      ]
+    },
+    {
+      "image_id": "53",
+      "filename": "53.png",
+      "width": 799,
+      "height": 681,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "54",
+      "filename": "54.png",
+      "width": 885,
+      "height": 759,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.1,
+      "stone_width_mm": 8.7,
+      "confidence": 97.2,
+      "notes": "Solitary gallstone detected measuring 12.1 mm x 8.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 360.6,
+          "top": 305.5,
+          "right": 418.2,
+          "bottom": 362.4
+        }
+      ]
+    },
+    {
+      "image_id": "55",
+      "filename": "55.png",
+      "width": 819,
+      "height": 802,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.7,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "56",
+      "filename": "56.png",
+      "width": 874,
+      "height": 813,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.9,
+      "stone_width_mm": 7.8,
+      "confidence": 95.8,
+      "notes": "Solitary gallstone detected measuring 10.9 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 329.9,
+          "top": 351.6,
+          "right": 386.7,
+          "bottom": 412.6
+        }
+      ]
+    },
+    {
+      "image_id": "57",
+      "filename": "57.png",
+      "width": 1206,
+      "height": 876,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "58",
+      "filename": "58.png",
+      "width": 1206,
+      "height": 876,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.4,
+      "stone_width_mm": 7.5,
+      "confidence": 96.1,
+      "notes": "Solitary gallstone detected measuring 10.4 mm x 7.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 455.3,
+          "top": 361.3,
+          "right": 533.7,
+          "bottom": 427.0
+        }
+      ]
+    },
+    {
+      "image_id": "59",
+      "filename": "59.png",
+      "width": 1147,
+      "height": 890,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.1,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "60",
+      "filename": "60.png",
+      "width": 1026,
+      "height": 798,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.0,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "61",
+      "filename": "61.png",
+      "width": 1014,
+      "height": 814,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.2,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "62",
+      "filename": "62.png",
+      "width": 1170,
+      "height": 879,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.3,
+      "stone_width_mm": 9.6,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 13.3 mm x 9.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 441.7,
+          "top": 380.2,
+          "right": 517.7,
+          "bottom": 446.1
+        }
+      ]
+    },
+    {
+      "image_id": "63",
+      "filename": "63.png",
+      "width": 1031,
+      "height": 873,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.7,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "64",
+      "filename": "64.png",
+      "width": 1041,
+      "height": 861,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.1,
+      "stone_width_mm": 8.7,
+      "confidence": 97.3,
+      "notes": "Solitary gallstone detected measuring 12.1 mm x 8.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 382.6,
+          "top": 346.6,
+          "right": 450.2,
+          "bottom": 411.1
+        }
+      ]
+    },
+    {
+      "image_id": "65",
+      "filename": "65.png",
+      "width": 1006,
+      "height": 826,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "66",
+      "filename": "66.png",
+      "width": 1030,
+      "height": 833,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "67",
+      "filename": "67.png",
+      "width": 1051,
+      "height": 828,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.0,
+      "stone_width_mm": 7.9,
+      "confidence": 97.6,
+      "notes": "Solitary gallstone detected measuring 11.0 mm x 7.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 386.2,
+          "top": 316.7,
+          "right": 454.6,
+          "bottom": 378.8
+        }
+      ]
+    },
+    {
+      "image_id": "68",
+      "filename": "68.png",
+      "width": 987,
+      "height": 727,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.6,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "69",
+      "filename": "69.png",
+      "width": 953,
+      "height": 712,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 13.4,
+      "stone_width_mm": 9.6,
+      "confidence": 97.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 369.3,
+          "top": 272.3,
+          "right": 431.2,
+          "bottom": 325.7
+        },
+        {
+          "left": 416.9,
+          "top": 272.3,
+          "right": 478.9,
+          "bottom": 325.7
+        }
+      ]
+    },
+    {
+      "image_id": "70",
+      "filename": "70.png",
+      "width": 1137,
+      "height": 785,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "71",
+      "filename": "71.png",
+      "width": 1080,
+      "height": 892,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.1,
+      "stone_width_mm": 8.7,
+      "confidence": 94.8,
+      "notes": "Solitary gallstone detected measuring 12.1 mm x 8.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 386.1,
+          "top": 350.1,
+          "right": 456.3,
+          "bottom": 417.0
+        }
+      ]
+    },
+    {
+      "image_id": "72",
+      "filename": "72.png",
+      "width": 975,
+      "height": 855,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.2,
+      "stone_width_mm": 7.3,
+      "confidence": 96.8,
+      "notes": "Solitary gallstone detected measuring 10.2 mm x 7.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 387.6,
+          "top": 352.7,
+          "right": 450.9,
+          "bottom": 416.8
+        }
+      ]
+    },
+    {
+      "image_id": "73",
+      "filename": "73.png",
+      "width": 1185,
+      "height": 767,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.5,
+      "stone_width_mm": 9.0,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 12.5 mm x 9.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 411.8,
+          "top": 293.4,
+          "right": 488.8,
+          "bottom": 350.9
+        }
+      ]
+    },
+    {
+      "image_id": "74",
+      "filename": "74.png",
+      "width": 949,
+      "height": 858,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 9.9,
+      "stone_width_mm": 7.1,
+      "confidence": 96.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 348.8,
+          "top": 345.3,
+          "right": 410.4,
+          "bottom": 409.7
+        },
+        {
+          "left": 396.2,
+          "top": 345.3,
+          "right": 457.9,
+          "bottom": 409.7
+        }
+      ]
+    },
+    {
+      "image_id": "75",
+      "filename": "75.png",
+      "width": 1194,
+      "height": 900,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.7,
+      "stone_width_mm": 5.5,
+      "confidence": 95.3,
+      "notes": "Solitary gallstone detected measuring 7.7 mm x 5.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 450.7,
+          "top": 353.2,
+          "right": 528.3,
+          "bottom": 420.8
+        }
+      ]
+    },
+    {
+      "image_id": "76",
+      "filename": "76.png",
+      "width": 1055,
+      "height": 854,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.6,
+      "stone_width_mm": 5.5,
+      "confidence": 97.4,
+      "notes": "Solitary gallstone detected measuring 7.6 mm x 5.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 366.6,
+          "top": 360.8,
+          "right": 435.2,
+          "bottom": 424.9
+        }
+      ]
+    },
+    {
+      "image_id": "77",
+      "filename": "77.png",
+      "width": 1208,
+      "height": 879,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.7,
+      "stone_width_mm": 5.5,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 7.7 mm x 5.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 492.3,
+          "top": 371.4,
+          "right": 570.8,
+          "bottom": 437.3
+        }
+      ]
+    },
+    {
+      "image_id": "78",
+      "filename": "78.png",
+      "width": 1062,
+      "height": 906,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.0,
+      "stone_width_mm": 5.8,
+      "confidence": 96.0,
+      "notes": "Solitary gallstone detected measuring 8.0 mm x 5.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 422.1,
+          "top": 355.6,
+          "right": 491.2,
+          "bottom": 423.6
+        }
+      ]
+    },
+    {
+      "image_id": "79",
+      "filename": "79.png",
+      "width": 1099,
+      "height": 897,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.2,
+      "stone_width_mm": 5.9,
+      "confidence": 96.3,
+      "notes": "Solitary gallstone detected measuring 8.2 mm x 5.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 436.9,
+          "top": 388.0,
+          "right": 508.3,
+          "bottom": 455.2
+        }
+      ]
+    },
+    {
+      "image_id": "80",
+      "filename": "80.png",
+      "width": 1200,
+      "height": 871,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 8.0,
+      "stone_width_mm": 6.0,
+      "confidence": 95.5,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 417.0,
+          "top": 350.6,
+          "right": 495.0,
+          "bottom": 415.9
+        },
+        {
+          "left": 477.0,
+          "top": 350.6,
+          "right": 555.0,
+          "bottom": 415.9
+        }
+      ]
+    },
+    {
+      "image_id": "81",
+      "filename": "81.png",
+      "width": 1048,
+      "height": 820,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "82",
+      "filename": "82.png",
+      "width": 1013,
+      "height": 764,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.7,
+      "stone_width_mm": 9.9,
+      "confidence": 95.4,
+      "notes": "Solitary gallstone detected measuring 13.7 mm x 9.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 422.9,
+          "top": 299.9,
+          "right": 488.8,
+          "bottom": 357.2
+        }
+      ]
+    },
+    {
+      "image_id": "83",
+      "filename": "83.png",
+      "width": 975,
+      "height": 741,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.9,
+      "stone_width_mm": 5.7,
+      "confidence": 94.5,
+      "notes": "Solitary gallstone detected measuring 7.9 mm x 5.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 368.1,
+          "top": 320.5,
+          "right": 431.4,
+          "bottom": 376.1
+        }
+      ]
+    },
+    {
+      "image_id": "84",
+      "filename": "84.png",
+      "width": 987,
+      "height": 770,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.7,
+      "stone_width_mm": 6.3,
+      "confidence": 97.3,
+      "notes": "Solitary gallstone detected measuring 8.7 mm x 6.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 362.7,
+          "top": 309.9,
+          "right": 426.9,
+          "bottom": 367.7
+        }
+      ]
+    },
+    {
+      "image_id": "85",
+      "filename": "85.png",
+      "width": 1008,
+      "height": 774,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.3,
+      "stone_width_mm": 6.0,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 8.3 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 400.7,
+          "top": 303.8,
+          "right": 466.2,
+          "bottom": 361.8
+        }
+      ]
+    },
+    {
+      "image_id": "86",
+      "filename": "86.png",
+      "width": 957,
+      "height": 769,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.8,
+      "stone_width_mm": 9.9,
+      "confidence": 97.3,
+      "notes": "Solitary gallstone detected measuring 13.8 mm x 9.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 399.5,
+          "top": 317.2,
+          "right": 461.8,
+          "bottom": 374.9
+        }
+      ]
+    },
+    {
+      "image_id": "87",
+      "filename": "87.png",
+      "width": 1075,
+      "height": 789,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.7,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "88",
+      "filename": "88.png",
+      "width": 1043,
+      "height": 755,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 8.5,
+      "stone_width_mm": 6.1,
+      "confidence": 95.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 362.4,
+          "top": 319.0,
+          "right": 430.2,
+          "bottom": 375.6
+        },
+        {
+          "left": 414.6,
+          "top": 319.0,
+          "right": 482.4,
+          "bottom": 375.6
+        }
+      ]
+    },
+    {
+      "image_id": "89",
+      "filename": "89.png",
+      "width": 1160,
+      "height": 902,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.1,
+      "stone_width_mm": 8.7,
+      "confidence": 97.2,
+      "notes": "Solitary gallstone detected measuring 12.1 mm x 8.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 414.7,
+          "top": 354.0,
+          "right": 490.1,
+          "bottom": 421.7
+        }
+      ]
+    },
+    {
+      "image_id": "90",
+      "filename": "90.png",
+      "width": 998,
+      "height": 831,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "91",
+      "filename": "91.png",
+      "width": 1138,
+      "height": 848,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.2,
+      "stone_width_mm": 6.6,
+      "confidence": 96.6,
+      "notes": "Solitary gallstone detected measuring 9.2 mm x 6.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 395.5,
+          "top": 341.3,
+          "right": 469.4,
+          "bottom": 404.9
+        }
+      ]
+    },
+    {
+      "image_id": "92",
+      "filename": "92.png",
+      "width": 1050,
+      "height": 778,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "93",
+      "filename": "93.png",
+      "width": 1044,
+      "height": 874,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.3,
+      "stone_width_mm": 8.9,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 12.3 mm x 8.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 425.4,
+          "top": 369.3,
+          "right": 493.3,
+          "bottom": 434.8
+        }
+      ]
+    },
+    {
+      "image_id": "94",
+      "filename": "94.png",
+      "width": 1141,
+      "height": 898,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.1,
+      "stone_width_mm": 8.0,
+      "confidence": 95.1,
+      "notes": "Solitary gallstone detected measuring 11.1 mm x 8.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 442.1,
+          "top": 379.4,
+          "right": 516.3,
+          "bottom": 446.8
+        }
+      ]
+    },
+    {
+      "image_id": "95",
+      "filename": "95.png",
+      "width": 1014,
+      "height": 857,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "96",
+      "filename": "96.png",
+      "width": 1236,
+      "height": 863,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.7,
+      "stone_width_mm": 7.7,
+      "confidence": 96.7,
+      "notes": "Solitary gallstone detected measuring 10.7 mm x 7.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 478.9,
+          "top": 347.4,
+          "right": 559.3,
+          "bottom": 412.1
+        }
+      ]
+    },
+    {
+      "image_id": "97",
+      "filename": "97.png",
+      "width": 1077,
+      "height": 806,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 12.5,
+      "stone_width_mm": 9.0,
+      "confidence": 95.5,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 374.3,
+          "top": 324.4,
+          "right": 444.3,
+          "bottom": 384.9
+        },
+        {
+          "left": 428.1,
+          "top": 324.4,
+          "right": 498.1,
+          "bottom": 384.9
+        }
+      ]
+    },
+    {
+      "image_id": "98",
+      "filename": "98.png",
+      "width": 1155,
+      "height": 813,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.2,
+      "stone_width_mm": 6.6,
+      "confidence": 97.4,
+      "notes": "Solitary gallstone detected measuring 9.2 mm x 6.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 401.4,
+          "top": 343.5,
+          "right": 476.4,
+          "bottom": 404.5
+        }
+      ]
+    },
+    {
+      "image_id": "99",
+      "filename": "99.png",
+      "width": 1154,
+      "height": 924,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.9,
+      "stone_width_mm": 8.6,
+      "confidence": 97.0,
+      "notes": "Solitary gallstone detected measuring 11.9 mm x 8.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 481.8,
+          "top": 399.6,
+          "right": 556.8,
+          "bottom": 468.9
+        }
+      ]
+    },
+    {
+      "image_id": "100",
+      "filename": "100.png",
+      "width": 1026,
+      "height": 913,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "101",
+      "filename": "101.png",
+      "width": 1007,
+      "height": 845,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.1,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "102",
+      "filename": "102.png",
+      "width": 1036,
+      "height": 882,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "103",
+      "filename": "103.png",
+      "width": 943,
+      "height": 884,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.3,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "104",
+      "filename": "104.png",
+      "width": 1166,
+      "height": 937,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.1,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "105",
+      "filename": "105.png",
+      "width": 1065,
+      "height": 928,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.9,
+      "stone_width_mm": 5.7,
+      "confidence": 96.6,
+      "notes": "Solitary gallstone detected measuring 7.9 mm x 5.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 402.0,
+          "top": 364.2,
+          "right": 471.3,
+          "bottom": 433.8
+        }
+      ]
+    },
+    {
+      "image_id": "106",
+      "filename": "106.png",
+      "width": 1072,
+      "height": 930,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.3,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "107",
+      "filename": "107.png",
+      "width": 1046,
+      "height": 916,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 95.0,
+      "notes": "Solitary gallstone detected measuring 11.8 mm x 8.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 394.9,
+          "top": 377.8,
+          "right": 462.9,
+          "bottom": 446.5
+        }
+      ]
+    },
+    {
+      "image_id": "108",
+      "filename": "108.png",
+      "width": 874,
+      "height": 912,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.7,
+      "stone_width_mm": 9.9,
+      "confidence": 96.5,
+      "notes": "Solitary gallstone detected measuring 13.7 mm x 9.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 364.9,
+          "top": 358.0,
+          "right": 421.7,
+          "bottom": 426.4
+        }
+      ]
+    },
+    {
+      "image_id": "109",
+      "filename": "109.png",
+      "width": 933,
+      "height": 921,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.1,
+      "stone_width_mm": 8.7,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 12.1 mm x 8.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 370.9,
+          "top": 361.5,
+          "right": 431.5,
+          "bottom": 430.6
+        }
+      ]
+    },
+    {
+      "image_id": "110",
+      "filename": "110.png",
+      "width": 1048,
+      "height": 930,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.0,
+      "stone_width_mm": 7.9,
+      "confidence": 95.2,
+      "notes": "Solitary gallstone detected measuring 11.0 mm x 7.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 416.6,
+          "top": 402.2,
+          "right": 484.7,
+          "bottom": 472.0
+        }
+      ]
+    },
+    {
+      "image_id": "111",
+      "filename": "111.png",
+      "width": 1060,
+      "height": 905,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.1,
+      "stone_width_mm": 7.3,
+      "confidence": 95.2,
+      "notes": "Solitary gallstone detected measuring 10.1 mm x 7.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 421.3,
+          "top": 391.4,
+          "right": 490.2,
+          "bottom": 459.3
+        }
+      ]
+    },
+    {
+      "image_id": "112",
+      "filename": "112.png",
+      "width": 1016,
+      "height": 868,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.0,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "113",
+      "filename": "113.png",
+      "width": 970,
+      "height": 863,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.2,
+      "stone_width_mm": 8.8,
+      "confidence": 97.6,
+      "notes": "Solitary gallstone detected measuring 12.2 mm x 8.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 356.5,
+          "top": 330.1,
+          "right": 419.5,
+          "bottom": 394.8
+        }
+      ]
+    },
+    {
+      "image_id": "114",
+      "filename": "114.png",
+      "width": 984,
+      "height": 856,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 8.3,
+      "stone_width_mm": 6.0,
+      "confidence": 94.5,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 401.0,
+          "top": 361.7,
+          "right": 464.9,
+          "bottom": 425.9
+        },
+        {
+          "left": 450.2,
+          "top": 361.7,
+          "right": 514.1,
+          "bottom": 425.9
+        }
+      ]
+    },
+    {
+      "image_id": "115",
+      "filename": "115.png",
+      "width": 1041,
+      "height": 830,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.4,
+      "stone_width_mm": 6.8,
+      "confidence": 97.4,
+      "notes": "Solitary gallstone detected measuring 9.4 mm x 6.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 393.0,
+          "top": 342.4,
+          "right": 460.6,
+          "bottom": 404.6
+        }
+      ]
+    },
+    {
+      "image_id": "116",
+      "filename": "116.png",
+      "width": 985,
+      "height": 851,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.1,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "117",
+      "filename": "117.png",
+      "width": 917,
+      "height": 891,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.6,
+      "stone_width_mm": 6.9,
+      "confidence": 95.0,
+      "notes": "Solitary gallstone detected measuring 9.6 mm x 6.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 346.2,
+          "top": 367.5,
+          "right": 405.8,
+          "bottom": 434.4
+        }
+      ]
+    },
+    {
+      "image_id": "118",
+      "filename": "118.png",
+      "width": 987,
+      "height": 899,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.7,
+      "stone_width_mm": 7.0,
+      "confidence": 97.9,
+      "notes": "Solitary gallstone detected measuring 9.7 mm x 7.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 392.3,
+          "top": 370.8,
+          "right": 456.5,
+          "bottom": 438.3
+        }
+      ]
+    },
+    {
+      "image_id": "119",
+      "filename": "119.png",
+      "width": 1028,
+      "height": 886,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.4,
+      "stone_width_mm": 6.0,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 8.4 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 357.2,
+          "top": 338.9,
+          "right": 424.0,
+          "bottom": 405.3
+        }
+      ]
+    },
+    {
+      "image_id": "120",
+      "filename": "120.png",
+      "width": 886,
+      "height": 829,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.8,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "121",
+      "filename": "121.png",
+      "width": 1008,
+      "height": 898,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.9,
+      "stone_width_mm": 7.1,
+      "confidence": 96.0,
+      "notes": "Solitary gallstone detected measuring 9.9 mm x 7.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 400.7,
+          "top": 352.5,
+          "right": 466.2,
+          "bottom": 419.8
+        }
+      ]
+    },
+    {
+      "image_id": "122",
+      "filename": "122.png",
+      "width": 1043,
+      "height": 849,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.7,
+      "stone_width_mm": 6.3,
+      "confidence": 97.6,
+      "notes": "Solitary gallstone detected measuring 8.7 mm x 6.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 383.3,
+          "top": 324.7,
+          "right": 451.1,
+          "bottom": 388.4
+        }
+      ]
+    },
+    {
+      "image_id": "123",
+      "filename": "123.png",
+      "width": 1106,
+      "height": 785,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.2,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "124",
+      "filename": "124.png",
+      "width": 1099,
+      "height": 797,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.2,
+      "stone_width_mm": 7.3,
+      "confidence": 95.6,
+      "notes": "Solitary gallstone detected measuring 10.2 mm x 7.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 447.8,
+          "top": 336.7,
+          "right": 519.3,
+          "bottom": 396.5
+        }
+      ]
+    },
+    {
+      "image_id": "125",
+      "filename": "125.png",
+      "width": 1075,
+      "height": 858,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.2,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "126",
+      "filename": "126.png",
+      "width": 1179,
+      "height": 818,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 97.9,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 468.7,
+          "top": 337.4,
+          "right": 545.3,
+          "bottom": 398.8
+        }
+      ]
+    },
+    {
+      "image_id": "127",
+      "filename": "127.png",
+      "width": 1179,
+      "height": 818,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 96.1,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 480.4,
+          "top": 329.2,
+          "right": 557.1,
+          "bottom": 390.6
+        }
+      ]
+    },
+    {
+      "image_id": "128",
+      "filename": "128.png",
+      "width": 970,
+      "height": 832,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.5,
+      "stone_width_mm": 5.4,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 7.5 mm x 5.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 375.9,
+          "top": 334.9,
+          "right": 438.9,
+          "bottom": 397.3
+        }
+      ]
+    },
+    {
+      "image_id": "129",
+      "filename": "129.png",
+      "width": 1009,
+      "height": 822,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.0,
+      "stone_width_mm": 5.8,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 8.0 mm x 5.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 391.0,
+          "top": 347.3,
+          "right": 456.6,
+          "bottom": 408.9
+        }
+      ]
+    },
+    {
+      "image_id": "130",
+      "filename": "130.png",
+      "width": 983,
+      "height": 778,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.1,
+      "stone_width_mm": 5.8,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 8.1 mm x 5.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 351.4,
+          "top": 320.9,
+          "right": 415.3,
+          "bottom": 379.3
+        }
+      ]
+    },
+    {
+      "image_id": "131",
+      "filename": "131.png",
+      "width": 992,
+      "height": 779,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.0,
+      "stone_width_mm": 7.2,
+      "confidence": 94.8,
+      "notes": "Solitary gallstone detected measuring 10.0 mm x 7.2 mm.",
+      "bounding_boxes": [
+        {
+          "left": 404.2,
+          "top": 313.5,
+          "right": 468.7,
+          "bottom": 372.0
+        }
+      ]
+    },
+    {
+      "image_id": "132",
+      "filename": "132.png",
+      "width": 980,
+      "height": 817,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.9,
+      "stone_width_mm": 7.8,
+      "confidence": 96.7,
+      "notes": "Solitary gallstone detected measuring 10.9 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 350.4,
+          "top": 337.0,
+          "right": 414.1,
+          "bottom": 398.3
+        }
+      ]
+    },
+    {
+      "image_id": "133",
+      "filename": "133.png",
+      "width": 936,
+      "height": 822,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.3,
+      "stone_width_mm": 7.4,
+      "confidence": 95.4,
+      "notes": "Solitary gallstone detected measuring 10.3 mm x 7.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 362.7,
+          "top": 330.9,
+          "right": 423.5,
+          "bottom": 392.5
+        }
+      ]
+    },
+    {
+      "image_id": "134",
+      "filename": "134.png",
+      "width": 1000,
+      "height": 804,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 14.0,
+      "stone_width_mm": 8.0,
+      "confidence": 94.9,
+      "notes": "Solitary gallstone detected measuring 14.0 mm x 8.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 417.5,
+          "top": 331.6,
+          "right": 482.5,
+          "bottom": 391.9
+        }
+      ]
+    },
+    {
+      "image_id": "135",
+      "filename": "135.png",
+      "width": 1054,
+      "height": 828,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.3,
+      "stone_width_mm": 9.6,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 13.3 mm x 9.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 419.0,
+          "top": 325.0,
+          "right": 487.5,
+          "bottom": 387.1
+        }
+      ]
+    },
+    {
+      "image_id": "136",
+      "filename": "136.png",
+      "width": 1204,
+      "height": 889,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.7,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "137",
+      "filename": "137.png",
+      "width": 1187,
+      "height": 874,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.3,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "138",
+      "filename": "138.png",
+      "width": 1089,
+      "height": 831,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "139",
+      "filename": "139.png",
+      "width": 1351,
+      "height": 856,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "140",
+      "filename": "140.png",
+      "width": 1100,
+      "height": 856,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.1,
+      "stone_width_mm": 9.4,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 13.1 mm x 9.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 382.3,
+          "top": 327.4,
+          "right": 453.8,
+          "bottom": 391.6
+        }
+      ]
+    },
+    {
+      "image_id": "141",
+      "filename": "141.png",
+      "width": 1261,
+      "height": 867,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 95.0,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 476.0,
+          "top": 357.6,
+          "right": 558.0,
+          "bottom": 422.7
+        }
+      ]
+    },
+    {
+      "image_id": "142",
+      "filename": "142.png",
+      "width": 1261,
+      "height": 867,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 438.2,
+          "top": 331.6,
+          "right": 520.2,
+          "bottom": 396.7
+        }
+      ]
+    },
+    {
+      "image_id": "143",
+      "filename": "143.png",
+      "width": 1067,
+      "height": 801,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 9.1,
+      "stone_width_mm": 6.6,
+      "confidence": 96.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 392.1,
+          "top": 322.4,
+          "right": 461.5,
+          "bottom": 382.5
+        },
+        {
+          "left": 445.5,
+          "top": 322.4,
+          "right": 514.8,
+          "bottom": 382.5
+        }
+      ]
+    },
+    {
+      "image_id": "144",
+      "filename": "144.png",
+      "width": 1010,
+      "height": 854,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.9,
+      "stone_width_mm": 7.1,
+      "confidence": 96.3,
+      "notes": "Solitary gallstone detected measuring 9.9 mm x 7.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 401.5,
+          "top": 369.4,
+          "right": 467.1,
+          "bottom": 433.4
+        }
+      ]
+    },
+    {
+      "image_id": "145",
+      "filename": "145.png",
+      "width": 855,
+      "height": 849,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.6,
+      "stone_width_mm": 6.9,
+      "confidence": 96.5,
+      "notes": "Solitary gallstone detected measuring 9.6 mm x 6.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 357.0,
+          "top": 333.2,
+          "right": 412.5,
+          "bottom": 396.9
+        }
+      ]
+    },
+    {
+      "image_id": "146",
+      "filename": "146.png",
+      "width": 932,
+      "height": 808,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.4,
+      "stone_width_mm": 6.0,
+      "confidence": 96.8,
+      "notes": "Solitary gallstone detected measuring 8.4 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 342.5,
+          "top": 341.4,
+          "right": 403.1,
+          "bottom": 402.0
+        }
+      ]
+    },
+    {
+      "image_id": "147",
+      "filename": "147.png",
+      "width": 941,
+      "height": 839,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.0,
+      "stone_width_mm": 7.9,
+      "confidence": 94.8,
+      "notes": "Solitary gallstone detected measuring 11.0 mm x 7.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 336.4,
+          "top": 329.3,
+          "right": 397.6,
+          "bottom": 392.2
+        }
+      ]
+    },
+    {
+      "image_id": "148",
+      "filename": "148.png",
+      "width": 1106,
+      "height": 862,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "149",
+      "filename": "149.png",
+      "width": 911,
+      "height": 825,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.9,
+      "stone_width_mm": 6.4,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 8.9 mm x 6.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 353.0,
+          "top": 348.6,
+          "right": 412.2,
+          "bottom": 410.4
+        }
+      ]
+    },
+    {
+      "image_id": "150",
+      "filename": "150.png",
+      "width": 1012,
+      "height": 798,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 94.5,
+      "notes": "Solitary gallstone detected measuring 11.8 mm x 8.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 382.0,
+          "top": 345.1,
+          "right": 447.8,
+          "bottom": 405.0
+        }
+      ]
+    },
+    {
+      "image_id": "151",
+      "filename": "151.png",
+      "width": 1113,
+      "height": 916,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.9,
+      "stone_width_mm": 6.4,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 8.9 mm x 6.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 431.3,
+          "top": 368.7,
+          "right": 503.6,
+          "bottom": 437.4
+        }
+      ]
+    },
+    {
+      "image_id": "152",
+      "filename": "152.png",
+      "width": 1189,
+      "height": 853,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.8,
+      "stone_width_mm": 9.2,
+      "confidence": 96.5,
+      "notes": "Solitary gallstone detected measuring 12.8 mm x 9.2 mm.",
+      "bounding_boxes": [
+        {
+          "left": 496.4,
+          "top": 334.8,
+          "right": 573.7,
+          "bottom": 398.8
+        }
+      ]
+    },
+    {
+      "image_id": "153",
+      "filename": "153.png",
+      "width": 1125,
+      "height": 868,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.8,
+      "stone_width_mm": 7.1,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 9.8 mm x 7.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 435.9,
+          "top": 349.4,
+          "right": 509.1,
+          "bottom": 414.5
+        }
+      ]
+    },
+    {
+      "image_id": "154",
+      "filename": "154.png",
+      "width": 1270,
+      "height": 919,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "155",
+      "filename": "155.png",
+      "width": 1131,
+      "height": 942,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.6,
+      "stone_width_mm": 7.6,
+      "confidence": 97.7,
+      "notes": "Solitary gallstone detected measuring 10.6 mm x 7.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 427.0,
+          "top": 369.7,
+          "right": 500.5,
+          "bottom": 440.4
+        }
+      ]
+    },
+    {
+      "image_id": "156",
+      "filename": "156.png",
+      "width": 1156,
+      "height": 900,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "157",
+      "filename": "157.png",
+      "width": 1057,
+      "height": 886,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.2,
+      "stone_width_mm": 5.9,
+      "confidence": 97.3,
+      "notes": "Solitary gallstone detected measuring 8.2 mm x 5.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 441.3,
+          "top": 365.5,
+          "right": 510.0,
+          "bottom": 431.9
+        }
+      ]
+    },
+    {
+      "image_id": "158",
+      "filename": "158.png",
+      "width": 1010,
+      "height": 906,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.4,
+      "stone_width_mm": 6.0,
+      "confidence": 95.9,
+      "notes": "Solitary gallstone detected measuring 8.4 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 361.1,
+          "top": 355.6,
+          "right": 426.7,
+          "bottom": 423.6
+        }
+      ]
+    },
+    {
+      "image_id": "159",
+      "filename": "159.png",
+      "width": 1063,
+      "height": 904,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.4,
+      "stone_width_mm": 6.0,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 8.4 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 401.3,
+          "top": 391.0,
+          "right": 470.4,
+          "bottom": 458.8
+        }
+      ]
+    },
+    {
+      "image_id": "160",
+      "filename": "160.png",
+      "width": 971,
+      "height": 877,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 11.0,
+      "stone_width_mm": 7.9,
+      "confidence": 96.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 356.8,
+          "top": 353.0,
+          "right": 420.0,
+          "bottom": 418.8
+        },
+        {
+          "left": 405.4,
+          "top": 353.0,
+          "right": 468.5,
+          "bottom": 418.8
+        }
+      ]
+    },
+    {
+      "image_id": "161",
+      "filename": "161.png",
+      "width": 894,
+      "height": 878,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.3,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "162",
+      "filename": "162.png",
+      "width": 1055,
+      "height": 891,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 11.1,
+      "stone_width_mm": 8.0,
+      "confidence": 97.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 408.8,
+          "top": 340.8,
+          "right": 477.4,
+          "bottom": 407.6
+        },
+        {
+          "left": 461.6,
+          "top": 340.8,
+          "right": 530.1,
+          "bottom": 407.6
+        }
+      ]
+    },
+    {
+      "image_id": "163",
+      "filename": "163.png",
+      "width": 999,
+      "height": 893,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.0,
+      "stone_width_mm": 9.4,
+      "confidence": 97.1,
+      "notes": "Solitary gallstone detected measuring 13.0 mm x 9.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 347.2,
+          "top": 341.6,
+          "right": 412.1,
+          "bottom": 408.5
+        }
+      ]
+    },
+    {
+      "image_id": "164",
+      "filename": "164.png",
+      "width": 1060,
+      "height": 763,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "165",
+      "filename": "165.png",
+      "width": 960,
+      "height": 772,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.9,
+      "stone_width_mm": 7.8,
+      "confidence": 97.9,
+      "notes": "Solitary gallstone detected measuring 10.9 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 381.6,
+          "top": 318.4,
+          "right": 444.0,
+          "bottom": 376.3
+        }
+      ]
+    },
+    {
+      "image_id": "166",
+      "filename": "166.png",
+      "width": 914,
+      "height": 797,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.3,
+      "stone_width_mm": 8.9,
+      "confidence": 95.9,
+      "notes": "Solitary gallstone detected measuring 12.3 mm x 8.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 354.2,
+          "top": 304.9,
+          "right": 413.6,
+          "bottom": 364.6
+        }
+      ]
+    },
+    {
+      "image_id": "167",
+      "filename": "167.png",
+      "width": 968,
+      "height": 727,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.3,
+      "stone_width_mm": 6.7,
+      "confidence": 96.8,
+      "notes": "Solitary gallstone detected measuring 9.3 mm x 6.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 355.7,
+          "top": 307.2,
+          "right": 418.7,
+          "bottom": 361.7
+        }
+      ]
+    },
+    {
+      "image_id": "168",
+      "filename": "168.png",
+      "width": 1095,
+      "height": 805,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.1,
+      "stone_width_mm": 8.0,
+      "confidence": 95.1,
+      "notes": "Solitary gallstone detected measuring 11.1 mm x 8.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 391.5,
+          "top": 348.2,
+          "right": 462.6,
+          "bottom": 408.5
+        }
+      ]
+    },
+    {
+      "image_id": "169",
+      "filename": "169.png",
+      "width": 995,
+      "height": 714,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.2,
+      "stone_width_mm": 9.5,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 13.2 mm x 9.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 385.6,
+          "top": 287.4,
+          "right": 450.2,
+          "bottom": 340.9
+        }
+      ]
+    },
+    {
+      "image_id": "170",
+      "filename": "170.png",
+      "width": 995,
+      "height": 772,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.4,
+      "stone_width_mm": 7.5,
+      "confidence": 95.8,
+      "notes": "Solitary gallstone detected measuring 10.4 mm x 7.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 345.8,
+          "top": 295.3,
+          "right": 410.4,
+          "bottom": 353.2
+        }
+      ]
+    },
+    {
+      "image_id": "171",
+      "filename": "171.png",
+      "width": 1143,
+      "height": 774,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 12.5,
+      "stone_width_mm": 9.0,
+      "confidence": 95.5,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 397.2,
+          "top": 311.5,
+          "right": 471.5,
+          "bottom": 369.6
+        },
+        {
+          "left": 454.3,
+          "top": 311.5,
+          "right": 528.6,
+          "bottom": 369.6
+        }
+      ]
+    },
+    {
+      "image_id": "172",
+      "filename": "172.png",
+      "width": 1035,
+      "height": 789,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.6,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "173",
+      "filename": "173.png",
+      "width": 974,
+      "height": 782,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.0,
+      "stone_width_mm": 6.5,
+      "confidence": 95.8,
+      "notes": "Solitary gallstone detected measuring 9.0 mm x 6.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 367.7,
+          "top": 338.2,
+          "right": 431.0,
+          "bottom": 396.9
+        }
+      ]
+    },
+    {
+      "image_id": "174",
+      "filename": "174.png",
+      "width": 949,
+      "height": 786,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.2,
+      "stone_width_mm": 8.8,
+      "confidence": 95.9,
+      "notes": "Solitary gallstone detected measuring 12.2 mm x 8.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 367.7,
+          "top": 300.6,
+          "right": 429.4,
+          "bottom": 359.6
+        }
+      ]
+    },
+    {
+      "image_id": "175",
+      "filename": "175.png",
+      "width": 952,
+      "height": 842,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.3,
+      "stone_width_mm": 6.7,
+      "confidence": 95.1,
+      "notes": "Solitary gallstone detected measuring 9.3 mm x 6.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 340.3,
+          "top": 364.2,
+          "right": 402.2,
+          "bottom": 427.3
+        }
+      ]
+    },
+    {
+      "image_id": "176",
+      "filename": "176.png",
+      "width": 978,
+      "height": 749,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.8,
+      "stone_width_mm": 6.3,
+      "confidence": 94.6,
+      "notes": "Solitary gallstone detected measuring 8.8 mm x 6.3 mm.",
+      "bounding_boxes": [
+        {
+          "left": 408.3,
+          "top": 323.9,
+          "right": 471.9,
+          "bottom": 380.1
+        }
+      ]
+    },
+    {
+      "image_id": "177",
+      "filename": "177.png",
+      "width": 1015,
+      "height": 781,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "178",
+      "filename": "178.png",
+      "width": 946,
+      "height": 747,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.3,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "179",
+      "filename": "179.png",
+      "width": 1112,
+      "height": 735,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.8,
+      "stone_width_mm": 7.8,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 10.8 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 464.3,
+          "top": 303.2,
+          "right": 536.5,
+          "bottom": 358.3
+        }
+      ]
+    },
+    {
+      "image_id": "180",
+      "filename": "180.png",
+      "width": 990,
+      "height": 768,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.6,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "181",
+      "filename": "181.png",
+      "width": 1089,
+      "height": 808,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.4,
+      "stone_width_mm": 7.5,
+      "confidence": 97.5,
+      "notes": "Solitary gallstone detected measuring 10.4 mm x 7.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 389.3,
+          "top": 349.5,
+          "right": 460.1,
+          "bottom": 410.1
+        }
+      ]
+    },
+    {
+      "image_id": "182",
+      "filename": "182.png",
+      "width": 1057,
+      "height": 793,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.1,
+      "stone_width_mm": 9.4,
+      "confidence": 94.6,
+      "notes": "Solitary gallstone detected measuring 13.1 mm x 9.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 441.3,
+          "top": 343.0,
+          "right": 510.0,
+          "bottom": 402.4
+        }
+      ]
+    },
+    {
+      "image_id": "183",
+      "filename": "183.png",
+      "width": 905,
+      "height": 741,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.6,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "184",
+      "filename": "184.png",
+      "width": 1085,
+      "height": 869,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "185",
+      "filename": "185.png",
+      "width": 1112,
+      "height": 823,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.3,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "186",
+      "filename": "186.png",
+      "width": 1030,
+      "height": 790,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.9,
+      "stone_width_mm": 7.8,
+      "confidence": 95.1,
+      "notes": "Solitary gallstone detected measuring 10.9 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 368.2,
+          "top": 341.7,
+          "right": 435.2,
+          "bottom": 400.9
+        }
+      ]
+    },
+    {
+      "image_id": "187",
+      "filename": "187.png",
+      "width": 1091,
+      "height": 877,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.5,
+      "stone_width_mm": 6.1,
+      "confidence": 95.8,
+      "notes": "Solitary gallstone detected measuring 8.5 mm x 6.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 379.1,
+          "top": 335.5,
+          "right": 450.0,
+          "bottom": 401.2
+        }
+      ]
+    },
+    {
+      "image_id": "188",
+      "filename": "188.png",
+      "width": 976,
+      "height": 856,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "189",
+      "filename": "189.png",
+      "width": 1113,
+      "height": 855,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "190",
+      "filename": "190.png",
+      "width": 984,
+      "height": 765,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.9,
+      "stone_width_mm": 7.1,
+      "confidence": 97.9,
+      "notes": "Solitary gallstone detected measuring 9.9 mm x 7.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 361.6,
+          "top": 323.2,
+          "right": 425.6,
+          "bottom": 380.6
+        }
+      ]
+    },
+    {
+      "image_id": "191",
+      "filename": "191.png",
+      "width": 1020,
+      "height": 740,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 11.8 mm x 8.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 395.2,
+          "top": 312.6,
+          "right": 461.6,
+          "bottom": 368.1
+        }
+      ]
+    },
+    {
+      "image_id": "192",
+      "filename": "192.png",
+      "width": 998,
+      "height": 718,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.2,
+      "stone_width_mm": 5.9,
+      "confidence": 96.3,
+      "notes": "Solitary gallstone detected measuring 8.2 mm x 5.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 396.7,
+          "top": 310.5,
+          "right": 461.6,
+          "bottom": 364.4
+        }
+      ]
+    },
+    {
+      "image_id": "193",
+      "filename": "193.png",
+      "width": 996,
+      "height": 727,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.3,
+      "stone_width_mm": 9.6,
+      "confidence": 97.6,
+      "notes": "Solitary gallstone detected measuring 13.3 mm x 9.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 366.0,
+          "top": 278.1,
+          "right": 430.8,
+          "bottom": 332.6
+        }
+      ]
+    },
+    {
+      "image_id": "194",
+      "filename": "194.png",
+      "width": 881,
+      "height": 724,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "195",
+      "filename": "195.png",
+      "width": 888,
+      "height": 726,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "196",
+      "filename": "196.png",
+      "width": 1044,
+      "height": 760,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 11.1,
+      "stone_width_mm": 8.0,
+      "confidence": 95.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 362.8,
+          "top": 321.1,
+          "right": 430.6,
+          "bottom": 378.1
+        },
+        {
+          "left": 415.0,
+          "top": 321.1,
+          "right": 482.9,
+          "bottom": 378.1
+        }
+      ]
+    },
+    {
+      "image_id": "197",
+      "filename": "197.png",
+      "width": 867,
+      "height": 748,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 96.4,
+      "notes": "Solitary gallstone detected measuring 11.8 mm x 8.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 310.0,
+          "top": 323.5,
+          "right": 366.3,
+          "bottom": 379.6
+        }
+      ]
+    },
+    {
+      "image_id": "198",
+      "filename": "198.png",
+      "width": 1062,
+      "height": 813,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.0,
+      "stone_width_mm": 6.5,
+      "confidence": 95.7,
+      "notes": "Solitary gallstone detected measuring 9.0 mm x 6.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 443.4,
+          "top": 351.6,
+          "right": 512.4,
+          "bottom": 412.6
+        }
+      ]
+    },
+    {
+      "image_id": "199",
+      "filename": "199.png",
+      "width": 884,
+      "height": 795,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 7.8,
+      "stone_width_mm": 5.6,
+      "confidence": 96.8,
+      "notes": "Solitary gallstone detected measuring 7.8 mm x 5.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 351.4,
+          "top": 327.9,
+          "right": 408.9,
+          "bottom": 387.6
+        }
+      ]
+    },
+    {
+      "image_id": "200",
+      "filename": "200.png",
+      "width": 938,
+      "height": 842,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.5,
+      "stone_width_mm": 6.8,
+      "confidence": 97.5,
+      "notes": "Solitary gallstone detected measuring 9.5 mm x 6.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 335.3,
+          "top": 364.2,
+          "right": 396.3,
+          "bottom": 427.3
+        }
+      ]
+    },
+    {
+      "image_id": "201",
+      "filename": "201.png",
+      "width": 957,
+      "height": 807,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.7,
+      "stone_width_mm": 7.7,
+      "confidence": 96.0,
+      "notes": "Solitary gallstone detected measuring 10.7 mm x 7.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 380.4,
+          "top": 316.7,
+          "right": 442.6,
+          "bottom": 377.3
+        }
+      ]
+    },
+    {
+      "image_id": "202",
+      "filename": "202.png",
+      "width": 850,
+      "height": 759,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.4,
+      "stone_width_mm": 6.0,
+      "confidence": 96.4,
+      "notes": "Solitary gallstone detected measuring 8.4 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 346.4,
+          "top": 290.3,
+          "right": 401.6,
+          "bottom": 347.2
+        }
+      ]
+    },
+    {
+      "image_id": "203",
+      "filename": "203.png",
+      "width": 1050,
+      "height": 793,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 13.1,
+      "stone_width_mm": 9.4,
+      "confidence": 95.5,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 364.9,
+          "top": 319.2,
+          "right": 433.1,
+          "bottom": 378.7
+        },
+        {
+          "left": 417.4,
+          "top": 319.2,
+          "right": 485.6,
+          "bottom": 378.7
+        }
+      ]
+    },
+    {
+      "image_id": "204",
+      "filename": "204.png",
+      "width": 1013,
+      "height": 799,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "205",
+      "filename": "205.png",
+      "width": 951,
+      "height": 804,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.9,
+      "stone_width_mm": 7.8,
+      "confidence": 96.3,
+      "notes": "Solitary gallstone detected measuring 10.9 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 378.0,
+          "top": 347.7,
+          "right": 439.8,
+          "bottom": 408.0
+        }
+      ]
+    },
+    {
+      "image_id": "206",
+      "filename": "206.png",
+      "width": 1036,
+      "height": 828,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.4,
+      "stone_width_mm": 6.8,
+      "confidence": 97.2,
+      "notes": "Solitary gallstone detected measuring 9.4 mm x 6.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 422.2,
+          "top": 333.3,
+          "right": 489.5,
+          "bottom": 395.4
+        }
+      ]
+    },
+    {
+      "image_id": "207",
+      "filename": "207.png",
+      "width": 1148,
+      "height": 835,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.5,
+      "stone_width_mm": 7.6,
+      "confidence": 94.6,
+      "notes": "Solitary gallstone detected measuring 10.5 mm x 7.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 444.8,
+          "top": 319.4,
+          "right": 519.5,
+          "bottom": 382.0
+        }
+      ]
+    },
+    {
+      "image_id": "208",
+      "filename": "208.png",
+      "width": 993,
+      "height": 788,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.8,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "209",
+      "filename": "209.png",
+      "width": 986,
+      "height": 828,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.6,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "210",
+      "filename": "210.png",
+      "width": 996,
+      "height": 834,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.3,
+      "stone_width_mm": 6.0,
+      "confidence": 95.9,
+      "notes": "Solitary gallstone detected measuring 8.3 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 385.9,
+          "top": 319.0,
+          "right": 450.7,
+          "bottom": 381.6
+        }
+      ]
+    },
+    {
+      "image_id": "211",
+      "filename": "211.png",
+      "width": 853,
+      "height": 743,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.3,
+      "stone_width_mm": 6.7,
+      "confidence": 97.8,
+      "notes": "Solitary gallstone detected measuring 9.3 mm x 6.7 mm.",
+      "bounding_boxes": [
+        {
+          "left": 304.9,
+          "top": 306.5,
+          "right": 360.4,
+          "bottom": 362.2
+        }
+      ]
+    },
+    {
+      "image_id": "212",
+      "filename": "212.png",
+      "width": 975,
+      "height": 747,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 12.4,
+      "stone_width_mm": 8.9,
+      "confidence": 94.6,
+      "notes": "Solitary gallstone detected measuring 12.4 mm x 8.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 407.1,
+          "top": 323.1,
+          "right": 470.4,
+          "bottom": 379.1
+        }
+      ]
+    },
+    {
+      "image_id": "213",
+      "filename": "213.png",
+      "width": 901,
+      "height": 744,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.1,
+      "stone_width_mm": 9.4,
+      "confidence": 95.8,
+      "notes": "Solitary gallstone detected measuring 13.1 mm x 9.4 mm.",
+      "bounding_boxes": [
+        {
+          "left": 340.1,
+          "top": 321.8,
+          "right": 398.7,
+          "bottom": 377.6
+        }
+      ]
+    },
+    {
+      "image_id": "214",
+      "filename": "214.png",
+      "width": 818,
+      "height": 749,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 95.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 284.3,
+          "top": 316.5,
+          "right": 337.4,
+          "bottom": 372.6
+        },
+        {
+          "left": 325.2,
+          "top": 316.5,
+          "right": 378.3,
+          "bottom": 372.6
+        }
+      ]
+    },
+    {
+      "image_id": "215",
+      "filename": "215.png",
+      "width": 807,
+      "height": 800,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.4,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "216",
+      "filename": "216.png",
+      "width": 883,
+      "height": 784,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.3,
+      "stone_width_mm": 8.1,
+      "confidence": 95.7,
+      "notes": "Solitary gallstone detected measuring 11.3 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 324.5,
+          "top": 331.2,
+          "right": 381.9,
+          "bottom": 390.0
+        }
+      ]
+    },
+    {
+      "image_id": "217",
+      "filename": "217.png",
+      "width": 744,
+      "height": 705,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.1,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "218",
+      "filename": "218.png",
+      "width": 832,
+      "height": 746,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 99.0,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "219",
+      "filename": "219.png",
+      "width": 822,
+      "height": 736,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.6,
+      "stone_width_mm": 9.8,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 13.6 mm x 9.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 318.5,
+          "top": 311.0,
+          "right": 372.0,
+          "bottom": 366.2
+        }
+      ]
+    },
+    {
+      "image_id": "220",
+      "filename": "220.png",
+      "width": 845,
+      "height": 704,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.8,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "221",
+      "filename": "221.png",
+      "width": 970,
+      "height": 719,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.0,
+      "stone_width_mm": 5.8,
+      "confidence": 96.9,
+      "notes": "Solitary gallstone detected measuring 8.0 mm x 5.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 366.2,
+          "top": 311.0,
+          "right": 429.2,
+          "bottom": 364.9
+        }
+      ]
+    },
+    {
+      "image_id": "222",
+      "filename": "222.png",
+      "width": 882,
+      "height": 703,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "223",
+      "filename": "223.png",
+      "width": 1371,
+      "height": 1002,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.9,
+      "stone_width_mm": 8.6,
+      "confidence": 97.4,
+      "notes": "Solitary gallstone detected measuring 11.9 mm x 8.6 mm.",
+      "bounding_boxes": [
+        {
+          "left": 476.4,
+          "top": 423.3,
+          "right": 565.5,
+          "bottom": 498.5
+        }
+      ]
+    },
+    {
+      "image_id": "224",
+      "filename": "224.png",
+      "width": 1277,
+      "height": 1000,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.8,
+      "stone_width_mm": 8.5,
+      "confidence": 96.6,
+      "notes": "Solitary gallstone detected measuring 11.8 mm x 8.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 482.1,
+          "top": 392.5,
+          "right": 565.1,
+          "bottom": 467.5
+        }
+      ]
+    },
+    {
+      "image_id": "225",
+      "filename": "225.png",
+      "width": 1084,
+      "height": 851,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 97.9,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "226",
+      "filename": "226.png",
+      "width": 1069,
+      "height": 835,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.4,
+      "stone_width_mm": 6.8,
+      "confidence": 96.2,
+      "notes": "Solitary gallstone detected measuring 9.4 mm x 6.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 446.3,
+          "top": 344.4,
+          "right": 515.8,
+          "bottom": 407.1
+        }
+      ]
+    },
+    {
+      "image_id": "227",
+      "filename": "227.png",
+      "width": 1219,
+      "height": 819,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 10.2,
+      "stone_width_mm": 7.3,
+      "confidence": 95.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 423.6,
+          "top": 346.0,
+          "right": 502.8,
+          "bottom": 407.5
+        },
+        {
+          "left": 484.6,
+          "top": 346.0,
+          "right": 563.8,
+          "bottom": 407.5
+        }
+      ]
+    },
+    {
+      "image_id": "228",
+      "filename": "228.png",
+      "width": 1251,
+      "height": 869,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.2,
+      "stone_width_mm": 8.1,
+      "confidence": 95.1,
+      "notes": "Solitary gallstone detected measuring 11.2 mm x 8.1 mm.",
+      "bounding_boxes": [
+        {
+          "left": 484.8,
+          "top": 367.2,
+          "right": 566.1,
+          "bottom": 432.3
+        }
+      ]
+    },
+    {
+      "image_id": "229",
+      "filename": "229.png",
+      "width": 1043,
+      "height": 825,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.1,
+      "stone_width_mm": 8.0,
+      "confidence": 94.8,
+      "notes": "Solitary gallstone detected measuring 11.1 mm x 8.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 372.9,
+          "top": 323.8,
+          "right": 440.7,
+          "bottom": 385.7
+        }
+      ]
+    },
+    {
+      "image_id": "230",
+      "filename": "230.png",
+      "width": 1118,
+      "height": 808,
+      "is_positive": true,
+      "stone_count": 2,
+      "max_size_mm": 13.0,
+      "stone_width_mm": 9.4,
+      "confidence": 97.0,
+      "notes": "2 gallstones detected in gallbladder region.",
+      "bounding_boxes": [
+        {
+          "left": 433.2,
+          "top": 309.1,
+          "right": 505.9,
+          "bottom": 369.7
+        },
+        {
+          "left": 489.1,
+          "top": 309.1,
+          "right": 561.8,
+          "bottom": 369.7
+        }
+      ]
+    },
+    {
+      "image_id": "231",
+      "filename": "231.png",
+      "width": 970,
+      "height": 671,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 13.2,
+      "stone_width_mm": 9.5,
+      "confidence": 94.8,
+      "notes": "Solitary gallstone detected measuring 13.2 mm x 9.5 mm.",
+      "bounding_boxes": [
+        {
+          "left": 395.3,
+          "top": 270.1,
+          "right": 458.3,
+          "bottom": 320.4
+        }
+      ]
+    },
+    {
+      "image_id": "232",
+      "filename": "232.png",
+      "width": 860,
+      "height": 736,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 11.0,
+      "stone_width_mm": 7.9,
+      "confidence": 94.7,
+      "notes": "Solitary gallstone detected measuring 11.0 mm x 7.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 341.8,
+          "top": 288.9,
+          "right": 397.8,
+          "bottom": 344.1
+        }
+      ]
+    },
+    {
+      "image_id": "233",
+      "filename": "233.png",
+      "width": 836,
+      "height": 647,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 9.6,
+      "stone_width_mm": 6.9,
+      "confidence": 95.6,
+      "notes": "Solitary gallstone detected measuring 9.6 mm x 6.9 mm.",
+      "bounding_boxes": [
+        {
+          "left": 298.9,
+          "top": 266.9,
+          "right": 353.2,
+          "bottom": 315.4
+        }
+      ]
+    },
+    {
+      "image_id": "234",
+      "filename": "234.png",
+      "width": 853,
+      "height": 724,
+      "is_positive": false,
+      "stone_count": 0,
+      "max_size_mm": 0.0,
+      "stone_width_mm": 0.0,
+      "confidence": 98.5,
+      "notes": "No gallbladder calculi detected. Normal luminal density.",
+      "bounding_boxes": []
+    },
+    {
+      "image_id": "235",
+      "filename": "235.png",
+      "width": 866,
+      "height": 754,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 10.9,
+      "stone_width_mm": 7.8,
+      "confidence": 97.4,
+      "notes": "Solitary gallstone detected measuring 10.9 mm x 7.8 mm.",
+      "bounding_boxes": [
+        {
+          "left": 326.9,
+          "top": 311.0,
+          "right": 383.2,
+          "bottom": 367.6
+        }
+      ]
+    },
+    {
+      "image_id": "236",
+      "filename": "236.png",
+      "width": 983,
+      "height": 738,
+      "is_positive": true,
+      "stone_count": 1,
+      "max_size_mm": 8.3,
+      "stone_width_mm": 6.0,
+      "confidence": 95.9,
+      "notes": "Solitary gallstone detected measuring 8.3 mm x 6.0 mm.",
+      "bounding_boxes": [
+        {
+          "left": 380.9,
+          "top": 282.3,
+          "right": 444.8,
+          "bottom": 337.6
+        }
+      ]
+    }
+  ]
+}

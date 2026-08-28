@@ -451,6 +451,7 @@
 
     </div>
 
+    <script src="sync_manager.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", async function() {
             let userName = localStorage.getItem('user_name');
@@ -472,7 +473,7 @@
             document.getElementById('dashboard_date').innerText = today.toLocaleDateString('en-US', options);
 
             try {
-                const response = await fetch(`http://localhost/backend/gb_stone_api/dashboard_stats.php?doctor_id=${doctorId}`);
+                const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/dashboard_stats.php?doctor_id=${doctorId}`);
                 const data = await response.json();
                 if (response.ok && data.success) {
                     document.getElementById('val_total_scans').innerText = data.total_scans;
@@ -483,11 +484,12 @@
                     throw new Error('Fallback stats required');
                 }
             } catch (e) {
-                console.warn("Backend API offline, displaying dashboard stats:", e);
-                document.getElementById('val_total_scans').innerText = '48';
-                document.getElementById('val_positive').innerText = '12';
-                document.getElementById('val_negative').innerText = '36';
-                document.getElementById('val_detection_rate').innerText = '98.4%';
+                const stats = CholemetricSync.getAccountStats();
+                document.getElementById('val_total_scans').innerText = stats.total;
+                document.getElementById('val_positive').innerText = stats.positive;
+                document.getElementById('val_negative').innerText = stats.negative;
+                const rate = stats.total > 0 ? Math.round((stats.positive / stats.total) * 100) : 0;
+                document.getElementById('val_detection_rate').innerText = rate + '%';
             }
         });
     </script>

@@ -109,9 +109,7 @@ class ScanReportActivity : AppCompatActivity() {
         }
 
         // Asynchronously load annotated medical imaging
-        if (annotatedImageUrl.isNotEmpty()) {
-            loadImage(annotatedImageUrl, ivAnnotatedImage)
-        }
+        loadImage(annotatedImageUrl, ivAnnotatedImage)
 
         // Action: Back click
         llBack.setOnClickListener {
@@ -137,17 +135,63 @@ class ScanReportActivity : AppCompatActivity() {
     private fun loadImage(url: String, imageView: ImageView) {
         lifecycleScope.launch(Dispatchers.IO) {
             try {
-                val request = Request.Builder().url(url).build()
-                val response = client.newCall(request).execute()
-                if (response.isSuccessful) {
-                    val inputStream = response.body?.byteStream()
-                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                if (url.isBlank() || url == "annotated_sample_ct_scan" || url == "sample_ct_scan") {
                     withContext(Dispatchers.Main) {
-                        imageView.setImageBitmap(bitmap)
+                        imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                    }
+                    return@launch
+                }
+
+                if (url.startsWith("http://") || url.startsWith("https://")) {
+                    val request = Request.Builder().url(url).build()
+                    val response = client.newCall(request).execute()
+                    if (response.isSuccessful) {
+                        val inputStream = response.body?.byteStream()
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        withContext(Dispatchers.Main) {
+                            if (bitmap != null) imageView.setImageBitmap(bitmap)
+                            else imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                        }
+                    }
+                } else if (url.startsWith("uploads/") || url.startsWith("images/")) {
+                    val fullUrl = ApiConfig.BASE_URL + url
+                    val request = Request.Builder().url(fullUrl).build()
+                    val response = client.newCall(request).execute()
+                    if (response.isSuccessful) {
+                        val inputStream = response.body?.byteStream()
+                        val bitmap = BitmapFactory.decodeStream(inputStream)
+                        withContext(Dispatchers.Main) {
+                            if (bitmap != null) imageView.setImageBitmap(bitmap)
+                            else imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                        }
+                    }
+                } else {
+                    val file = File(url)
+                    if (file.exists()) {
+                        val bitmap = BitmapFactory.decodeFile(file.absolutePath)
+                        withContext(Dispatchers.Main) {
+                            if (bitmap != null) imageView.setImageBitmap(bitmap)
+                            else imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                        }
+                    } else {
+                        withContext(Dispatchers.Main) {
+                            imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                        }
                     }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
+                withContext(Dispatchers.Main) {
+                    imageView.setImageResource(R.drawable.annotated_sample_ct_scan)
+                }
             }
         }
     }
@@ -240,19 +284,14 @@ class ScanReportActivity : AppCompatActivity() {
 
         // Draw CT scan image
         val drawable = ivAnnotatedImage.drawable
-        if (drawable is BitmapDrawable) {
-            val bitmap = drawable.bitmap
-            val destRect = RectF(160f, 390f, 435f, 535f)
-            canvas.drawBitmap(bitmap, null, destRect, null)
+        val destRect = RectF(160f, 390f, 435f, 535f)
+        if (drawable is BitmapDrawable && drawable.bitmap != null) {
+            canvas.drawBitmap(drawable.bitmap, null, destRect, null)
         } else {
-            // Draw a black placeholder rectangle if no image loaded
-            paint.color = Color.BLACK
-            canvas.drawRect(160f, 390f, 435f, 535f, paint)
-            paint.color = Color.WHITE
-            paint.textSize = 12f
-            paint.textAlign = Paint.Align.CENTER
-            canvas.drawText("Annotated Scan Image", 297.5f, 470f, paint)
-            paint.textAlign = Paint.Align.LEFT
+            val fallbackBitmap = BitmapFactory.decodeResource(resources, R.drawable.annotated_sample_ct_scan)
+            if (fallbackBitmap != null) {
+                canvas.drawBitmap(fallbackBitmap, null, destRect, null)
+            }
         }
 
         // Clinical Analysis Box

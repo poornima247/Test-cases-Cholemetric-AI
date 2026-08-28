@@ -1,4 +1,4 @@
-﻿package com.cholemetric.app
+package com.cholemetric.app
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -100,46 +100,57 @@ class PatientScansActivity : AppCompatActivity() {
                 val responseStr = response.body?.string() ?: ""
                 val responseJson = JSONObject(responseStr)
 
-                if (response.isSuccessful && responseJson.getBoolean("success")) {
+                if (response.isSuccessful && responseJson.optBoolean("success", false)) {
                     val scansArray = responseJson.getJSONArray("scans")
-                    scansList.clear()
-
-                    for (i in 0 until scansArray.length()) {
-                        val obj = scansArray.getJSONObject(i)
-                        scansList.add(
-                            ScanItem(
-                                id = obj.getInt("id"),
-                                patientId = obj.getString("patient_id"),
-                                patientName = obj.getString("patient_name"),
-                                scanDate = obj.getString("scan_date"),
-                                isPositive = obj.getInt("is_positive") == 1,
-                                stoneCount = obj.getInt("stone_count"),
-                                largestStoneMm = obj.getDouble("largest_stone_mm"),
-                                aiConfidence = obj.getDouble("ai_confidence"),
-                                notes = obj.optString("radiologist_text", ""),
-                                annotatedImageUrl = obj.optString("annotated_image_url", ""),
-                                originalImageUrl = obj.optString("original_image_url", ""),
-                                patientAge = obj.optInt("patient_age", 0),
-                                patientGender = obj.optString("patient_gender", "")
+                    if (scansArray.length() > 0) {
+                        scansList.clear()
+                        for (i in 0 until scansArray.length()) {
+                            val obj = scansArray.getJSONObject(i)
+                            scansList.add(
+                                ScanItem(
+                                    id = obj.getInt("id"),
+                                    patientId = obj.getString("patient_id"),
+                                    patientName = obj.getString("patient_name"),
+                                    scanDate = obj.getString("scan_date"),
+                                    isPositive = obj.getInt("is_positive") == 1,
+                                    stoneCount = obj.getInt("stone_count"),
+                                    largestStoneMm = obj.getDouble("largest_stone_mm"),
+                                    aiConfidence = obj.getDouble("ai_confidence"),
+                                    notes = obj.optString("radiologist_text", ""),
+                                    annotatedImageUrl = obj.optString("annotated_image_url", ""),
+                                    originalImageUrl = obj.optString("original_image_url", ""),
+                                    patientAge = obj.optInt("patient_age", 0),
+                                    patientGender = obj.optString("patient_gender", "")
+                                )
                             )
-                        )
-                    }
-
-                    withContext(Dispatchers.Main) {
-                        filterScans(etSearch.text.toString())
+                        }
+                    } else {
+                        loadFallbackScans()
                     }
                 } else {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(this@PatientScansActivity, "Failed to load scans", Toast.LENGTH_SHORT).show()
-                    }
+                    loadFallbackScans()
+                }
+
+                withContext(Dispatchers.Main) {
+                    filterScans(etSearch.text.toString())
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@PatientScansActivity, "Network error loading scans", Toast.LENGTH_SHORT).show()
+                    loadFallbackScans()
+                    filterScans(etSearch.text.toString())
                 }
             }
         }
+    }
+
+    private fun loadFallbackScans() {
+        val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
+        val doctorEmail = sharedPref.getString("DOCTOR_EMAIL", "poornimadandu246@gmail.com") ?: "poornimadandu246@gmail.com"
+        
+        val accountScans = AccountScanManager.getScansForAccount(this, doctorEmail)
+        scansList.clear()
+        scansList.addAll(accountScans.reversed())
     }
 
     private fun filterScans(query: String) {
@@ -255,23 +266,6 @@ class PatientScansActivity : AppCompatActivity() {
             }
         }
     }
-
-    // Data model for list records
-    data class ScanItem(
-        val id: Int,
-        val patientId: String,
-        val patientName: String,
-        val scanDate: String,
-        val isPositive: Boolean,
-        val stoneCount: Int,
-        val largestStoneMm: Double,
-        val aiConfidence: Double,
-        val notes: String,
-        val annotatedImageUrl: String,
-        val originalImageUrl: String,
-        val patientAge: Int,
-        val patientGender: String
-    )
 
     // RecyclerView Adapter
     inner class ScansAdapter(private val list: List<ScanItem>) : RecyclerView.Adapter<ScansAdapter.ViewHolder>() {

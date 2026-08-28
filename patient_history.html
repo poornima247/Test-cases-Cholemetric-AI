@@ -277,33 +277,14 @@
 
     
     </div>
+<script src="sync_manager.js"></script>
 <script>
         let allScans = [];
 
         document.addEventListener("DOMContentLoaded", async function() {
-            const doctorId = localStorage.getItem('doctor_id');
-
-            if (!doctorId) {
-                alert("Please login first.");
-                window.location.href = "login_form.html";
-                return;
-            }
-
-            // Fetch scans
-            try {
-                const response = await fetch(`http://localhost/backend/gb_stone_api/get_scans.php?doctor_id=${doctorId}`);
-                const data = await response.json();
-                
-                if (response.ok && data.success) {
-                    allScans = data.scans || [];
-                    renderScans(allScans);
-                } else {
-                    document.getElementById('scan_list_container').innerHTML = '<div class="no-results">Failed to load scans.</div>';
-                }
-            } catch (error) {
-                document.getElementById('scan_list_container').innerHTML = '<div class="no-results">Network error.</div>';
-                console.error("Error fetching scans:", error);
-            }
+            CholemetricSync.checkAuthSession();
+            allScans = await CholemetricSync.syncPatientScans();
+            renderScans(allScans);
 
             // Search Functionality
             document.getElementById('search_input').addEventListener('input', function(e) {

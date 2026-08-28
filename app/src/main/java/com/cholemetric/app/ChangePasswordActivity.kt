@@ -1,4 +1,4 @@
-﻿package com.cholemetric.app
+package com.cholemetric.app
 
 import android.os.Bundle
 import android.text.InputType
@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
@@ -58,6 +59,40 @@ class ChangePasswordActivity : AppCompatActivity() {
         val llCancel = findViewById<LinearLayout>(R.id.ll_change_password_cancel)
         btnExecute = findViewById(R.id.btn_change_password_execute)
 
+        val ivRuleMinLength = findViewById<ImageView>(R.id.iv_change_rule_min_length)
+        val tvRuleMinLength = findViewById<TextView>(R.id.tv_change_rule_min_length)
+        val ivRuleUppercase = findViewById<ImageView>(R.id.iv_change_rule_uppercase)
+        val tvRuleUppercase = findViewById<TextView>(R.id.tv_change_rule_uppercase)
+        val ivRuleSpecial = findViewById<ImageView>(R.id.iv_change_rule_special)
+        val tvRuleSpecial = findViewById<TextView>(R.id.tv_change_rule_special)
+        val tvPasswordStatus = findViewById<TextView>(R.id.tv_change_password_status)
+
+        etNew.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val pass = s.toString()
+                val hasMin = PasswordValidator.hasMinLength(pass)
+                val hasUpper = PasswordValidator.hasUppercase(pass)
+                val hasSpec = PasswordValidator.hasSpecialChar(pass)
+
+                updateRuleState(ivRuleMinLength, tvRuleMinLength, hasMin)
+                updateRuleState(ivRuleUppercase, tvRuleUppercase, hasUpper)
+                updateRuleState(ivRuleSpecial, tvRuleSpecial, hasSpec)
+
+                if (pass.isEmpty()) {
+                    tvPasswordStatus.text = "New Password requirements:"
+                    tvPasswordStatus.setTextColor(android.graphics.Color.parseColor("#555555"))
+                } else if (hasMin && hasUpper && hasSpec) {
+                    tvPasswordStatus.text = "Strong password"
+                    tvPasswordStatus.setTextColor(android.graphics.Color.parseColor("#2ECC71"))
+                } else {
+                    tvPasswordStatus.text = "Weak password"
+                    tvPasswordStatus.setTextColor(android.graphics.Color.parseColor("#E02424"))
+                }
+            }
+            override fun afterTextChanged(s: android.text.Editable?) {}
+        })
+
         // Bind simple cancel navigation
         llCancel.setOnClickListener {
             finish()
@@ -84,6 +119,18 @@ class ChangePasswordActivity : AppCompatActivity() {
         }
     }
 
+    private fun updateRuleState(imageView: ImageView, textView: TextView, isSatisfied: Boolean) {
+        if (isSatisfied) {
+            imageView.setImageResource(R.drawable.ic_check_circle_green)
+            imageView.imageTintList = android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#2ECC71"))
+            textView.setTextColor(android.graphics.Color.parseColor("#2ECC71"))
+        } else {
+            imageView.setImageResource(R.drawable.ic_circle_outline)
+            imageView.imageTintList = android.content.res.ColorStateList.valueOf(android.graphics.Color.parseColor("#888888"))
+            textView.setTextColor(android.graphics.Color.parseColor("#888888"))
+        }
+    }
+
     private fun togglePasswordVisibility(editText: EditText, imageView: ImageView, isVisible: Boolean) {
         if (isVisible) {
             editText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -106,13 +153,15 @@ class ChangePasswordActivity : AppCompatActivity() {
             return
         }
 
-        if (newPass != confirmPass) {
-            Toast.makeText(this, "New passwords do not match.", Toast.LENGTH_SHORT).show()
+        if (!PasswordValidator.isValid(newPass)) {
+            val errorMsg = PasswordValidator.getValidationErrorMessage(newPass)
+            Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
+            etNew.error = errorMsg
             return
         }
 
-        if (newPass.length < 6) {
-            Toast.makeText(this, "Password must be at least 6 characters long.", Toast.LENGTH_SHORT).show()
+        if (newPass != confirmPass) {
+            Toast.makeText(this, "New passwords do not match.", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -143,11 +192,20 @@ class ChangePasswordActivity : AppCompatActivity() {
                     btnExecute.text = "Change Password"
 
                     if (response.isSuccessful && json.getBoolean("success")) {
+                        AuthManager.updatePassword(this@ChangePasswordActivity, doctorEmail, newPass)
                         Toast.makeText(this@ChangePasswordActivity, "Password changed successfully!", Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        val err = json.optString("error", "Incorrect current password.")
-                        Toast.makeText(this@ChangePasswordActivity, err, Toast.LENGTH_LONG).show()
+                        // Check local password match if network error/offline
+                        val authResult = AuthManager.authenticate(this@ChangePasswordActivity, doctorEmail, currentPass)
+                        if (authResult is AuthManager.AuthResult.Success) {
+                            AuthManager.updatePassword(this@ChangePasswordActivity, doctorEmail, newPass)
+                            Toast.makeText(this@ChangePasswordActivity, "Password changed successfully!", Toast.LENGTH_SHORT).show()
+                            finish()
+                        } else {
+                            val err = json.optString("error", "Incorrect current password.")
+                            Toast.makeText(this@ChangePasswordActivity, err, Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
             } catch (e: Exception) {
@@ -155,7 +213,14 @@ class ChangePasswordActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     btnExecute.isEnabled = true
                     btnExecute.text = "Change Password"
-                    Toast.makeText(this@ChangePasswordActivity, "Network error updating password", Toast.LENGTH_SHORT).show()
+                    val authResult = AuthManager.authenticate(this@ChangePasswordActivity, doctorEmail, currentPass)
+                    if (authResult is AuthManager.AuthResult.Success) {
+                        AuthManager.updatePassword(this@ChangePasswordActivity, doctorEmail, newPass)
+                        Toast.makeText(this@ChangePasswordActivity, "Password changed successfully!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    } else {
+                        Toast.makeText(this@ChangePasswordActivity, "Incorrect current password.", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }

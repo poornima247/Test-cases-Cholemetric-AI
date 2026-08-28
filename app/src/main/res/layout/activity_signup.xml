@@ -241,17 +241,17 @@
                 android:orientation="horizontal"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="4dp">
-                <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#FF3B30" android:layout_marginEnd="4dp" />
-                <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#DDDDDD" android:layout_marginEnd="4dp" />
-                <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#DDDDDD" android:layout_marginEnd="4dp" />
-                <View android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#DDDDDD" />
+                <View android:id="@+id/v_signup_strength_1" android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#DDDDDD" android:layout_marginEnd="4dp" />
+                <View android:id="@+id/v_signup_strength_2" android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#DDDDDD" android:layout_marginEnd="4dp" />
+                <View android:id="@+id/v_signup_strength_3" android:layout_width="0dp" android:layout_height="2dp" android:layout_weight="1" android:background="#DDDDDD" />
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tv_signup_password_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="weak password"
-                android:textColor="#FF3B30"
+                android:text="Password requirements:"
+                android:textColor="#555555"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
@@ -263,20 +263,16 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginStart="8dp">
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="4dp">
-                    <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="At least 8 characters" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
+                    <ImageView android:id="@+id/iv_signup_rule_min_length" android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
+                    <TextView android:id="@+id/tv_signup_rule_min_length" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="At least 6 characters" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="4dp">
-                    <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="One uppercase letter" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="4dp">
-                    <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="One number" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
+                    <ImageView android:id="@+id/iv_signup_rule_uppercase" android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
+                    <TextView android:id="@+id/tv_signup_rule_uppercase" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="At least 1 uppercase letter" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-                    <ImageView android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
-                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="One special character" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
+                    <ImageView android:id="@+id/iv_signup_rule_special" android:layout_width="12dp" android:layout_height="12dp" android:src="@drawable/ic_circle_outline" />
+                    <TextView android:id="@+id/tv_signup_rule_special" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="At least 1 special character" android:textSize="12sp" android:textColor="@color/text_gray" android:layout_marginStart="8dp"/>
                 </LinearLayout>
             </LinearLayout>
 

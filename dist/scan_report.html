@@ -430,34 +430,31 @@
             const noImgElement = document.getElementById('no_image');
             let imageUrl = scan.annotated_image_url || scan.original_image_url;
             
-            if (imageUrl) {
+            if (imageUrl && !imageUrl.includes('annotated_sample_ct_scan') && imageUrl.startsWith('http')) {
                 let filename = imageUrl.split('/').pop();
-                
-                // Keep the normal image URL for fallback
                 let directUrl = imageUrl;
-                if (directUrl.startsWith('uploads/')) {
-                    directUrl = 'http://localhost/backend/gb_stone_api/' + directUrl;
-                }
 
-                // Fetch image as Base64 string from the backend proxy
-                // This completely bypasses canvas tainting and CORS blocking for html2canvas!
-                fetch(`http://localhost/backend/gb_stone_api/image_proxy.php?path=${filename}`)
+                fetch(`${CholemetricSync.getApiBaseUrl()}/image_proxy.php?path=${filename}`)
                     .then(res => res.text())
                     .then(base64 => {
                         if (base64 && base64.startsWith('data:image')) {
                             imgElement.src = base64;
                         } else {
-                            imgElement.src = directUrl; // Fallback
+                            imgElement.src = directUrl;
                         }
                         imgElement.style.display = 'block';
                         noImgElement.style.display = 'none';
                     })
                     .catch(err => {
-                        console.error('Proxy failed:', err);
-                        imgElement.src = directUrl; // Fallback
+                        imgElement.src = 'sample_ct_scan.png';
                         imgElement.style.display = 'block';
                         noImgElement.style.display = 'none';
                     });
+            } else {
+                imgElement.src = 'sample_ct_scan.png';
+                imgElement.style.display = 'block';
+                noImgElement.style.display = 'none';
+            }
             }
 
             // Populate Clinical Analysis

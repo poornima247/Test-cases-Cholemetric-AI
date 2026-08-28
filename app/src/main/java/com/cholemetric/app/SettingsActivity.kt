@@ -103,17 +103,14 @@ class SettingsActivity : AppCompatActivity() {
         super.onResume()
         
         val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
-        val userName = sharedPref.getString("USER_NAME", "")
-        if (!userName.isNullOrEmpty()) {
-            tvName.text = userName
-        }
+        val userName = sharedPref.getString("USER_NAME", "Dr. Poornima Dandu")
+        val userEmail = sharedPref.getString("DOCTOR_EMAIL", "poornimadandu246@gmail.com")
+        val userSpec = sharedPref.getString("SPECIALIZATION", "Senior Radiologist")
+
+        tvName.text = userName
+        tvEmail.text = userEmail
+        tvSpecialization.text = if (userSpec.isNullOrBlank()) "Senior Radiologist" else userSpec
         
-        val userEmail = sharedPref.getString("DOCTOR_EMAIL", "")
-        if (!userEmail.isNullOrEmpty()) {
-            tvEmail.text = userEmail
-        }
-        
-        // Refresh doctor profile details on return
         fetchProfile()
     }
 
@@ -129,19 +126,27 @@ class SettingsActivity : AppCompatActivity() {
                 val responseStr = response.body?.string() ?: ""
                 val json = JSONObject(responseStr)
 
-                if (response.isSuccessful && json.getBoolean("success")) {
+                if (response.isSuccessful && json.optBoolean("success", false)) {
                     val doctor = json.getJSONObject("doctor")
                     val name = doctor.getString("full_name")
                     val email = doctor.getString("email")
-                    val spec = doctor.optString("specialization", "Radiologist")
-                    val cleanSpec = if (spec.isEmpty()) "Radiologist" else spec
+                    val spec = doctor.optString("specialization", "Senior Radiologist")
+                    val cleanSpec = if (spec.isEmpty()) "Senior Radiologist" else spec
 
-                    doctorEmail = email // keep synced
+                    doctorEmail = email
 
                     withContext(Dispatchers.Main) {
                         tvName.text = name
                         tvEmail.text = email
                         tvSpecialization.text = cleanSpec
+
+                        val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
+                        sharedPref.edit().apply {
+                            putString("USER_NAME", name)
+                            putString("DOCTOR_EMAIL", email)
+                            putString("SPECIALIZATION", cleanSpec)
+                            apply()
+                        }
                     }
                 }
             } catch (e: Exception) {

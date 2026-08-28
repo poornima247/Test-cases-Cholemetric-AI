@@ -1,4 +1,4 @@
-﻿package com.cholemetric.app
+package com.cholemetric.app
 
 import android.os.Bundle
 import android.widget.TextView
@@ -66,16 +66,16 @@ class DashboardActivity : AppCompatActivity() {
         super.onResume()
         val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
         val userName = sharedPref.getString("USER_NAME", "Doctor")
+        val doctorEmail = sharedPref.getString("DOCTOR_EMAIL", "poornimadandu246@gmail.com") ?: "poornimadandu246@gmail.com"
         val tvName = findViewById<TextView>(R.id.tv_dashboard_name)
         tvName?.text = userName
 
-        if (doctorId != -1) {
-            fetchDashboardStats(doctorId, tvTotalScans, tvPositiveScans, tvNegativeScans, tvDetectionRate)
-        }
+        fetchDashboardStats(doctorId, doctorEmail, tvTotalScans, tvPositiveScans, tvNegativeScans, tvDetectionRate)
     }
     
     private fun fetchDashboardStats(
         doctorId: Int,
+        doctorEmail: String,
         tvTotalScans: TextView?,
         tvPositiveScans: TextView?,
         tvNegativeScans: TextView?,
@@ -95,21 +95,31 @@ class DashboardActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful && responseString != null) {
                         val jsonObject = JSONObject(responseString)
-                        if (jsonObject.getBoolean("success")) {
+                        if (jsonObject.optBoolean("success", false)) {
                             tvTotalScans?.text = jsonObject.getInt("total_scans").toString()
                             tvPositiveScans?.text = jsonObject.getInt("positive_scans").toString()
                             tvNegativeScans?.text = jsonObject.getInt("negative_scans").toString()
                             tvDetectionRate?.text = "${jsonObject.getDouble("detection_rate")}%"
-                        } else {
-                            Toast.makeText(this@DashboardActivity, "Failed to load stats: ${jsonObject.optString("error")}", Toast.LENGTH_SHORT).show()
+                            return@withContext
                         }
                     }
+                    displayAccountStats(doctorEmail)
                 }
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
-                    Toast.makeText(this@DashboardActivity, "Network error loading stats", Toast.LENGTH_SHORT).show()
+                    displayAccountStats(doctorEmail)
                 }
             }
         }
+    }
+
+    private fun displayAccountStats(email: String) {
+        val (total, positive, negative) = AccountScanManager.getStats(this, email)
+        val rate = if (total > 0) String.format(Locale.US, "%.1f%%", (positive.toDouble() / total) * 100.0) else "0.0%"
+        
+        tvTotalScans?.text = total.toString()
+        tvPositiveScans?.text = positive.toString()
+        tvNegativeScans?.text = negative.toString()
+        tvDetectionRate?.text = rate
     }
 }

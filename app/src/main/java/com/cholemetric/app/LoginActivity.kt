@@ -1,4 +1,4 @@
-﻿package com.cholemetric.app
+package com.cholemetric.app
 
 import android.content.Intent
 import android.os.Bundle
@@ -21,10 +21,14 @@ import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 
+import java.util.Locale
+
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+
+        ApiConfig.initFromPrefs(this)
 
         val createAccountLayout = findViewById<LinearLayout>(R.id.create_account_layout)
         createAccountLayout.setOnClickListener {
@@ -81,36 +85,84 @@ class LoginActivity : AppCompatActivity() {
                             val jsonObject = JSONObject(responseString)
                             if (jsonObject.getBoolean("success")) {
                                 val doctor = jsonObject.getJSONObject("doctor")
-                                
-                                // Save session to SharedPreferences
+                                val doctorName = doctor.getString("full_name")
+                                val doctorEmail = doctor.getString("email")
+                                val doctorId = doctor.getInt("id")
+
+                                AuthManager.registerUser(this@LoginActivity, doctorName, "", doctorEmail, password)
+
                                 val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
                                 sharedPref.edit().apply {
-                                    putInt("DOCTOR_ID", doctor.getInt("id"))
-                                    putString("USER_NAME", doctor.getString("full_name"))
-                                    putString("DOCTOR_EMAIL", doctor.getString("email"))
+                                    putInt("DOCTOR_ID", doctorId)
+                                    putString("USER_NAME", doctorName)
+                                    putString("DOCTOR_EMAIL", doctorEmail)
                                     apply()
                                 }
 
                                 val intent = Intent(this@LoginActivity, DashboardActivity::class.java)
-                                intent.putExtra("USER_NAME", doctor.getString("full_name"))
-                                intent.putExtra("DOCTOR_ID", doctor.getInt("id"))
+                                intent.putExtra("USER_NAME", doctorName)
+                                intent.putExtra("DOCTOR_ID", doctorId)
                                 intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                                 startActivity(intent)
                                 finish()
                             } else {
-                                Toast.makeText(this@LoginActivity, jsonObject.getString("error"), Toast.LENGTH_LONG).show()
+                                val serverError = jsonObject.optString("error", "")
+                                handleLoginError(email, password, serverError)
                             }
+                        } else if (response.code == 401) {
+                            val jsonObject = try { JSONObject(responseString ?: "") } catch (e: Exception) { null }
+                            val serverError = jsonObject?.optString("error", "") ?: ""
+                            handleLoginError(email, password, serverError)
                         } else {
-                            Toast.makeText(this@LoginActivity, "Server error: ${response.code} - ${responseString}", Toast.LENGTH_LONG).show()
+                            handleLoginError(email, password, null)
                         }
                     }
                 } catch (e: Exception) {
                     withContext(Dispatchers.Main) {
                         btnSignIn.isEnabled = true
                         btnSignIn.text = "Sign In"
-                        Toast.makeText(this@LoginActivity, "Network error: ${e.message}", Toast.LENGTH_SHORT).show()
+                        handleLoginError(email, password, null)
                     }
                 }
+            }
+        }
+    }
+
+    private fun handleLoginError(email: String, password: String, serverError: String?) {
+        if (!serverError.isNullOrBlank()) {
+            if (serverError.contains("registered", ignoreCase = true) || serverError.contains("not found", ignoreCase = true) || serverError.contains("exist", ignoreCase = true)) {
+                Toast.makeText(this, "Email is not registered", Toast.LENGTH_LONG).show()
+                return
+            } else if (serverError.contains("password", ignoreCase = true) || serverError.contains("incorrect", ignoreCase = true) || serverError.contains("invalid", ignoreCase = true)) {
+                Toast.makeText(this, "Wrong password", Toast.LENGTH_LONG).show()
+                return
+            }
+        }
+
+        when (val result = AuthManager.authenticate(this, email, password)) {
+            is AuthManager.AuthResult.EmailNotRegistered -> {
+                Toast.makeText(this, "Email is not registered", Toast.LENGTH_LONG).show()
+            }
+            is AuthManager.AuthResult.WrongPassword -> {
+                Toast.makeText(this, "Wrong password", Toast.LENGTH_LONG).show()
+            }
+            is AuthManager.AuthResult.Success -> {
+                val sharedPref = getSharedPreferences("CholemetricPrefs", MODE_PRIVATE)
+                sharedPref.edit().apply {
+                    putInt("DOCTOR_ID", result.doctorId)
+                    putString("USER_NAME", result.fullName)
+                    putString("DOCTOR_EMAIL", result.email)
+                    apply()
+                }
+
+                Toast.makeText(this, "Signed in successfully!", Toast.LENGTH_SHORT).show()
+
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.putExtra("USER_NAME", result.fullName)
+                intent.putExtra("DOCTOR_ID", result.doctorId)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                startActivity(intent)
+                finish()
             }
         }
     }
