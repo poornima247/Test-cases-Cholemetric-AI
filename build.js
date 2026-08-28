@@ -65,8 +65,8 @@ reportSrcDirs.forEach(srcDir => {
   }
 });
 
-// Copy key report files directly to dist/ root for convenient URLs
-const mirrorFiles = ['execution-report.html', 'dashboard.html', 'Execution_Report.xlsx', 'execution-results.json', 'summary.md'];
+// Copy key report files directly to dist/ root for convenient URLs without overwriting web application files
+const mirrorFiles = ['execution-report.html', 'Execution_Report.xlsx', 'execution-results.json', 'summary.md'];
 mirrorFiles.forEach(file => {
   const src = path.join(reportsDir, file);
   const dest = path.join(distDir, file);
