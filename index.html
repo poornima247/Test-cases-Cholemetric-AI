@@ -3,139 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cholemetric AI — Calculi Detection System</title>
+    <title>Cholemetric - Login</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            background: linear-gradient(180deg, #3d4a99 0%, #7681b3 100%);
+            background-color: #EEEEEE;
+            background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Inter', sans-serif;
+            color: #111111;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            font-family: 'Inter', sans-serif;
-            color: white;
-            padding-top: 60px;
+            padding: 20px;
         }
-        .qa-nav-bar {
+
+        .container {
             width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
+            max-width: 480px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 24px;
-            font-size: 13px;
-        }
-        .qa-nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 700;
-            color: #90caf9;
-            text-decoration: none;
-        }
-        .qa-nav-links {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-        .qa-nav-btn {
-            background: #4f6ef7;
-            color: white;
-            padding: 6px 14px;
+            flex-direction: column;
+            background-color: #ffffff;
+            padding: 40px;
             border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Back Button */
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: #111;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            align-self: flex-start;
+        }
+        
+        .back-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: #111;
+        }
+
+        /* Header Area */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-circle {
+            width: 76px;
+            height: 76px;
+            background-color: transparent;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+
+        .logo-circle svg {
+            width: 44px;
+            height: 44px;
+            fill: white;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle-1 {
+            color: #888;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .header .subtitle-2 {
+            color: #aaa;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Form Card */
+        .form-card {
+            padding: 10px 0;
+            margin-bottom: 16px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 700;
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper svg.left-icon {
+            position: absolute;
+            left: 14px;
+            width: 22px;
+            height: 22px;
+            fill: #2CC295;
+        }
+
+        .input-wrapper svg.right-icon {
+            position: absolute;
+            right: 14px;
+            width: 22px;
+            height: 22px;
+            fill: #555;
+            cursor: pointer;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 14px 40px 14px 44px;
+            border: 1px solid #CCC;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #333;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #999;
+            font-weight: 500;
+        }
+
+        .input-wrapper input:focus {
+            border-color: #2CC295;
+        }
+
+        /* Actions */
+        .forgot-pass {
+            display: block;
+            text-align: right;
+            color: #2CC295;
             text-decoration: none;
             font-weight: 600;
-            font-size: 12px;
-            transition: all 0.2s;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.95rem;
+            margin-bottom: 24px;
         }
-        .qa-nav-btn:hover { background: #3b5bd9; transform: translateY(-1px); }
-        .qa-nav-btn.green { background: #1b5e20; color: #69f0ae; }
-        .qa-nav-btn.green:hover { background: #2e7d32; }
 
-        .header { display: flex; flex-direction: column; align-items: center; margin-top: 40px; margin-bottom: 30px; }
-        .logo-container { position: relative; width: 130px; height: 130px; border-radius: 50%; border: 5px solid rgba(196, 201, 232, 0.8); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; overflow: hidden; background: white; }
-        h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; letter-spacing: 0.5px; }
-        .subtitle { font-size: 1.05rem; font-weight: 600; color: #e2e8f0; }
-        .features-list { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 380px; margin-bottom: 30px; background: rgba(0,0,0,0.18); padding: 24px; border-radius: 16px; backdrop-filter: blur(5px); }
-        .feature-item { display: flex; align-items: center; gap: 16px; }
-        .feature-item svg { width: 28px; height: 28px; fill: white; flex-shrink: 0; }
-        .feature-item span { font-size: 1.05rem; font-weight: 500; }
-        .action-buttons { display: flex; flex-direction: column; gap: 14px; width: 100%; max-width: 380px; margin-bottom: 30px; }
-        .btn { width: 100%; padding: 14px; border-radius: 12px; font-size: 1.05rem; font-weight: 600; text-align: center; text-decoration: none; cursor: pointer; transition: transform 0.2s, opacity 0.2s; }
-        .btn:hover { opacity: 0.95; transform: scale(0.99); }
-        .btn-primary { background-color: #ffffff; color: #1e3a8a; border: none; box-shadow: 0 4px 14px rgba(0,0,0,0.2); }
-        .btn-outline { background-color: transparent; color: white; border: 1.5px solid white; }
-        .app-links-grid { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; max-width: 540px; margin-top: 10px; margin-bottom: 40px; }
-        .app-link-pill { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25); color: white; padding: 6px 14px; border-radius: 20px; font-size: 12px; text-decoration: none; transition: background 0.2s; }
-        .app-link-pill:hover { background: rgba(255,255,255,0.3); }
+        .btn-signin {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            background-color: #2CC295;
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-signin:hover {
+            opacity: 0.9;
+        }
+
+        .btn-signin svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .create-account {
+            text-align: center;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 50px;
+        }
+
+        .create-account a {
+            color: #2CC295;
+            text-decoration: none;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .footer-title span.lock {
+            font-size: 1.1rem;
+        }
+
+        .footer-subtitle {
+            color: #555;
+            font-size: 0.9rem;
+        }
+
     </style>
 </head>
 <body>
-    <div class="qa-nav-bar">
-        <a href="index.html" class="qa-nav-brand">
-            <img src="logo.png" alt="Cholemetric Logo" style="width: 24px; height: 24px; border-radius: 50%;">
-            <span>Cholemetric AI App</span>
+    <div class="container">
+        <div class="header">
+            <div class="logo-circle">
+                <img src="logo.png" alt="Cholemetric Logo" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+            <h1>Cholemetric</h1>
+            <div class="subtitle-1">Advanced Radiology AI Platform</div>
+            <div class="subtitle-2">For Medical Professionals</div>
+        </div>
+
+        <div class="form-card">
+            <div class="input-group">
+                <label>Email Address</label>
+                <div class="input-wrapper">
+                    <svg class="left-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <input type="email" id="login_email" placeholder="Enter your professional email">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <div class="input-wrapper">
+                    <svg class="left-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+                <input type="password" id="login_password" placeholder="Enter your password">
+                    <svg class="right-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                </div>
+            </div>
+        </div>
+
+        <a href="forgot_password.html" class="forgot-pass">Forgot Password?</a>
+
+        <a href="#" id="btn_signin" class="btn-signin" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
+            </svg>
+            Sign In
         </a>
-        <div class="qa-nav-links">
-            <a href="login_form.html" style="color: #cbd5e1; text-decoration: none; font-weight: 500;">Login</a>
-            <a href="dashboard.html" style="color: #cbd5e1; text-decoration: none; font-weight: 500;">Dashboard</a>
-            <a href="new_analysis.html" style="color: #cbd5e1; text-decoration: none; font-weight: 500;">New Scan</a>
-            <a href="reports/latest/execution-report.html" class="qa-nav-btn">
-                <span>🧪 QA Test Report (300 Passed)</span>
-            </a>
-            <a href="reports/latest/dashboard.html" class="qa-nav-btn green">
-                <span>📊 QA Dashboard</span>
-            </a>
+
+        <div class="create-account">
+            New to Cholemetric? <a href="signup.html">Create Account</a>
+        </div>
+
+        <div class="footer">
+            <div class="footer-title">
+                <span class="lock">🔒</span> Secure Medical Platform
+            </div>
+            <div class="footer-subtitle">
+                For Licensed Medical Professionals Only
+            </div>
         </div>
     </div>
 
-    <div class="header">
-        <div class="logo-container">
-            <img src="logo.png" alt="Cholemetric Logo" style="width: 100%; height: 100%; object-fit: cover;">
-        </div>
-        <h1>Cholemetric AI</h1>
-        <p class="subtitle">Gallbladder Calculi & Volume Detection System</p>
-    </div>
+    <script src="sync_manager.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            CholemetricSync.attachEyePasswordToggles();
 
-    <div class="features-list">
-        <div class="feature-item">
-            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></svg>
-            <span>AI-Powered CT Scan Analysis</span>
-        </div>
-        <div class="feature-item">
-            <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z"/></svg>
-            <span>Accurate Volume & Density Measurements</span>
-        </div>
-        <div class="feature-item">
-            <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-            <span>Designed for Registered Radiologists</span>
-        </div>
-    </div>
+            document.getElementById('btn_signin').addEventListener('click', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('login_email').value.trim();
+                const password = document.getElementById('login_password').value;
 
-    <div class="action-buttons">
-        <a href="login_form.html" class="btn btn-primary">Login to Cholemetric</a>
-        <a href="signup.html" class="btn btn-outline">Register New Account</a>
-    </div>
+                if (!email || !password) {
+                    alert('Please enter both email and password.');
+                    return;
+                }
 
-    <div style="font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 10px; font-weight: 600;">Explore App Interfaces & Features:</div>
-    <div class="app-links-grid">
-        <a href="dashboard.html" class="app-link-pill">🖥️ Radiologist Dashboard</a>
-        <a href="new_analysis.html" class="app-link-pill">🔬 New CT Scan Analysis</a>
-        <a href="scan_report.html" class="app-link-pill">📋 Sample CT Scan Report</a>
-        <a href="patient_history.html" class="app-link-pill">📂 Patient History</a>
-        <a href="settings.html" class="app-link-pill">⚙️ App Settings</a>
-        <a href="faq.html" class="app-link-pill">❓ Help & FAQ</a>
-    </div>
+                const btn = document.getElementById('btn_signin');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = 'Signing In...';
+                btn.style.pointerEvents = 'none';
+
+                const isHttpsOrGithub = window.location.protocol === 'https:' || window.location.hostname.includes('github.io');
+                if (isHttpsOrGithub) {
+                    const authRes = CholemetricSync.authenticateUser(email, password);
+                    if (authRes.success) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(authRes.error);
+                        btn.innerHTML = originalText;
+                        btn.style.pointerEvents = 'auto';
+                    }
+                    return;
+                }
+
+                try {
+                    const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/login.php`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok && data.success) {
+                        CholemetricSync.registerUser(data.doctor.full_name, '', data.doctor.email, password);
+                        localStorage.setItem('user_name', data.doctor.full_name);
+                        localStorage.setItem('doctor_email', data.doctor.email);
+                        localStorage.setItem('doctor_id', data.doctor.id);
+                        localStorage.setItem('cholemetric_logged_in', 'true');
+                        window.location.href = 'dashboard.html';
+                    } else if (response.status === 401) {
+                        alert(data.error || 'Invalid credentials');
+                        btn.innerHTML = originalText;
+                        btn.style.pointerEvents = 'auto';
+                    } else {
+                        throw new Error(`Server returned ${response.status}`);
+                    }
+                } catch (err) {
+                    console.warn('[Login] Backend API unreachable, authenticating via local account registry:', err);
+                    const authRes = CholemetricSync.authenticateUser(email, password);
+                    if (authRes.success) {
+                        window.location.href = 'dashboard.html';
+                    } else {
+                        alert(authRes.error);
+                        btn.innerHTML = originalText;
+                        btn.style.pointerEvents = 'auto';
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
