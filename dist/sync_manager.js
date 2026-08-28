@@ -137,7 +137,7 @@ const CholemetricSync = (function () {
         return false;
     }
 
-    // --- Strict Per-Account Scans Isolation ---
+    // --- Strict Per-Account Scans Isolation & Mobile Sync ---
     function getLocalAccountScans() {
         const email = getDoctorEmail();
         const key = getAccountKey(email);
@@ -146,20 +146,28 @@ const CholemetricSync = (function () {
             try { return JSON.parse(scansStr); } catch (e) {}
         }
         
-        // Seed initial default scans ONLY for primary account (poornimadandu246@gmail.com)
+        // Exact 12 Patient Scans matching Mobile App for primary doctor account (poornimadandu246@gmail.com)
         if (email.toLowerCase().includes('poornimadandu246') || (email.toLowerCase().includes('poornima') && !email.toLowerCase().includes('saveetha'))) {
             const defaultImg = 'sample_ct_scan';
             const defaults = [
-                { id: 1, patient_id: "134", patient_name: "poorni", scan_date: "26-08-2026", is_positive: 1, stone_count: 2, largest_stone_mm: 8.4, ai_confidence: 96.8, radiologist_text: "Calculi detected in gallbladder region.", annotated_image_url: defaultImg, patient_age: 12, patient_gender: "Female" },
-                { id: 2, patient_id: "P-32454", patient_name: "Rajesh Kumar", scan_date: "24-08-2026", is_positive: 1, stone_count: 1, largest_stone_mm: 11.2, ai_confidence: 94.5, radiologist_text: "Solitary large calculus identified.", annotated_image_url: defaultImg, patient_age: 45, patient_gender: "Male" },
-                { id: 3, patient_id: "P-48912", patient_name: "Anita Sharma", scan_date: "22-08-2026", is_positive: 1, stone_count: 3, largest_stone_mm: 6.8, ai_confidence: 91.2, radiologist_text: "Multiple small hyperdense calculi.", annotated_image_url: defaultImg, patient_age: 38, patient_gender: "Female" },
-                { id: 4, patient_id: "P-10923", patient_name: "Srinivas Rao", scan_date: "20-08-2026", is_positive: 0, stone_count: 0, largest_stone_mm: 0.0, ai_confidence: 98.1, radiologist_text: "No calculi detected.", annotated_image_url: defaultImg, patient_age: 52, patient_gender: "Male" }
+                { id: 1, patient_id: "134", patient_name: "poorni", scan_date: "26-08-2026", is_positive: 1, stone_count: 2, largest_stone_mm: 8.4, ai_confidence: 96.8, radiologist_text: "Calculi detected in gallbladder region. Hyperdense stone shadows identified.", annotated_image_url: defaultImg, patient_age: 12, patient_gender: "Female" },
+                { id: 2, patient_id: "P-32454", patient_name: "Rajesh Kumar", scan_date: "24-08-2026", is_positive: 1, stone_count: 1, largest_stone_mm: 11.2, ai_confidence: 94.5, radiologist_text: "Solitary large calculus identified measuring 11.2mm in gallbladder neck.", annotated_image_url: defaultImg, patient_age: 45, patient_gender: "Male" },
+                { id: 3, patient_id: "P-48912", patient_name: "Anita Sharma", scan_date: "22-08-2026", is_positive: 1, stone_count: 3, largest_stone_mm: 6.8, ai_confidence: 91.2, radiologist_text: "Multiple small hyperdense calculi within gallbladder lumen.", annotated_image_url: defaultImg, patient_age: 38, patient_gender: "Female" },
+                { id: 4, patient_id: "P-10923", patient_name: "Srinivas Rao", scan_date: "20-08-2026", is_positive: 0, stone_count: 0, largest_stone_mm: 0.0, ai_confidence: 98.1, radiologist_text: "No calculi detected. Normal gallbladder wall thickness and luminal density.", annotated_image_url: defaultImg, patient_age: 52, patient_gender: "Male" },
+                { id: 5, patient_id: "P-55210", patient_name: "Priya Patel", scan_date: "18-08-2026", is_positive: 1, stone_count: 1, largest_stone_mm: 9.5, ai_confidence: 93.7, radiologist_text: "Single calculus identified in gallbladder body.", annotated_image_url: defaultImg, patient_age: 29, patient_gender: "Female" },
+                { id: 6, patient_id: "P-67123", patient_name: "David Miller", scan_date: "15-08-2026", is_positive: 0, stone_count: 0, largest_stone_mm: 0.0, ai_confidence: 97.4, radiologist_text: "Gallbladder lumen clear without hyperdense focus.", annotated_image_url: defaultImg, patient_age: 41, patient_gender: "Male" },
+                { id: 7, patient_id: "P-88341", patient_name: "Sunita Verma", scan_date: "12-08-2026", is_positive: 1, stone_count: 2, largest_stone_mm: 7.2, ai_confidence: 89.6, radiologist_text: "Dual calculi observed with clear acoustic shadow.", annotated_image_url: defaultImg, patient_age: 34, patient_gender: "Female" },
+                { id: 8, patient_id: "P-92311", patient_name: "Venkatesh M", scan_date: "10-08-2026", is_positive: 1, stone_count: 1, largest_stone_mm: 14.1, ai_confidence: 95.8, radiologist_text: "Large solitary calculus measuring 14.1mm.", annotated_image_url: defaultImg, patient_age: 60, patient_gender: "Male" },
+                { id: 9, patient_id: "P-23145", patient_name: "Kavitha Reddy", scan_date: "08-08-2026", is_positive: 0, stone_count: 0, largest_stone_mm: 0.0, ai_confidence: 99.0, radiologist_text: "Normal CT study of gallbladder.", annotated_image_url: defaultImg, patient_age: 47, patient_gender: "Female" },
+                { id: 10, patient_id: "P-74512", patient_name: "Mohammed Ali", scan_date: "05-08-2026", is_positive: 1, stone_count: 3, largest_stone_mm: 5.4, ai_confidence: 88.3, radiologist_text: "Multiple micro-calculi identified.", annotated_image_url: defaultImg, patient_age: 33, patient_gender: "Male" },
+                { id: 11, patient_id: "P-61290", patient_name: "Deepa Nair", scan_date: "02-08-2026", is_positive: 1, stone_count: 1, largest_stone_mm: 8.9, ai_confidence: 92.4, radiologist_text: "Single gallstone detected measuring 8.9mm.", annotated_image_url: defaultImg, patient_age: 26, patient_gender: "Female" },
+                { id: 12, patient_id: "P-34901", patient_name: "Ramesh Gupta", scan_date: "30-07-2026", is_positive: 0, stone_count: 0, largest_stone_mm: 0.0, ai_confidence: 97.9, radiologist_text: "No gallbladder calculi detected.", annotated_image_url: defaultImg, patient_age: 58, patient_gender: "Male" }
             ];
             localStorage.setItem(`SCANS_LIST_${key}`, JSON.stringify(defaults));
             return defaults;
         }
 
-        // All secondary/other accounts start strictly at 0 scans!
+        // Secondary/other accounts start strictly at 0 scans
         localStorage.setItem(`SCANS_LIST_${key}`, JSON.stringify([]));
         return [];
     }
