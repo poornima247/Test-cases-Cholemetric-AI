@@ -335,11 +335,6 @@
             if (btn) {
                 btn.addEventListener('click', doSignIn);
             }
-
-            // Auto-redirect if already signed in
-            if (localStorage.getItem('cholemetric_logged_in') === 'true') {
-                window.location.replace('dashboard.html');
-            }
         });
     </script>
 </body>
