@@ -267,8 +267,26 @@ const CholemetricSync = (function () {
     }
 
     // Attach interactive Eye Password Toggle listeners to all password fields
+    function togglePasswordVisibility(inputId, iconEl) {
+        const input = typeof inputId === 'string' ? document.getElementById(inputId) : inputId;
+        if (!input) return;
+        if (input.type === 'password') {
+            input.type = 'text';
+            if (iconEl) {
+                iconEl.style.opacity = '1.0';
+                iconEl.style.fill = '#2CC295';
+            }
+        } else {
+            input.type = 'password';
+            if (iconEl) {
+                iconEl.style.opacity = '0.6';
+                iconEl.style.fill = '#555555';
+            }
+        }
+    }
+
     function attachEyePasswordToggles() {
-        const icons = document.querySelectorAll('.right-icon, .password-toggle-icon, [data-toggle-password], svg.right-icon');
+        const icons = document.querySelectorAll('.right-icon, .password-toggle-icon, [data-toggle-password], svg.right-icon, .input-wrapper svg:last-child');
         icons.forEach(icon => {
             if (icon.getAttribute('data-toggle-bound')) return;
             icon.setAttribute('data-toggle-bound', 'true');
@@ -276,22 +294,13 @@ const CholemetricSync = (function () {
             icon.style.pointerEvents = 'auto';
 
             icon.addEventListener('click', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
+                if (e) { try { e.preventDefault(); e.stopPropagation(); } catch (err) {} }
 
                 const wrapper = icon.closest('.input-wrapper, .input-group') || icon.parentElement;
                 const input = wrapper ? wrapper.querySelector('input') : null;
 
                 if (input) {
-                    if (input.type === 'password') {
-                        input.type = 'text';
-                        icon.style.opacity = '1.0';
-                        icon.style.fill = '#4A69BD';
-                    } else {
-                        input.type = 'password';
-                        icon.style.opacity = '0.6';
-                        icon.style.fill = '#555555';
-                    }
+                    togglePasswordVisibility(input, icon);
                 }
             });
         });
@@ -322,6 +331,10 @@ const CholemetricSync = (function () {
         registerUser,
         authenticateUser,
         updateUserPassword,
-        attachEyePasswordToggles
+        attachEyePasswordToggles,
+        togglePasswordVisibility
     };
 })();
+
+window.CholemetricSync = CholemetricSync;
+window.togglePasswordVisibility = CholemetricSync.togglePasswordVisibility;
