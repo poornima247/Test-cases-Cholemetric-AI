@@ -850,12 +850,19 @@
             formData.append('patient_name', patientNameVal);
             formData.append('scan_date', scanDateVal);
 
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 1000);
+
             // Connects to local machine IP configured on XAMPP
-            fetch('http://localhost/backend/gb_stone_api/analyze.php', {
+            fetch(`${CholemetricSync.getApiBaseUrl()}/analyze.php`, {
                 method: 'POST',
-                body: formData
+                body: formData,
+                signal: controller.signal
             })
-            .then(res => res.json())
+            .then(res => {
+                clearTimeout(timeoutId);
+                return res.json();
+            })
             .then(data => {
                 btnStart.disabled = false;
                 btnStart.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm1.61-4.91c-.43.2-.76.51-.98.88-.23.36-.35.79-.35 1.25h-2c0-.79.25-1.5.73-2.12.48-.62 1.15-1.09 1.95-1.39.56-.21 1.03-.49 1.4-.85.37-.36.56-.8.56-1.32 0-.61-.22-1.11-.64-1.48-.42-.37-1-.56-1.74-.56-.76 0-1.35.21-1.78.64-.42.42-.64 1.02-.64 1.79h-2c0-1.18.39-2.13 1.15-2.85C9.04 4.54 10.23 4.2 11.66 4.2c1.47 0 2.65.34 3.49 1.02.85.68 1.27 1.58 1.27 2.69 0 .61-.13 1.14-.38 1.58-.26.44-.65.85-1.17 1.23-.62.45-1.04.81-1.26 1.07z"/></svg>Start AI Analysis<svg style="margin-left:auto; margin-right:0" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
