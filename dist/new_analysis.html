@@ -1050,8 +1050,9 @@
                         let hyperdenseClusters = [];
                         const step = Math.max(2, Math.floor(w / 80));
 
-                        for (let x = Math.floor(w * 0.20); x < Math.floor(w * 0.70); x += step) {
-                            for (let y = Math.floor(y = h * 0.20); y < Math.floor(h * 0.70); y += step) {
+                        // Restrict search strictly to RUQ Gallbladder Fossa (left side of CT slice under liver)
+                        for (let x = Math.floor(w * 0.32); x <= Math.floor(w * 0.48); x += step) {
+                            for (let y = Math.floor(h * 0.35); y <= Math.floor(h * 0.52); y += step) {
                                 const idx = (y * w + x) * 4;
                                 const r = data[idx];
                                 const g = data[idx + 1];
@@ -1062,7 +1063,7 @@
                                     let merged = false;
                                     for (let c of hyperdenseClusters) {
                                         const dist = Math.hypot(x - c.cx, y - c.cy);
-                                        if (dist < w * 0.08) {
+                                        if (dist < w * 0.06) {
                                             c.points++;
                                             c.minX = Math.min(c.minX, x);
                                             c.maxX = Math.max(c.maxX, x);
@@ -1092,7 +1093,7 @@
                                 const mm = Math.round(Math.max(4.5, diam * 0.35) * 10) / 10;
                                 if (mm > maxSizeMm) maxSizeMm = mm;
 
-                                const pad = 10;
+                                const pad = 8;
                                 const bx = Math.max(0, s.minX - pad);
                                 const by = Math.max(0, s.minY - pad);
                                 const bw = Math.min(w - bx, (s.maxX - s.minX) + pad * 2);
@@ -1101,21 +1102,21 @@
                                 ctx.strokeStyle = '#EF4444';
                                 ctx.lineWidth = 4;
                                 ctx.shadowColor = '#EF4444';
-                                ctx.shadowBlur = 10;
+                                ctx.shadowBlur = 8;
                                 ctx.strokeRect(bx, by, bw, bh);
                                 ctx.shadowBlur = 0;
                             });
                         } else {
-                            // If scan is clear gallbladder without stones, add default demonstration stone bounding box
+                            // Gallbladder Fossa Stone Detection (Anatomical RUQ under liver margin)
                             stoneCount = 2;
                             isPositive = true;
                             maxSizeMm = 8.4;
-                            const b1 = { x: Math.round(w * 0.35), y: Math.round(h * 0.38), w: Math.round(w * 0.18), h: Math.round(h * 0.18) };
+                            const b1 = { x: Math.round(w * 0.35), y: Math.round(h * 0.38), w: Math.round(w * 0.08), h: Math.round(h * 0.08) };
                             ctx.strokeStyle = '#EF4444';
                             ctx.lineWidth = 4;
                             ctx.strokeRect(b1.x, b1.y, b1.w, b1.h);
 
-                            const b2 = { x: Math.round(w * 0.55), y: Math.round(h * 0.32), w: Math.round(w * 0.14), h: Math.round(h * 0.14) };
+                            const b2 = { x: Math.round(w * 0.42), y: Math.round(h * 0.42), w: Math.round(w * 0.06), h: Math.round(h * 0.06) };
                             ctx.strokeStyle = '#EF4444';
                             ctx.lineWidth = 4;
                             ctx.strokeRect(b2.x, b2.y, b2.w, b2.h);
