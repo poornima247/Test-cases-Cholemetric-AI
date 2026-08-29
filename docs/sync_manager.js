@@ -187,8 +187,11 @@ const CholemetricSync = (function () {
 
     async function syncPatientScans() {
         try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 1000);
             const doctorId = getDoctorId();
-            const response = await fetch(`${API_BASE}/get_scans.php?doctor_id=${doctorId}`);
+            const response = await fetch(`${API_BASE}/get_scans.php?doctor_id=${doctorId}`, { signal: controller.signal });
+            clearTimeout(timeoutId);
             if (response.ok) {
                 const data = await response.json();
                 if (data.success && Array.isArray(data.scans) && data.scans.length > 0) {
@@ -229,11 +232,15 @@ const CholemetricSync = (function () {
 
         if (navigator.onLine) {
             try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 1000);
                 await fetch(`${API_BASE}/save_scan.php`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
+                    signal: controller.signal
                 });
+                clearTimeout(timeoutId);
             } catch (err) {}
         }
 
