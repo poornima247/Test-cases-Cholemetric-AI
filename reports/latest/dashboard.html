@@ -1,168 +1,497 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cholemetric AI — E2E Dashboard</title>
-  <meta name="description" content="Cholemetric AI Android E2E Automation Dashboard — Build ">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <style>
-    :root {
-      --bg:#0a0c18; --card:#111427; --card2:#161929; --border:#1e2240;
-      --blue:#4f6ef7; --green:#00e676; --red:#ff5252; --yellow:#ffd740;
-      --purple:#7c4dff; --cyan:#00bcd4; --text:#dde1f5; --muted:#6b7099;
-    }
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);}
-    .topbar{
-      background:linear-gradient(135deg,#050816,#0d1a4a);
-      padding:20px 40px; display:flex; justify-content:space-between; align-items:center;
-      border-bottom:2px solid var(--blue); position:sticky; top:0; z-index:100;
-    }
-    .topbar h1{font-size:20px;font-weight:700;}
-    .topbar h1 span{color:#90caf9;}
-    .topbar .build-badge{
-      background:var(--blue); color:#fff; padding:6px 16px; border-radius:20px;
-      font-size:12px; font-weight:600;
-    }
-    .status-banner{
-      padding:16px 40px; text-align:center; font-size:14px; font-weight:600;
-      background:#0d2d0d; border-bottom:2px solid var(--green); color:var(--green);
-    }
-    .meta{display:flex;gap:24px;padding:16px 40px;background:var(--card2);flex-wrap:wrap;border-bottom:1px solid var(--border);font-size:12px;color:var(--muted);}
-    .meta span strong{color:var(--text);}
-    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;padding:28px 40px;}
-    .kpi{
-      background:var(--card); border:1px solid var(--border); border-radius:14px;
-      padding:20px; text-align:center; transition:transform 0.2s;
-    }
-    .kpi:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(0,0,0,0.5);}
-    .kpi .k-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:12px;}
-    .kpi .k-value{font-size:40px;font-weight:800;}
-    .kpi .k-sub{font-size:11px;color:var(--muted);margin-top:4px;}
-    .k-total{color:var(--blue);} .k-pass{color:var(--green);} .k-fail{color:var(--red);}
-    .k-skip{color:var(--yellow);} .k-rate{color:var(--purple);}
-    .progress-section{padding:0 40px 28px;}
-    .prog-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px 24px;}
-    .prog-header{display:flex;justify-content:space-between;margin-bottom:12px;font-size:13px;}
-    .prog-bar{height:16px;background:#1a2155;border-radius:999px;overflow:hidden;position:relative;}
-    .prog-fill{
-      height:100%;border-radius:999px;
-      background:linear-gradient(90deg,var(--green) 0%,#69f0ae 100%);
-      width:100.0%;transition:width 1.2s ease;
-    }
-    .charts-row{display:flex;gap:20px;padding:0 40px 28px;flex-wrap:wrap;}
-    .chart-card{
-      background:var(--card);border:1px solid var(--border);border-radius:14px;
-      padding:20px;flex:1;min-width:280px;
-    }
-    .chart-card h3{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:16px;}
-    .section{padding:0 40px 36px;}
-    .section h2{font-size:16px;font-weight:600;margin-bottom:16px;}
-    .links-bar{
-      display:flex;gap:12px;padding:20px 40px;flex-wrap:wrap;
-      background:var(--card2);border-top:1px solid var(--border);
-    }
-    .link-btn{
-      padding:8px 20px;border-radius:8px;border:1px solid var(--border);
-      color:var(--text);text-decoration:none;font-size:13px;
-      background:var(--card);transition:all 0.2s;display:inline-flex;align-items:center;gap:6px;
-    }
-    .link-btn:hover{background:var(--blue);border-color:var(--blue);}
-    .footer{text-align:center;padding:20px 40px;color:var(--muted);font-size:11px;border-top:1px solid var(--border);}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cholemetric - Dashboard</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #F4F6F8;
+            font-family: 'Inter', sans-serif;
+            color: #111111;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            border-right: 1px solid #E5E5EA;
+            display: flex;
+            flex-direction: column;
+            padding: 24px;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            background-color: #2CC295;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-logo svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .brand-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #111;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #666;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: #F4F6F8;
+            color: #111;
+        }
+
+        .nav-item.active {
+            background-color: #E2EAFB;
+            color: #4A69BD;
+        }
+
+        .nav-item svg {
+            width: 22px;
+            height: 22px;
+            fill: currentColor;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px;
+            max-width: 1200px;
+        }
+
+        /* Header Row */
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .welcome-text .greeting {
+            color: #8899BB;
+            font-size: 1rem;
+            margin-bottom: 4px;
+        }
+
+        .welcome-text .name {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #111111;
+        }
+
+        .welcome-text .date {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 8px;
+        }
+
+        .welcome-text .date svg {
+            width: 16px;
+            height: 16px;
+            fill: #888;
+        }
+
+        .profile-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: #111;
+            font-weight: 600;
+        }
+
+        .profile-btn img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: #E2EAFB;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        /* Card Stylings */
+        .card {
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card-blue { background-color: #E2EAFB; border: 1px solid #A9BCE9; }
+        .card-orange { background-color: #F9EAD1; border: 1px solid #EBD0A4; }
+        .card-green { background-color: #CFF3E1; border: 1px solid #9AD4BB; }
+        .card-purple { background-color: #F0E5F8; border: 1px solid #E0C6EF; }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card-blue .stat-icon { background-color: rgba(74, 105, 189, 0.15); fill: #4A69BD; }
+        .card-orange .stat-icon { background-color: rgba(255, 165, 0, 0.15); fill: #FFA500; }
+        .card-green .stat-icon { background-color: rgba(46, 204, 113, 0.15); fill: #2ECC71; }
+        .card-purple .stat-icon { background-color: rgba(155, 89, 182, 0.15); fill: #9B59B6; }
+
+        .stat-icon svg { width: 24px; height: 24px; }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .card-blue .stat-value { color: #4A69BD; }
+        .card-orange .stat-value { color: #FFA500; }
+        .card-green .stat-value { color: #2ECC71; }
+        .card-purple .stat-value { color: #9B59B6; }
+
+        .stat-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #111;
+        }
+
+        .stat-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Quick Actions Web Style */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: #111;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .action-card {
+            background-color: white;
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #111111;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid #E5E5EA;
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-color: #C197FB;
+        }
+
+        .action-icon-bg {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+
+        .action-icon-bg.blue { background-color: #E2EAFB; }
+        .action-icon-bg.green { background-color: #CFF3E1; }
+        .action-icon-bg.purple { background-color: #F0E5F8; }
+
+        .action-icon-bg svg { width: 28px; height: 28px; }
+        .action-icon-bg.blue svg { fill: #4A69BD; }
+        .action-icon-bg.green svg { fill: #2ECC71; }
+        .action-icon-bg.purple svg { fill: #9B59B6; }
+
+        .action-text {
+            flex: 1;
+        }
+
+        .action-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .action-desc {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .action-arrow {
+            width: 24px;
+            height: 24px;
+            fill: #C7C7CC;
+        }
+        
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <h1>🤖 Cholemetric AI — <span>E2E Dashboard</span></h1>
-    <span class="build-badge">Build #1</span>
-  </div>
 
-  <div class="status-banner">
-    ✅ Pipeline Status: <strong>PASSING</strong> — Pass Rate: 100.0% (300/300 tests)
-  </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+            </div>
+            <div class="brand-name">Cholemetric</div>
+        </div>
 
-  <div class="meta">
-    <span>📅 <strong>2026-08-10 00:14:31 UTC</strong></span>
-    <span>🌿 Branch: <strong>android-frontend</strong></span>
-    <span>🔖 Commit: <strong>d41a230</strong></span>
-    <span>📱 Device: <strong>Android Emulator — Pixel 6 (API 31)</strong></span>
-    <span>📦 App: <strong>com.cholemetric.app v1.0</strong></span>
-    <span>⚙️ Framework: <strong>Appium 2.x + Java 17 + TestNG 7.8</strong></span>
-  </div>
-
-  <div class="kpi-grid">
-    <div class="kpi"><div class="k-label">Total Tests</div><div class="k-value k-total">300</div><div class="k-sub">20 Modules</div></div>
-    <div class="kpi"><div class="k-label">Passed</div><div class="k-value k-pass">300</div><div class="k-sub">✅ Success</div></div>
-    <div class="kpi"><div class="k-label">Failed</div><div class="k-value k-fail">0</div><div class="k-sub">❌ Need Fix</div></div>
-    <div class="kpi"><div class="k-label">Skipped</div><div class="k-value k-skip">0</div><div class="k-sub">⏭️ Pending</div></div>
-    <div class="kpi"><div class="k-label">Pass Rate</div><div class="k-value k-rate">100.0%</div><div class="k-sub">Target: ≥95%</div></div>
-  </div>
-
-  <div class="progress-section">
-    <div class="prog-card">
-      <div class="prog-header">
-        <span style="font-weight:600">Overall Pass Rate</span>
-        <span><strong style="color:var(--green)">100.0%</strong> passed / <strong style="color:var(--red)">0%</strong> failed</span>
-      </div>
-      <div class="prog-bar">
-        <div class="prog-fill"></div>
-      </div>
+        <div class="nav-menu">
+            <a href="dashboard.html" class="nav-item active">
+                <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+                Dashboard
+            </a>
+            <a href="new_analysis.html" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                New Analysis
+            </a>
+            <a href="patient_history.html" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/></svg>
+                Patient History
+            </a>
+            <a href="settings.html" class="nav-item">
+                <svg viewBox="0 0 24 24"><path d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.19-.15.24-.42.12-.64l-2-3.46c-.12-.22-.39-.3-.61-.22l-2.49 1c-.52-.4-1.08-.73-1.69-.98l-.38-2.65C14.46 2.18 14.25 2 14 2h-4c-.25 0-.46.18-.49.42l-.38 2.65c-.61.25-1.17.59-1.69.98l-2.49-1c-.23-.09-.49 0-.61.22l-2 3.46c-.13.22-.07.49.12.64l2.11 1.65c-.04.32-.07.65-.07.98s.03.66.07.98l-2.11 1.65c-.19.15-.24.42-.12.64l2 3.46c.12.22.39.3.61.22l2.49-1c.52.4 1.08.73 1.69.98l.38 2.65c.03.24.24.42.49.42h4c.25 0 .46-.18.49-.42l.38-2.65c.61-.25 1.17-.59 1.69-.98l2.49 1c.23.09.49 0 .61-.22l2-3.46c.12-.22.07-.49-.12-.64l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></svg>
+                Settings
+            </a>
+        </div>
     </div>
-  </div>
 
-  <div class="charts-row">
-    <div class="chart-card" style="max-width:300px">
-      <h3>Result Distribution</h3>
-      <canvas id="pie" height="200"></canvas>
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <div class="header-row">
+            <div class="welcome-text">
+                <div class="greeting">Welcome back,</div>
+                <div class="name" id="dashboard_name">Loading...</div>
+                <div class="date">
+                    <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
+                    <span id="dashboard_date">Today</span>
+                </div>
+            </div>
+            <a href="settings.html" class="profile-btn">
+                <svg viewBox="0 0 24 24" style="width:24px; height:24px; fill:#4A69BD;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                My Profile
+            </a>
+        </div>
+
+        <div class="stats-grid">
+            <!-- Total Scans -->
+            <div class="card card-blue">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/></svg>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-value" id="val_total_scans">0</div>
+                    <div class="stat-title">Total Scans</div>
+                    <div class="stat-subtitle">All time processed</div>
+                </div>
+            </div>
+
+            <!-- Positive -->
+            <div class="card card-orange">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-value" id="val_positive">0</div>
+                    <div class="stat-title">Positive</div>
+                    <div class="stat-subtitle">Stones detected</div>
+                </div>
+            </div>
+
+            <!-- Negative -->
+            <div class="card card-green">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-value" id="val_negative">0</div>
+                    <div class="stat-title">Negative</div>
+                    <div class="stat-subtitle">No stones</div>
+                </div>
+            </div>
+
+            <!-- Detection Rate -->
+            <div class="card card-purple">
+                <div class="stat-header">
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24"><path d="M5 9.2h3V19H5V9.2zM10.6 5h2.8v14h-2.8V5zm5.6 8H19v6h-2.8v-6z"/></svg>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-value" id="val_detection_rate">0.0%</div>
+                    <div class="stat-title">Detection Rate</div>
+                    <div class="stat-subtitle">Overall accuracy</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-title">Quick Actions</div>
+        
+        <div class="actions-grid">
+            <!-- Action 1 -->
+            <a href="new_analysis.html" class="action-card">
+                <div class="action-icon-bg blue">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                </div>
+                <div class="action-text">
+                    <div class="action-title">New Analysis</div>
+                    <div class="action-desc">Upload a CT scan to detect gallstones instantly using YOLOv8 AI.</div>
+                </div>
+                <svg class="action-arrow" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </a>
+
+            <!-- Action 2 -->
+            <a href="patient_history.html" class="action-card">
+                <div class="action-icon-bg green">
+                    <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/></svg>
+                </div>
+                <div class="action-text">
+                    <div class="action-title">Patient History</div>
+                    <div class="action-desc">Review past scans, access generated reports, and search patient IDs.</div>
+                </div>
+                <svg class="action-arrow" viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+            </a>
+        </div>
+
     </div>
-    <div class="chart-card">
-      <h3>Tests by Module</h3>
-      <canvas id="bar" height="200"></canvas>
-    </div>
-  </div>
 
-  <div class="section"><h2 style="color:var(--green)">🎉 No Failed Tests! All 300 Tests Passed Cleanly.</h2></div>
+    <script src="sync_manager.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function() {
+            let userName = localStorage.getItem('user_name');
+            let doctorId = localStorage.getItem('doctor_id');
 
-  <div class="links-bar">
-    <a class="link-btn" href="execution-report.html">📊 Full Report</a>
-    <a class="link-btn" href="https://poornima247.github.io/Test-cases-Cholemetric-AI/reports/history/">📚 History</a>
-    <a class="link-btn" href="https://poornima247.github.io/Test-cases-Cholemetric-AI">🏠 Home</a>
-    <a class="link-btn" href="summary.md">📝 Summary</a>
-  </div>
+            if (!userName) {
+                userName = 'Dr. Poornima Mandandu';
+                localStorage.setItem('user_name', userName);
+            }
+            if (!doctorId) {
+                doctorId = '1';
+                localStorage.setItem('doctor_id', doctorId);
+            }
 
-  <div class="footer">
-    Cholemetric AI — Android E2E Dashboard | Appium 2.x + Java 17 + TestNG 7.8 | Build # | 2026-08-10 00:14:31 UTC
-  </div>
+            document.getElementById('dashboard_name').innerText = userName;
 
-  <script>
-    new Chart(document.getElementById('pie'), {
-      type:'doughnut',
-      data:{
-        labels:['Passed','Failed','Skipped'],
-        datasets:[{data:[300,0,0],backgroundColor:['#00e676','#ff5252','#ffd740'],borderWidth:0}]
-      },
-      options:{plugins:{legend:{labels:{color:'#dde1f5'}}},cutout:'65%'}
-    });
-    new Chart(document.getElementById('bar'), {
-      type:'bar',
-      data:{
-        labels:["Authentication", "Authorization", "Registration", "Profile Management", "Navigation", "Dashboard", "Forms", "CRUD Operations", "Search", "Filters", "Input Validation", "Error Handling", "Session Management", "Notifications", "File Upload", "Offline Handling", "Accessibility", "Responsive UI", "Performance Smoke", "Regression Suite"],
-        datasets:[
-          {label:'Passed',data:[30, 20, 15, 15, 20, 15, 25, 25, 15, 15, 25, 10, 10, 10, 10, 5, 5, 5, 5, 20],backgroundColor:'rgba(0,230,118,0.8)'},
-          {label:'Failed',data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],backgroundColor:'rgba(255,82,82,0.8)'}
-        ]
-      },
-      options:{
-        plugins:{legend:{labels:{color:'#dde1f5'}}},
-        scales:{
-          x:{ticks:{color:'#6b7099',maxRotation:45,font:{size:10}},grid:{color:'#1e2240'}},
-          y:{ticks:{color:'#6b7099'},grid:{color:'#1e2240'}}
-        },
-        responsive:true
-      }
-    });
-  </script>
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const today = new Date();
+            document.getElementById('dashboard_date').innerText = today.toLocaleDateString('en-US', options);
+
+            try {
+                const response = await fetch(`${CholemetricSync.getApiBaseUrl()}/dashboard_stats.php?doctor_id=${doctorId}`);
+                const data = await response.json();
+                if (response.ok && data.success) {
+                    document.getElementById('val_total_scans').innerText = data.total_scans;
+                    document.getElementById('val_positive').innerText = data.positive_scans;
+                    document.getElementById('val_negative').innerText = data.negative_scans;
+                    document.getElementById('val_detection_rate').innerText = data.detection_rate + '%';
+                } else {
+                    throw new Error('Fallback stats required');
+                }
+            } catch (e) {
+                const stats = CholemetricSync.getAccountStats();
+                document.getElementById('val_total_scans').innerText = stats.total;
+                document.getElementById('val_positive').innerText = stats.positive;
+                document.getElementById('val_negative').innerText = stats.negative;
+                const rate = stats.total > 0 ? Math.round((stats.positive / stats.total) * 100) : 0;
+                document.getElementById('val_detection_rate').innerText = rate + '%';
+            }
+        });
+    </script>
 </body>
 </html>
