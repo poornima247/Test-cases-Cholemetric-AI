@@ -266,7 +266,7 @@
                 <label>Email Address</label>
                 <div class="input-wrapper">
                     <svg class="left-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                <input type="email" id="login_email" value="" placeholder="Enter your email address">
+                <input type="email" id="login_email" value="" autocomplete="off" placeholder="Enter your email address">
                 </div>
             </div>
 
@@ -274,7 +274,7 @@
                 <label>Password</label>
                 <div class="input-wrapper">
                     <svg class="left-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                <input type="password" id="login_password" value="" placeholder="Enter your password">
+                <input type="password" id="login_password" value="" autocomplete="new-password" placeholder="Enter your password">
                     <svg class="right-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                 </div>
             </div>
@@ -324,24 +324,25 @@
                 if (passInput) passInput.style.borderColor = '';
             }
 
-            if (typeof CholemetricSync !== 'undefined' && CholemetricSync.authenticateUser) {
-                const res = CholemetricSync.authenticateUser(email, password);
-                if (!res.success) {
-                    if (passInput) passInput.style.borderColor = '#EF4444';
-                    alert('❌ Access Denied:\n\n' + res.error);
-                    return;
-                }
-            } else {
-                localStorage.setItem('doctor_email', email);
-                localStorage.setItem('user_name', 'Dr. Poornima Dandu');
-                localStorage.setItem('doctor_id', '1');
-                localStorage.setItem('cholemetric_logged_in', 'true');
+            const res = CholemetricSync.authenticateUser(email, password);
+            if (!res || !res.success) {
+                if (passInput) passInput.style.borderColor = '#EF4444';
+                alert('❌ Access Denied:\n\n' + ((res && res.error) ? res.error : 'Incorrect password. Access denied.'));
+                return;
             }
 
             window.location.replace('dashboard.html');
         }
 
         document.addEventListener("DOMContentLoaded", function() {
+            const emInput = document.getElementById('login_email');
+            const pwInput = document.getElementById('login_password');
+            if (emInput) emInput.value = '';
+            if (pwInput) pwInput.value = '';
+            setTimeout(function() {
+                if (emInput) emInput.value = '';
+                if (pwInput) pwInput.value = '';
+            }, 100);
             if (typeof CholemetricSync !== 'undefined' && CholemetricSync.attachEyePasswordToggles) {
                 CholemetricSync.attachEyePasswordToggles();
             }

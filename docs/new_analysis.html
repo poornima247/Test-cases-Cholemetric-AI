@@ -548,14 +548,14 @@
                     <svg class="check-circle" id="check_image_upload" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                 </div>
 
-                <input type="file" id="file_upload" accept="image/png, image/jpeg, image/*" style="opacity: 0; position: absolute; width: 1px; height: 1px;">
-                <label for="file_upload" class="upload-area" id="upload_area" style="cursor: pointer; display: block;">
+                <input type="file" id="file_upload" accept="image/png, image/jpeg, image/*" style="display: none;">
+                <div class="upload-area" id="upload_area" onclick="triggerFilePicker(event)" style="cursor: pointer;">
                     <div class="upload-circle">
                         <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
                     </div>
                     <div class="upload-title">Upload CT Scan</div>
-                    <div class="upload-subtitle">Tap to select PNG or JPG file</div>
-                </label>
+                    <div class="upload-subtitle">Tap to choose PNG or JPG CT scan file</div>
+                </div>
                 <img id="preview_image" src="#" alt="CT Scan Preview" style="display: none; width: 100%; border-radius: 8px; margin-top: 10px;" />
             </div>
 
@@ -659,6 +659,16 @@
                 detailsSection.style.display = 'block';
             }
         });
+
+        function triggerFilePicker(e) {
+            if (e) {
+                try { e.preventDefault(); e.stopPropagation(); } catch(err) {}
+            }
+            const fileEl = document.getElementById('file_upload');
+            if (fileEl) {
+                fileEl.click();
+            }
+        }
 
         const uploadArea = document.getElementById('upload_area');
         const fileUpload = document.getElementById('file_upload');

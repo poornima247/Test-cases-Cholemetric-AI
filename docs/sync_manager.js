@@ -101,9 +101,19 @@ const CholemetricSync = (function () {
         let user = users.find(u => (u.email || '').toLowerCase() === cleanEmail);
 
         if (!user) {
-            return { success: false, error: 'Email address not registered. Please create an account or check your email.' };
+            // First time sign-in for this email address: register account with entered password
+            const doctorName = 'Dr. ' + cleanEmail.split('@')[0].split('.').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            user = {
+                id: users.length + 1,
+                email: cleanEmail,
+                password: pass,
+                full_name: doctorName,
+                hospital: 'Cholemetric Diagnostics Center'
+            };
+            users.push(user);
+            saveRegisteredUsers(users);
         } else if (user.password !== pass) {
-            return { success: false, error: 'Wrong password. Please check your password for ' + cleanEmail + '.' };
+            return { success: false, error: 'Wrong Password! Incorrect password entered for ' + cleanEmail + '. Access denied.' };
         }
 
         localStorage.setItem('doctor_email', cleanEmail);
