@@ -274,8 +274,8 @@
                 <label>Password</label>
                 <div class="input-wrapper">
                     <svg class="left-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
-                <input type="password" id="login_password" value="" autocomplete="new-password" placeholder="Enter your password">
-                    <svg class="right-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                    <input type="password" id="login_password" value="" autocomplete="new-password" placeholder="Enter your password">
+                    <svg class="right-icon" id="eye_icon_login_form" onclick="togglePasswordVisibility('login_password', this)" style="cursor: pointer; pointer-events: auto; z-index: 10;" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
                 </div>
             </div>
         </div>
@@ -305,6 +305,24 @@
 
     <script src="sync_manager.js"></script>
     <script>
+        function togglePasswordVisibility(inputId, iconEl) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                if (iconEl) {
+                    iconEl.style.opacity = '1.0';
+                    iconEl.style.fill = '#2CC295';
+                }
+            } else {
+                input.type = 'password';
+                if (iconEl) {
+                    iconEl.style.opacity = '0.6';
+                    iconEl.style.fill = '#555555';
+                }
+            }
+        }
+
         function doSignIn(e) {
             if (e) { try { e.preventDefault(); e.stopPropagation(); } catch(err){} }
             const emailInput = document.getElementById('login_email');
