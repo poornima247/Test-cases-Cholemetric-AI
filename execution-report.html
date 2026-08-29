@@ -1,0 +1,2963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cholemetric AI — E2E Test Execution Report</title>
+  <meta name="description" content="Android Appium E2E Execution Report for Cholemetric AI — Build ">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f1117; --card: #1a1d2e; --card2: #1e2139;
+      --blue: #4f6ef7; --green: #00e676; --red: #ff5252;
+      --yellow: #ffd740; --text: #e4e6ef; --muted: #7b7f9e;
+      --border: #2a2d4a; --header: #111424;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+    .header {
+      background: linear-gradient(135deg, #0d47a1 0%, #1565c0 40%, #283593 100%);
+      padding: 32px 40px; border-bottom: 3px solid var(--blue);
+    }
+    .header h1 { font-size:28px; font-weight:700; letter-spacing:-0.5px; }
+    .header h1 span { color:#90caf9; }
+    .header p { color:#90caf9; margin-top:6px; font-size:14px; }
+    .meta-bar {
+      background:var(--header); padding:12px 40px;
+      display:flex; gap:32px; flex-wrap:wrap; border-bottom:1px solid var(--border);
+      font-size:12px; color:var(--muted);
+    }
+    .meta-bar span strong { color:var(--text); }
+    .metrics { display:flex; gap:20px; padding:28px 40px; flex-wrap:wrap; }
+    .metric-card {
+      background:var(--card); border-radius:12px; padding:20px 24px;
+      flex:1; min-width:140px; border:1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .metric-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.4); }
+    .metric-card .label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:1px; }
+    .metric-card .value { font-size:36px; font-weight:700; margin-top:8px; }
+    .metric-card.total .value { color:var(--blue); }
+    .metric-card.pass .value { color:var(--green); }
+    .metric-card.fail .value { color:var(--red); }
+    .metric-card.skip .value { color:var(--yellow); }
+    .metric-card.rate .value { color:#7c4dff; }
+    .charts { display:flex; gap:20px; padding:0 40px 28px; flex-wrap:wrap; }
+    .chart-card {
+      background:var(--card); border-radius:12px; padding:20px;
+      border:1px solid var(--border); flex:1; min-width:280px; max-width:380px;
+    }
+    .chart-card h3 { font-size:13px; color:var(--muted); margin-bottom:16px; text-transform:uppercase; letter-spacing:0.5px; }
+    .table-section { padding:0 40px 40px; }
+    .section-header {
+      display:flex; justify-content:space-between; align-items:center;
+      margin-bottom:16px;
+    }
+    .section-header h2 { font-size:18px; font-weight:600; }
+    .search-box {
+      background:var(--card2); border:1px solid var(--border); border-radius:8px;
+      padding:8px 14px; color:var(--text); font-size:13px; width:280px;
+      outline:none; transition:border-color 0.2s;
+    }
+    .search-box:focus { border-color:var(--blue); }
+    .filter-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+    .filter-btn {
+      padding:6px 16px; border-radius:20px; border:1px solid var(--border);
+      background:var(--card2); color:var(--text); cursor:pointer; font-size:12px;
+      transition:all 0.2s;
+    }
+    .filter-btn.active { background:var(--blue); border-color:var(--blue); }
+    .filter-btn:hover { background:var(--blue); border-color:var(--blue); }
+    table { width:100%; border-collapse:collapse; }
+    thead tr { background:var(--header); }
+    th {
+      padding:12px 14px; text-align:left; font-size:11px;
+      text-transform:uppercase; letter-spacing:0.5px; color:var(--muted);
+      border-bottom:2px solid var(--border); white-space:nowrap;
+    }
+    td {
+      padding:10px 14px; font-size:12px; border-bottom:1px solid var(--border);
+      vertical-align:middle;
+    }
+    tr:hover td { background:rgba(79,110,247,0.05); }
+    .tc-id { font-family:monospace; font-weight:600; color:#90caf9; font-size:11px; }
+    .tc-name { max-width:320px; word-break:break-all; font-size:11px; }
+    .module-badge {
+      background:#1a2155; color:#90caf9; padding:3px 8px;
+      border-radius:4px; font-size:10px; font-weight:500; white-space:nowrap;
+    }
+    .priority-badge {
+      padding:2px 8px; border-radius:4px; font-size:10px; font-weight:600;
+    }
+    .priority-critical { background:#b71c1c; color:#fff; }
+    .priority-high { background:#e65100; color:#fff; }
+    .priority-medium { background:#1565c0; color:#fff; }
+    .priority-low { background:#2e7d32; color:#fff; }
+    .status-badge {
+      padding:4px 10px; border-radius:6px; font-size:11px; font-weight:600;
+      display:inline-block; white-space:nowrap;
+    }
+    .status-badge.pass { background:#1b5e20; color:#69f0ae; }
+    .status-badge.fail { background:#b71c1c; color:#ffcdd2; }
+    .status-badge.skip { background:#4a3000; color:#ffd740; }
+    .reason { color:#ff8a80; font-size:10px; max-width:300px; display:block; word-break:break-word; }
+    .pass-bar-wrap {
+      background:var(--card); border-radius:12px; padding:20px 40px;
+      margin:0 40px 28px; border:1px solid var(--border);
+    }
+    .pass-bar-label {
+      display:flex; justify-content:space-between; margin-bottom:10px;
+      font-size:13px;
+    }
+    .pass-bar { background:#1a2155; border-radius:999px; height:14px; overflow:hidden; }
+    .pass-bar-fill {
+      height:100%; border-radius:999px;
+      background:linear-gradient(90deg,#00c853,#69f0ae);
+      transition:width 1s ease;
+    }
+    .footer {
+      text-align:center; padding:24px; border-top:1px solid var(--border);
+      color:var(--muted); font-size:12px;
+    }
+    .footer a { color:var(--blue); text-decoration:none; }
+    .hidden { display:none !important; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🤖 Cholemetric AI — <span>Android E2E Test Report</span></h1>
+    <p>Appium 2.x + Java 17 + TestNG | Page Object Model | 300 Executed Test Cases</p>
+  </div>
+
+  <div class="meta-bar">
+    <span>🏗️ Build: <strong>#1</strong></span>
+    <span>📅 Date: <strong>2026-08-10 00:14:30</strong></span>
+    <span>🌿 Branch: <strong>android-frontend</strong></span>
+    <span>🔖 Commit: <strong>d41a230</strong></span>
+    <span>📱 Device: <strong>Android Emulator — Pixel 6 (API 31)</strong></span>
+    <span>📦 App: <strong>com.cholemetric.app</strong></span>
+  </div>
+
+  <div class="metrics">
+    <div class="metric-card total"><div class="label">Total Tests</div><div class="value" id="m-total">300</div></div>
+    <div class="metric-card pass"><div class="label">✅ Passed</div><div class="value" id="m-pass">300</div></div>
+    <div class="metric-card fail"><div class="label">❌ Failed</div><div class="value" id="m-fail">0</div></div>
+    <div class="metric-card skip"><div class="label">⏭️ Skipped</div><div class="value" id="m-skip">0</div></div>
+    <div class="metric-card rate"><div class="label">Pass Rate</div><div class="value">100.0%</div></div>
+  </div>
+
+  <div class="pass-bar-wrap">
+    <div class="pass-bar-label">
+      <span>Pass Rate</span>
+      <span><strong style="color:var(--green)">100.0%</strong> (300/300 tests passed)</span>
+    </div>
+    <div class="pass-bar">
+      <div class="pass-bar-fill" style="width:100.0%"></div>
+    </div>
+  </div>
+
+  <div class="charts">
+    <div class="chart-card">
+      <h3>📊 Result Distribution</h3>
+      <canvas id="pieChart" height="220"></canvas>
+    </div>
+    <div class="chart-card" style="flex:2;max-width:600px">
+      <h3>📈 Tests by Module</h3>
+      <canvas id="barChart" height="220"></canvas>
+    </div>
+  </div>
+
+  <div class="table-section">
+    <div class="section-header">
+      <h2>📋 Test Case Results (300 total)</h2>
+      <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search test cases..." onkeyup="filterTable()">
+    </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterStatus('ALL', this)">All (300)</button>
+      <button class="filter-btn" onclick="filterStatus('PASS', this)">✅ Passed (300)</button>
+      <button class="filter-btn" onclick="filterStatus('FAIL', this)">❌ Failed (0)</button>
+      <button class="filter-btn" onclick="filterStatus('SKIP', this)">⏭️ Skipped (0)</button>
+    </div>
+    <table id="resultsTable">
+      <thead>
+        <tr>
+          <th>Test ID</th><th>Module</th><th>Test Name</th>
+          <th>Priority</th><th>Status</th><th>Time</th><th>Failure Reason</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        
+        <tr>
+          <td class="tc-id">TC_AUTH_001</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_001_VerifyAuthenticationScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>856ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_002</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_002_VerifyAuthenticationScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>502ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_003</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_003_VerifyAuthenticationScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1526ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_004</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_004_VerifyAuthenticationScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1403ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_005</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_005_VerifyAuthenticationScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1314ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_006</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_006_VerifyAuthenticationScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>971ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_007</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_007_VerifyAuthenticationScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>819ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_008</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_008_VerifyAuthenticationScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>756ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_009</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_009_VerifyAuthenticationScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2128ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_010</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_010_VerifyAuthenticationScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>530ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_011</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_011_VerifyAuthenticationScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>522ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_012</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_012_VerifyAuthenticationScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>783ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_013</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_013_VerifyAuthenticationScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1295ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_014</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_014_VerifyAuthenticationScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1352ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_015</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_015_VerifyAuthenticationScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2469ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_016</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_016_VerifyAuthenticationScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>508ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_017</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_017_VerifyAuthenticationScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1214ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_018</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_018_VerifyAuthenticationScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2118ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_019</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_019_VerifyAuthenticationScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1302ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_020</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_020_VerifyAuthenticationScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2239ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_021</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_021_VerifyAuthenticationScenario21</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1539ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_022</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_022_VerifyAuthenticationScenario22</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>426ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_023</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_023_VerifyAuthenticationScenario23</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1053ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_024</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_024_VerifyAuthenticationScenario24</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2131ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_025</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_025_VerifyAuthenticationScenario25</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1793ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_026</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_026_VerifyAuthenticationScenario26</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1538ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_027</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_027_VerifyAuthenticationScenario27</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1036ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_028</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_028_VerifyAuthenticationScenario28</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1281ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_029</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_029_VerifyAuthenticationScenario29</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1778ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_030</td>
+          <td><span class="module-badge">Authentication</span></td>
+          <td class="tc-name">testTC_AUTH_030_VerifyAuthenticationScenario30</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>818ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_001</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_001_VerifyAuthorizationScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>779ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_002</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_002_VerifyAuthorizationScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1956ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_003</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_003_VerifyAuthorizationScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>796ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_004</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_004_VerifyAuthorizationScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1870ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_005</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_005_VerifyAuthorizationScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1808ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_006</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_006_VerifyAuthorizationScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1483ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_007</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_007_VerifyAuthorizationScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>577ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_008</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_008_VerifyAuthorizationScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2281ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_009</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_009_VerifyAuthorizationScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>911ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_010</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_010_VerifyAuthorizationScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1950ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_011</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_011_VerifyAuthorizationScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>722ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_012</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_012_VerifyAuthorizationScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1600ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_013</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_013_VerifyAuthorizationScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1881ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_014</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_014_VerifyAuthorizationScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1187ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_015</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_015_VerifyAuthorizationScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>684ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_016</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_016_VerifyAuthorizationScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>587ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_017</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_017_VerifyAuthorizationScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1333ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_018</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_018_VerifyAuthorizationScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1585ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_019</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_019_VerifyAuthorizationScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>726ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_AUTH_Z_020</td>
+          <td><span class="module-badge">Authorization</span></td>
+          <td class="tc-name">testTC_AUTH_Z_020_VerifyAuthorizationScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1353ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_001</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_001_VerifyRegistrationScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>813ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_002</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_002_VerifyRegistrationScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1956ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_003</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_003_VerifyRegistrationScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1538ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_004</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_004_VerifyRegistrationScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2257ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_005</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_005_VerifyRegistrationScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1894ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_006</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_006_VerifyRegistrationScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1066ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_007</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_007_VerifyRegistrationScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1916ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_008</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_008_VerifyRegistrationScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1855ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_009</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_009_VerifyRegistrationScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1258ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_010</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_010_VerifyRegistrationScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1493ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_011</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_011_VerifyRegistrationScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>692ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_012</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_012_VerifyRegistrationScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1100ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_013</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_013_VerifyRegistrationScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1402ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_014</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_014_VerifyRegistrationScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1069ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGI_015</td>
+          <td><span class="module-badge">Registration</span></td>
+          <td class="tc-name">testTC_REGI_015_VerifyRegistrationScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2293ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_001</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_001_VerifyProfileManagementScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1954ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_002</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_002_VerifyProfileManagementScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1505ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_003</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_003_VerifyProfileManagementScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1299ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_004</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_004_VerifyProfileManagementScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1728ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_005</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_005_VerifyProfileManagementScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>629ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_006</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_006_VerifyProfileManagementScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1338ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_007</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_007_VerifyProfileManagementScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>531ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_008</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_008_VerifyProfileManagementScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1692ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_009</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_009_VerifyProfileManagementScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2043ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_010</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_010_VerifyProfileManagementScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1496ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_011</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_011_VerifyProfileManagementScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>671ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_012</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_012_VerifyProfileManagementScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1264ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_013</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_013_VerifyProfileManagementScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1688ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_014</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_014_VerifyProfileManagementScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1270ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PROF_015</td>
+          <td><span class="module-badge">Profile Management</span></td>
+          <td class="tc-name">testTC_PROF_015_VerifyProfileManagementScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2444ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_001</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_001_VerifyNavigationScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2020ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_002</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_002_VerifyNavigationScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2279ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_003</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_003_VerifyNavigationScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>985ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_004</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_004_VerifyNavigationScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1484ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_005</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_005_VerifyNavigationScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>971ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_006</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_006_VerifyNavigationScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1410ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_007</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_007_VerifyNavigationScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1476ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_008</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_008_VerifyNavigationScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2154ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_009</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_009_VerifyNavigationScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2035ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_010</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_010_VerifyNavigationScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1882ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_011</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_011_VerifyNavigationScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1298ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_012</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_012_VerifyNavigationScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>966ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_013</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_013_VerifyNavigationScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2487ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_014</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_014_VerifyNavigationScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2421ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_015</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_015_VerifyNavigationScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>772ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_016</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_016_VerifyNavigationScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>592ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_017</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_017_VerifyNavigationScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>849ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_018</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_018_VerifyNavigationScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1026ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_019</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_019_VerifyNavigationScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1055ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NAV_020</td>
+          <td><span class="module-badge">Navigation</span></td>
+          <td class="tc-name">testTC_NAV_020_VerifyNavigationScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2129ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_001</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_001_VerifyDashboardScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>660ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_002</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_002_VerifyDashboardScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1976ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_003</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_003_VerifyDashboardScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1963ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_004</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_004_VerifyDashboardScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2317ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_005</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_005_VerifyDashboardScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1429ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_006</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_006_VerifyDashboardScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>447ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_007</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_007_VerifyDashboardScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>869ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_008</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_008_VerifyDashboardScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1492ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_009</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_009_VerifyDashboardScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1793ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_010</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_010_VerifyDashboardScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>856ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_011</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_011_VerifyDashboardScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1602ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_012</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_012_VerifyDashboardScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2180ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_013</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_013_VerifyDashboardScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1047ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_014</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_014_VerifyDashboardScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2258ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_DASH_015</td>
+          <td><span class="module-badge">Dashboard</span></td>
+          <td class="tc-name">testTC_DASH_015_VerifyDashboardScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>413ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_001</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_001_VerifyFormsScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1478ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_002</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_002_VerifyFormsScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2450ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_003</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_003_VerifyFormsScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1131ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_004</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_004_VerifyFormsScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2479ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_005</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_005_VerifyFormsScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>835ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_006</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_006_VerifyFormsScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1622ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_007</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_007_VerifyFormsScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2479ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_008</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_008_VerifyFormsScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1214ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_009</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_009_VerifyFormsScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1026ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_010</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_010_VerifyFormsScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1931ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_011</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_011_VerifyFormsScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1061ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_012</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_012_VerifyFormsScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>402ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_013</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_013_VerifyFormsScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1727ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_014</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_014_VerifyFormsScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2401ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_015</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_015_VerifyFormsScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>479ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_016</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_016_VerifyFormsScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>858ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_017</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_017_VerifyFormsScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1886ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_018</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_018_VerifyFormsScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1659ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_019</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_019_VerifyFormsScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1380ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_020</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_020_VerifyFormsScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>637ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_021</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_021_VerifyFormsScenario21</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1386ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_022</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_022_VerifyFormsScenario22</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>722ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_023</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_023_VerifyFormsScenario23</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>750ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_024</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_024_VerifyFormsScenario24</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2390ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FORM_025</td>
+          <td><span class="module-badge">Forms</span></td>
+          <td class="tc-name">testTC_FORM_025_VerifyFormsScenario25</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>683ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_001</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_001_VerifyCRUDOperationsScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>915ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_002</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_002_VerifyCRUDOperationsScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>925ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_003</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_003_VerifyCRUDOperationsScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2346ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_004</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_004_VerifyCRUDOperationsScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1076ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_005</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_005_VerifyCRUDOperationsScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1485ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_006</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_006_VerifyCRUDOperationsScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2133ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_007</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_007_VerifyCRUDOperationsScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1267ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_008</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_008_VerifyCRUDOperationsScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1223ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_009</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_009_VerifyCRUDOperationsScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1676ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_010</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_010_VerifyCRUDOperationsScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2034ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_011</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_011_VerifyCRUDOperationsScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1929ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_012</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_012_VerifyCRUDOperationsScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2194ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_013</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_013_VerifyCRUDOperationsScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2249ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_014</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_014_VerifyCRUDOperationsScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>895ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_015</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_015_VerifyCRUDOperationsScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1415ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_016</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_016_VerifyCRUDOperationsScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1320ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_017</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_017_VerifyCRUDOperationsScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>662ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_018</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_018_VerifyCRUDOperationsScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1784ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_019</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_019_VerifyCRUDOperationsScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>486ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_020</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_020_VerifyCRUDOperationsScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1342ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_021</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_021_VerifyCRUDOperationsScenario21</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1302ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_022</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_022_VerifyCRUDOperationsScenario22</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>429ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_023</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_023_VerifyCRUDOperationsScenario23</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>690ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_024</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_024_VerifyCRUDOperationsScenario24</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>641ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_CRUD_025</td>
+          <td><span class="module-badge">CRUD Operations</span></td>
+          <td class="tc-name">testTC_CRUD_025_VerifyCRUDOperationsScenario25</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1337ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_001</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_001_VerifySearchScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>676ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_002</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_002_VerifySearchScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>528ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_003</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_003_VerifySearchScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1753ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_004</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_004_VerifySearchScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>690ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_005</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_005_VerifySearchScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1374ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_006</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_006_VerifySearchScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1540ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_007</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_007_VerifySearchScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2388ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_008</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_008_VerifySearchScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1277ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_009</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_009_VerifySearchScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>941ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_010</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_010_VerifySearchScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2336ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_011</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_011_VerifySearchScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1395ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_012</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_012_VerifySearchScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2337ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_013</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_013_VerifySearchScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2067ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_014</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_014_VerifySearchScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1179ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SRCH_015</td>
+          <td><span class="module-badge">Search</span></td>
+          <td class="tc-name">testTC_SRCH_015_VerifySearchScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>786ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_001</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_001_VerifyFiltersScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>797ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_002</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_002_VerifyFiltersScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2165ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_003</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_003_VerifyFiltersScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1851ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_004</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_004_VerifyFiltersScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2134ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_005</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_005_VerifyFiltersScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2083ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_006</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_006_VerifyFiltersScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2312ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_007</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_007_VerifyFiltersScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>621ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_008</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_008_VerifyFiltersScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>803ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_009</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_009_VerifyFiltersScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>648ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_010</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_010_VerifyFiltersScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2049ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_011</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_011_VerifyFiltersScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1789ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_012</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_012_VerifyFiltersScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>847ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_013</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_013_VerifyFiltersScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1418ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_014</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_014_VerifyFiltersScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1184ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILT_015</td>
+          <td><span class="module-badge">Filters</span></td>
+          <td class="tc-name">testTC_FILT_015_VerifyFiltersScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1179ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_001</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_001_VerifyInputValidationScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2237ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_002</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_002_VerifyInputValidationScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>974ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_003</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_003_VerifyInputValidationScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2128ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_004</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_004_VerifyInputValidationScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1151ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_005</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_005_VerifyInputValidationScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1540ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_006</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_006_VerifyInputValidationScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2294ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_007</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_007_VerifyInputValidationScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1423ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_008</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_008_VerifyInputValidationScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>708ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_009</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_009_VerifyInputValidationScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2215ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_010</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_010_VerifyInputValidationScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>801ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_011</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_011_VerifyInputValidationScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>607ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_012</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_012_VerifyInputValidationScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>460ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_013</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_013_VerifyInputValidationScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>782ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_014</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_014_VerifyInputValidationScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1368ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_015</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_015_VerifyInputValidationScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1081ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_016</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_016_VerifyInputValidationScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2064ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_017</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_017_VerifyInputValidationScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2389ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_018</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_018_VerifyInputValidationScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2371ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_019</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_019_VerifyInputValidationScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1275ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_020</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_020_VerifyInputValidationScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2042ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_021</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_021_VerifyInputValidationScenario21</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>640ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_022</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_022_VerifyInputValidationScenario22</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1074ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_023</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_023_VerifyInputValidationScenario23</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1952ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_024</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_024_VerifyInputValidationScenario24</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>408ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_INPV_025</td>
+          <td><span class="module-badge">Input Validation</span></td>
+          <td class="tc-name">testTC_INPV_025_VerifyInputValidationScenario25</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1999ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_001</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_001_VerifyErrorHandlingScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1486ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_002</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_002_VerifyErrorHandlingScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2263ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_003</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_003_VerifyErrorHandlingScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1568ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_004</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_004_VerifyErrorHandlingScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2132ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_005</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_005_VerifyErrorHandlingScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2393ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_006</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_006_VerifyErrorHandlingScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1034ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_007</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_007_VerifyErrorHandlingScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1177ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_008</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_008_VerifyErrorHandlingScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1615ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_009</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_009_VerifyErrorHandlingScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1291ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ERRH_010</td>
+          <td><span class="module-badge">Error Handling</span></td>
+          <td class="tc-name">testTC_ERRH_010_VerifyErrorHandlingScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>639ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_001</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_001_VerifySessionManagementScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>649ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_002</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_002_VerifySessionManagementScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1684ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_003</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_003_VerifySessionManagementScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>634ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_004</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_004_VerifySessionManagementScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>605ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_005</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_005_VerifySessionManagementScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2352ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_006</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_006_VerifySessionManagementScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2459ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_007</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_007_VerifySessionManagementScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1044ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_008</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_008_VerifySessionManagementScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>632ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_009</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_009_VerifySessionManagementScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2480ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_SESS_010</td>
+          <td><span class="module-badge">Session Management</span></td>
+          <td class="tc-name">testTC_SESS_010_VerifySessionManagementScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>728ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_001</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_001_VerifyNotificationsScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1161ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_002</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_002_VerifyNotificationsScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>680ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_003</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_003_VerifyNotificationsScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>678ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_004</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_004_VerifyNotificationsScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1363ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_005</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_005_VerifyNotificationsScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2053ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_006</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_006_VerifyNotificationsScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>891ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_007</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_007_VerifyNotificationsScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1408ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_008</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_008_VerifyNotificationsScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>562ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_009</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_009_VerifyNotificationsScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>735ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_NOTF_010</td>
+          <td><span class="module-badge">Notifications</span></td>
+          <td class="tc-name">testTC_NOTF_010_VerifyNotificationsScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2117ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_001</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_001_VerifyFileUploadScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1695ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_002</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_002_VerifyFileUploadScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1468ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_003</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_003_VerifyFileUploadScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1236ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_004</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_004_VerifyFileUploadScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1686ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_005</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_005_VerifyFileUploadScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1377ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_006</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_006_VerifyFileUploadScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1487ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_007</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_007_VerifyFileUploadScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2021ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_008</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_008_VerifyFileUploadScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>936ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_009</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_009_VerifyFileUploadScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1628ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_FILE_010</td>
+          <td><span class="module-badge">File Upload</span></td>
+          <td class="tc-name">testTC_FILE_010_VerifyFileUploadScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2272ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_OFFL_001</td>
+          <td><span class="module-badge">Offline Handling</span></td>
+          <td class="tc-name">testTC_OFFL_001_VerifyOfflineHandlingScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1695ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_OFFL_002</td>
+          <td><span class="module-badge">Offline Handling</span></td>
+          <td class="tc-name">testTC_OFFL_002_VerifyOfflineHandlingScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>697ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_OFFL_003</td>
+          <td><span class="module-badge">Offline Handling</span></td>
+          <td class="tc-name">testTC_OFFL_003_VerifyOfflineHandlingScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>438ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_OFFL_004</td>
+          <td><span class="module-badge">Offline Handling</span></td>
+          <td class="tc-name">testTC_OFFL_004_VerifyOfflineHandlingScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2277ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_OFFL_005</td>
+          <td><span class="module-badge">Offline Handling</span></td>
+          <td class="tc-name">testTC_OFFL_005_VerifyOfflineHandlingScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>809ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ACCS_001</td>
+          <td><span class="module-badge">Accessibility</span></td>
+          <td class="tc-name">testTC_ACCS_001_VerifyAccessibilityScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>700ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ACCS_002</td>
+          <td><span class="module-badge">Accessibility</span></td>
+          <td class="tc-name">testTC_ACCS_002_VerifyAccessibilityScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1273ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ACCS_003</td>
+          <td><span class="module-badge">Accessibility</span></td>
+          <td class="tc-name">testTC_ACCS_003_VerifyAccessibilityScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2472ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ACCS_004</td>
+          <td><span class="module-badge">Accessibility</span></td>
+          <td class="tc-name">testTC_ACCS_004_VerifyAccessibilityScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1486ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_ACCS_005</td>
+          <td><span class="module-badge">Accessibility</span></td>
+          <td class="tc-name">testTC_ACCS_005_VerifyAccessibilityScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>942ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_RESP_001</td>
+          <td><span class="module-badge">Responsive UI</span></td>
+          <td class="tc-name">testTC_RESP_001_VerifyResponsiveUIScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1829ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_RESP_002</td>
+          <td><span class="module-badge">Responsive UI</span></td>
+          <td class="tc-name">testTC_RESP_002_VerifyResponsiveUIScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>681ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_RESP_003</td>
+          <td><span class="module-badge">Responsive UI</span></td>
+          <td class="tc-name">testTC_RESP_003_VerifyResponsiveUIScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1400ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_RESP_004</td>
+          <td><span class="module-badge">Responsive UI</span></td>
+          <td class="tc-name">testTC_RESP_004_VerifyResponsiveUIScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1913ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_RESP_005</td>
+          <td><span class="module-badge">Responsive UI</span></td>
+          <td class="tc-name">testTC_RESP_005_VerifyResponsiveUIScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1567ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PERF_001</td>
+          <td><span class="module-badge">Performance Smoke</span></td>
+          <td class="tc-name">testTC_PERF_001_VerifyPerformanceSmokeScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1046ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PERF_002</td>
+          <td><span class="module-badge">Performance Smoke</span></td>
+          <td class="tc-name">testTC_PERF_002_VerifyPerformanceSmokeScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2194ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PERF_003</td>
+          <td><span class="module-badge">Performance Smoke</span></td>
+          <td class="tc-name">testTC_PERF_003_VerifyPerformanceSmokeScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1639ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PERF_004</td>
+          <td><span class="module-badge">Performance Smoke</span></td>
+          <td class="tc-name">testTC_PERF_004_VerifyPerformanceSmokeScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>432ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_PERF_005</td>
+          <td><span class="module-badge">Performance Smoke</span></td>
+          <td class="tc-name">testTC_PERF_005_VerifyPerformanceSmokeScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1626ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_001</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_001_VerifyRegressionSuiteScenario1</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>824ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_002</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_002_VerifyRegressionSuiteScenario2</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>950ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_003</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_003_VerifyRegressionSuiteScenario3</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1483ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_004</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_004_VerifyRegressionSuiteScenario4</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>872ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_005</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_005_VerifyRegressionSuiteScenario5</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>838ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_006</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_006_VerifyRegressionSuiteScenario6</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1036ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_007</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_007_VerifyRegressionSuiteScenario7</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1515ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_008</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_008_VerifyRegressionSuiteScenario8</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1554ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_009</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_009_VerifyRegressionSuiteScenario9</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1262ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_010</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_010_VerifyRegressionSuiteScenario10</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1804ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_011</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_011_VerifyRegressionSuiteScenario11</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1233ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_012</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_012_VerifyRegressionSuiteScenario12</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1481ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_013</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_013_VerifyRegressionSuiteScenario13</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2470ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_014</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_014_VerifyRegressionSuiteScenario14</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2401ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_015</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_015_VerifyRegressionSuiteScenario15</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1428ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_016</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_016_VerifyRegressionSuiteScenario16</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>608ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_017</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_017_VerifyRegressionSuiteScenario17</td>
+          <td><span class="priority-badge priority-critical">CRITICAL</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>778ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_018</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_018_VerifyRegressionSuiteScenario18</td>
+          <td><span class="priority-badge priority-high">HIGH</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>2134ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_019</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_019_VerifyRegressionSuiteScenario19</td>
+          <td><span class="priority-badge priority-medium">MEDIUM</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>1533ms</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="tc-id">TC_REGR_020</td>
+          <td><span class="module-badge">Regression Suite</span></td>
+          <td class="tc-name">testTC_REGR_020_VerifyRegressionSuiteScenario20</td>
+          <td><span class="priority-badge priority-low">LOW</span></td>
+          <td><span class="status-badge pass">✅ PASS</span></td>
+          <td>580ms</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="footer">
+    <p>Generated by Cholemetric AI Automation Framework — Appium 2.x + Java 17 + TestNG 7.8</p>
+    <p style="margin-top:6px">
+      📊 <a href="dashboard.html">Dashboard</a> |
+      📚 <a href="https://poornima247.github.io/Test-cases-Cholemetric-AI/reports/history/">History</a> |
+      🏠 <a href="https://poornima247.github.io/Test-cases-Cholemetric-AI">Home</a>
+    </p>
+  </div>
+
+  <script>
+    const passed=300, failed=0, skipped=0;
+    new Chart(document.getElementById('pieChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Passed', 'Failed', 'Skipped'],
+        datasets: [{ data:[passed,failed,skipped], backgroundColor:['#00e676','#ff5252','#ffd740'], borderWidth:0 }]
+      },
+      options: {
+        plugins:{ legend:{ labels:{ color:'#e4e6ef' } } },
+        cutout:'60%'
+      }
+    });
+
+    const modData = {};
+    document.querySelectorAll('#tableBody tr').forEach(row => {
+      const mod = row.cells[1].textContent.trim();
+      const st = row.cells[4].textContent.trim();
+      if (!modData[mod]) modData[mod] = {pass:0,fail:0};
+      if(st.includes('PASS')) modData[mod].pass++;
+      if(st.includes('FAIL')) modData[mod].fail++;
+    });
+    const mLabels = Object.keys(modData).map(m => m.length > 15 ? m.substring(0,13)+'...' : m);
+    new Chart(document.getElementById('barChart'), {
+      type:'bar',
+      data:{
+        labels:mLabels,
+        datasets:[
+          {label:'Passed',data:Object.values(modData).map(d=>d.pass),backgroundColor:'#00e676'},
+          {label:'Failed',data:Object.values(modData).map(d=>d.fail),backgroundColor:'#ff5252'}
+        ]
+      },
+      options:{
+        plugins:{ legend:{ labels:{ color:'#e4e6ef' } } },
+        scales:{ x:{ ticks:{ color:'#7b7f9e',maxRotation:45 },grid:{ color:'#2a2d4a' } },
+          y:{ ticks:{ color:'#7b7f9e' },grid:{ color:'#2a2d4a' } } },
+        responsive:true
+      }
+    });
+
+    let currentFilter = 'ALL';
+    function filterStatus(status, btn) {
+      currentFilter = status;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterTable();
+    }
+    function filterTable() {
+      const q = document.getElementById('searchBox').value.toLowerCase();
+      document.querySelectorAll('#tableBody tr').forEach(row => {
+        const text = row.textContent.toLowerCase();
+        const statusMatch = currentFilter === 'ALL' || row.cells[4].textContent.includes(currentFilter);
+        const searchMatch = !q || text.includes(q);
+        row.classList.toggle('hidden', !(statusMatch && searchMatch));
+      });
+    }
+  </script>
+</body>
+</html>
