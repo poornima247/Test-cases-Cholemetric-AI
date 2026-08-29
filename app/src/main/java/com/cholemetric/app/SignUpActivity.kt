@@ -112,7 +112,11 @@ class SignUpActivity : AppCompatActivity() {
 
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val client = OkHttpClient()
+                    val client = OkHttpClient.Builder()
+                        .connectTimeout(2, java.util.concurrent.TimeUnit.SECONDS)
+                        .readTimeout(2, java.util.concurrent.TimeUnit.SECONDS)
+                        .writeTimeout(2, java.util.concurrent.TimeUnit.SECONDS)
+                        .build()
                     val json = JSONObject()
                     json.put("full_name", name)
                     json.put("hospital", hospital)

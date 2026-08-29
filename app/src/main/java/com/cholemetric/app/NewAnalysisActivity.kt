@@ -44,21 +44,42 @@ NewAnalysisActivity : AppCompatActivity() {
     private var isDetailsExpanded = false
     private var selectedImageUri: Uri? = null
     private val client = OkHttpClient.Builder()
-        .connectTimeout(30, TimeUnit.SECONDS)
-        .writeTimeout(60, TimeUnit.SECONDS)
-        .readTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(3, TimeUnit.SECONDS)
+        .writeTimeout(5, TimeUnit.SECONDS)
+        .readTimeout(5, TimeUnit.SECONDS)
         .build()
     private val calendar = Calendar.getInstance()
 
     private val pickMedia = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
         if (uri != null) {
-            selectedImageUri = uri
-            val ivPreviewImage = findViewById<ImageView>(R.id.iv_preview_image)
-            val llUploadArea = findViewById<LinearLayout>(R.id.ll_upload_area)
-            
-            ivPreviewImage.setImageURI(uri)
-            ivPreviewImage.visibility = View.VISIBLE
-            llUploadArea.visibility = View.GONE
+            try {
+                val inputStream = contentResolver.openInputStream(uri)
+                val bitmap = BitmapFactory.decodeStream(inputStream)
+                val validation = DatasetModelTrainer.validateGallbladderCtScan(bitmap)
+                if (!validation.isValid) {
+                    selectedImageUri = null
+                    val ivPreviewImage = findViewById<ImageView>(R.id.iv_preview_image)
+                    val llUploadArea = findViewById<LinearLayout>(R.id.ll_upload_area)
+                    ivPreviewImage.visibility = View.GONE
+                    llUploadArea.visibility = View.VISIBLE
+                    Toast.makeText(
+                        this,
+                        "❌ Invalid Scan Image:\n" + validation.errorMessage + "\n\nPlease upload a valid Gallbladder CT Scan.",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return@registerForActivityResult
+                }
+
+                selectedImageUri = uri
+                val ivPreviewImage = findViewById<ImageView>(R.id.iv_preview_image)
+                val llUploadArea = findViewById<LinearLayout>(R.id.ll_upload_area)
+                
+                ivPreviewImage.setImageURI(uri)
+                ivPreviewImage.visibility = View.VISIBLE
+                llUploadArea.visibility = View.GONE
+            } catch (e: Exception) {
+                Toast.makeText(this, "Could not load selected image file.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -142,14 +163,28 @@ NewAnalysisActivity : AppCompatActivity() {
             return
         }
 
-        val patientId = findViewById<EditText>(R.id.et_patient_id).text.toString().trim()
-        val patientName = findViewById<EditText>(R.id.et_patient_name).text.toString().trim()
+        val etPatientId = findViewById<EditText>(R.id.et_patient_id)
+        val etPatientName = findViewById<EditText>(R.id.et_patient_name)
+
+        val patientId = etPatientId.text.toString().trim()
+        val patientName = etPatientName.text.toString().trim()
         val patientAgeStr = findViewById<EditText>(R.id.et_age).text.toString().trim()
         val patientAge = if (patientAgeStr.isEmpty()) 0 else patientAgeStr.toInt()
         val patientGender = findViewById<EditText>(R.id.et_gender).text.toString().trim()
         val scanDate = findViewById<EditText>(R.id.et_scan_date).text.toString().trim()
 
-        val finalPatientId = if (patientId.isEmpty()) "P-" + (10000 + (Math.random() * 90000).toInt()) else patientId
+        if (patientId.isEmpty() || patientName.isEmpty()) {
+            if (patientId.isEmpty()) {
+                etPatientId.error = "Patient ID is required"
+            }
+            if (patientName.isEmpty()) {
+                etPatientName.error = "Patient Name is required"
+            }
+            Toast.makeText(this, "Please enter both Patient Name and Patient ID before starting analysis.", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        val finalPatientId = patientId
 
         val progressDialog = ProgressDialog(this).apply {
             setMessage("Analyzing scan image...")
@@ -171,6 +206,7 @@ NewAnalysisActivity : AppCompatActivity() {
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("image", "scan.jpg", requestFile)
                     .addFormDataPart("patient_id", finalPatientId)
+                    .addFormDataPart("patient_name", patientName)
                     .addFormDataPart("scan_date", scanDate)
                     .build()
 
@@ -202,6 +238,12 @@ NewAnalysisActivity : AppCompatActivity() {
                             putExtra("ANNOTATED_IMAGE_URL", json.getString("annotated_image_url"))
                         }
                         resultsLauncher.launch(intent)
+                    } else if (json.has("error") && json.getString("error").contains("Invalid image", ignoreCase = true)) {
+                        Toast.makeText(
+                            this@NewAnalysisActivity,
+                            "❌ Invalid Scan Image:\n" + json.getString("error"),
+                            Toast.LENGTH_LONG
+                        ).show()
                     } else {
                         performFallbackAnalysis(finalPatientId, scanDate, patientName, patientAge, patientGender, tempFile)
                     }
@@ -235,8 +277,18 @@ NewAnalysisActivity : AppCompatActivity() {
         patientGender: String,
         imageFile: File
     ) {
-        val analysis = DatasetModelTrainer.analyzeImageWithDataset(imageFile)
         val bitmap = BitmapFactory.decodeFile(imageFile.absolutePath)
+        val validation = DatasetModelTrainer.validateGallbladderCtScan(bitmap)
+        if (!validation.isValid) {
+            Toast.makeText(
+                this,
+                "❌ Invalid Scan Image:\n" + validation.errorMessage + "\n\nPlease upload a valid Gallbladder CT Scan.",
+                Toast.LENGTH_LONG
+            ).show()
+            return
+        }
+
+        val analysis = DatasetModelTrainer.analyzeImageWithDataset(imageFile)
         val annotatedFile = createAnnotatedImageWithRedBoxes(imageFile, bitmap, analysis.boundingBoxes)
 
         val intent = Intent(this, ScanResultsActivity::class.java).apply {

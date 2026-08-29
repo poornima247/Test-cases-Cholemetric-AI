@@ -240,7 +240,21 @@ class ScanResultsActivity : AppCompatActivity() {
                     btnSaveReport.isEnabled = true
                     btnSaveReport.text = "Save Report"
 
-                    Toast.makeText(this@ScanResultsActivity, "Scan report saved successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ScanResultsActivity, "📄 Report Downloaded Successfully! Tap notification or view in Patient History.", Toast.LENGTH_LONG).show()
+                    val reportIntent = android.content.Intent(this@ScanResultsActivity, ScanReportActivity::class.java).apply {
+                        putExtra("PATIENT_ID", patientId)
+                        putExtra("PATIENT_NAME", patientName)
+                        putExtra("SCAN_DATE", scanDate)
+                        putExtra("IS_POSITIVE", if (isPositive) 1 else 0)
+                        putExtra("STONE_COUNT", stoneCount)
+                        putExtra("MAX_SIZE_MM", maxSizeMm)
+                        putExtra("AI_CONFIDENCE", confidence)
+                        putExtra("RADIOLOGIST_TEXT", notes)
+                        putExtra("ANNOTATED_IMAGE_URL", annotatedImageUrl)
+                        putExtra("PATIENT_AGE", patientAge)
+                        putExtra("PATIENT_GENDER", patientGender)
+                    }
+                    startActivity(reportIntent)
                     setResult(RESULT_OK)
                     finish()
                 }
@@ -249,7 +263,21 @@ class ScanResultsActivity : AppCompatActivity() {
                 withContext(Dispatchers.Main) {
                     btnSaveReport.isEnabled = true
                     btnSaveReport.text = "Save Report"
-                    Toast.makeText(this@ScanResultsActivity, "Scan report saved successfully!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ScanResultsActivity, "📄 Report Downloaded Successfully! Tap notification or view in Patient History.", Toast.LENGTH_LONG).show()
+                    val reportIntent = android.content.Intent(this@ScanResultsActivity, ScanReportActivity::class.java).apply {
+                        putExtra("PATIENT_ID", patientId)
+                        putExtra("PATIENT_NAME", patientName)
+                        putExtra("SCAN_DATE", scanDate)
+                        putExtra("IS_POSITIVE", if (isPositive) 1 else 0)
+                        putExtra("STONE_COUNT", stoneCount)
+                        putExtra("MAX_SIZE_MM", maxSizeMm)
+                        putExtra("AI_CONFIDENCE", confidence)
+                        putExtra("RADIOLOGIST_TEXT", notes)
+                        putExtra("ANNOTATED_IMAGE_URL", annotatedImageUrl)
+                        putExtra("PATIENT_AGE", patientAge)
+                        putExtra("PATIENT_GENDER", patientGender)
+                    }
+                    startActivity(reportIntent)
                     setResult(RESULT_OK)
                     finish()
                 }

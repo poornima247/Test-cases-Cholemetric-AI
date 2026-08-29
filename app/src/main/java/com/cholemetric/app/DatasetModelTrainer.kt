@@ -7,6 +7,94 @@ import java.io.File
 
 object DatasetModelTrainer {
 
+    data class ValidationResult(
+        val isValid: Boolean,
+        val errorMessage: String
+    )
+
+    fun validateGallbladderCtScan(bitmap: Bitmap?): ValidationResult {
+        if (bitmap == null) {
+            return ValidationResult(false, "Could not decode uploaded scan file.")
+        }
+
+        val w = bitmap.width
+        val h = bitmap.height
+        val ratio = w.toFloat() / h.toFloat()
+
+        if (ratio < 0.65f || ratio > 1.6f) {
+            return ValidationResult(false, "Invalid aspect ratio. Uploaded image does not appear to be an abdominal CT scan frame.")
+        }
+
+        var colorPixels = 0
+        var darkPerimeterPixels = 0
+        var totalSampled = 0
+        var perimeterSampled = 0
+
+        var ruqPixelSum = 0L
+        var ruqSampled = 0
+        var lungPixelCount = 0
+        var skullRingPoints = 0
+
+        val stepX = Math.max(1, w / 40)
+        val stepY = Math.max(1, h / 40)
+
+        for (x in 0 until w step stepX) {
+            for (y in 0 until h step stepY) {
+                val pixel = bitmap.getPixel(x, y)
+                val r = (pixel shr 16) and 0xFF
+                val g = (pixel shr 8) and 0xFF
+                val b = pixel and 0xFF
+                val avg = (r + g + b) / 3
+                val variance = Math.abs(r - avg) + Math.abs(g - avg) + Math.abs(b - avg)
+
+                if (variance > 35) colorPixels++
+                totalSampled++
+
+                val normX = x.toFloat() / w
+                val normY = y.toFloat() / h
+
+                if (normX < 0.08f || normX > 0.92f || normY < 0.08f || normY > 0.92f) {
+                    perimeterSampled++
+                    if (avg < 60) darkPerimeterPixels++
+                    if (avg > 170) skullRingPoints++
+                }
+
+                if (normX >= 0.20f && normX <= 0.80f && normY >= 0.25f && normY <= 0.75f) {
+                    if (avg < 30) lungPixelCount++
+                }
+
+                if (normX >= 0.25f && normX <= 0.55f && normY >= 0.25f && normY <= 0.55f) {
+                    ruqPixelSum += avg
+                    ruqSampled++
+                }
+            }
+        }
+
+        if (totalSampled > 0 && (colorPixels.toFloat() / totalSampled) > 0.04f) {
+            return ValidationResult(false, "Color photo/image detected. Only DICOM grayscale CT scans are accepted.")
+        }
+
+        if (perimeterSampled > 0 && (darkPerimeterPixels.toFloat() / perimeterSampled) < 0.40f) {
+            return ValidationResult(false, "Non-medical image format. Image lacks standard DICOM CT dark background perimeter.")
+        }
+
+        val ruqAvg = if (ruqSampled > 0) (ruqPixelSum.toDouble() / ruqSampled) else 0.0
+        val lungRatio = if (totalSampled > 0) (lungPixelCount.toFloat() / totalSampled) else 0f
+        val skullRatio = if (perimeterSampled > 0) (skullRingPoints.toFloat() / perimeterSampled) else 0f
+
+        if (skullRatio > 0.35f) {
+            return ValidationResult(false, "Uploaded image appears to be a Brain CT Scan. Only Gallbladder CT Scans are accepted.")
+        }
+        if (lungRatio > 0.25f) {
+            return ValidationResult(false, "Uploaded image appears to be a Chest CT Scan. Only Gallbladder CT Scans are accepted.")
+        }
+        if (ruqAvg < 35.0 || ruqAvg > 175.0) {
+            return ValidationResult(false, "Uploaded scan is missing Right Upper Quadrant liver/gallbladder tissue profile. Appears to be a Kidney or lower abdominal scan.")
+        }
+
+        return ValidationResult(true, "")
+    }
+
     data class TrainedScanResult(
         val isPositive: Boolean,
         val stoneCount: Int,

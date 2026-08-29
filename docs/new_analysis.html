@@ -668,16 +668,116 @@
             fileUpload.click();
         });
 
+        function validateGallbladderCtScanCanvas(img) {
+            const canvas = document.createElement('canvas');
+            const w = canvas.width = img.naturalWidth || img.width || 512;
+            const h = canvas.height = img.naturalHeight || img.height || 512;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, w, h);
+
+            const ratio = w / h;
+            if (ratio < 0.65 || ratio > 1.6) {
+                return { isValid: false, error: 'Invalid image aspect ratio. Uploaded image is not an abdominal CT scan frame.' };
+            }
+
+            const imgData = ctx.getImageData(0, 0, w, h);
+            const data = imgData.data;
+
+            let colorPixels = 0;
+            let darkPerimeterPixels = 0;
+            let totalSampled = 0;
+            let perimeterSampled = 0;
+
+            let ruqPixelSum = 0;
+            let ruqSampled = 0;
+            let lungPixelCount = 0;
+            let skullRingPoints = 0;
+
+            const stepX = Math.max(1, Math.floor(w / 40));
+            const stepY = Math.max(1, Math.floor(h / 40));
+
+            for (let x = 0; x < w; x += stepX) {
+                for (let y = 0; y < h; y += stepY) {
+                    const idx = (y * w + x) * 4;
+                    const r = data[idx];
+                    const g = data[idx + 1];
+                    const b = data[idx + 2];
+                    const avg = (r + g + b) / 3.0;
+                    const variance = Math.abs(r - avg) + Math.abs(g - avg) + Math.abs(b - avg);
+
+                    if (variance > 35) colorPixels++;
+                    totalSampled++;
+
+                    const normX = x / w;
+                    const normY = y / h;
+
+                    if (normX < 0.08 || normX > 0.92 || normY < 0.08 || normY > 0.92) {
+                        perimeterSampled++;
+                        if (avg < 60) darkPerimeterPixels++;
+                        if (avg > 170) skullRingPoints++;
+                    }
+
+                    if (normX >= 0.2 && normX <= 0.8 && normY >= 0.25 && normY <= 0.75) {
+                        if (avg < 30) lungPixelCount++;
+                    }
+
+                    if (normX >= 0.25 && normX <= 0.55 && normY >= 0.25 && normY <= 0.55) {
+                        ruqPixelSum += avg;
+                        ruqSampled++;
+                    }
+                }
+            }
+
+            if (totalSampled > 0 && (colorPixels / totalSampled) > 0.04) {
+                return { isValid: false, error: 'Color photo/image detected. Only DICOM grayscale CT scans are accepted.' };
+            }
+
+            if (perimeterSampled > 0 && (darkPerimeterPixels / perimeterSampled) < 0.40) {
+                return { isValid: false, error: 'Non-medical image format. Image lacks standard DICOM CT dark background perimeter.' };
+            }
+
+            const ruqAvg = ruqSampled > 0 ? (ruqPixelSum / ruqSampled) : 0;
+            const lungRatio = totalSampled > 0 ? (lungPixelCount / totalSampled) : 0;
+            const skullRatio = perimeterSampled > 0 ? (skullRingPoints / perimeterSampled) : 0;
+
+            if (skullRatio > 0.35) {
+                return { isValid: false, error: 'Uploaded image appears to be a Brain CT Scan. Only Gallbladder CT Scans are accepted.' };
+            }
+            if (lungRatio > 0.25) {
+                return { isValid: false, error: 'Uploaded image appears to be a Chest CT Scan. Only Gallbladder CT Scans are accepted.' };
+            }
+            if (ruqAvg < 35 || ruqAvg > 175) {
+                return { isValid: false, error: 'Uploaded scan is missing Right Upper Quadrant liver/gallbladder tissue profile. Appears to be a Kidney or lower abdominal scan.' };
+            }
+
+            return { isValid: true, error: '' };
+        }
+
         fileUpload.addEventListener('change', function(e) {
             if (this.files && this.files[0]) {
+                const file = this.files[0];
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    previewImage.src = e.target.result;
-                    previewImage.style.display = 'block';
-                    uploadArea.style.display = 'none';
-                }
-                reader.readAsDataURL(this.files[0]);
-                document.getElementById('check_image_upload').style.fill = '#10B981';
+                    const img = new Image();
+                    img.onload = function() {
+                        const check = validateGallbladderCtScanCanvas(img);
+                        if (!check.isValid) {
+                            alert('❌ Invalid Scan Image:\n\n' + check.error + '\n\nPlease upload a valid Gallbladder CT Scan.');
+                            fileUpload.value = '';
+                            previewImage.style.display = 'none';
+                            uploadArea.style.display = 'block';
+                            document.getElementById('check_image_upload').style.fill = '#AAAAAA';
+                            return;
+                        }
+
+                        previewImage.src = e.target.result;
+                        previewImage.style.display = 'block';
+                        uploadArea.style.display = 'none';
+                        document.getElementById('check_image_upload').style.fill = '#10B981';
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
             } else {
                 document.getElementById('check_image_upload').style.fill = '#AAAAAA';
             }
@@ -713,12 +813,32 @@
         // Start AI Analysis Call
         const btnStart = document.getElementById('btn_start_analysis');
         btnStart.addEventListener('click', function() {
+            const patientIdEl = document.getElementById('patient_id');
+            const patientNameEl = document.getElementById('patient_name');
+            const patientIdVal = patientIdEl.value.trim();
+            const patientNameVal = patientNameEl.value.trim();
+
+            if (!patientIdVal || !patientNameVal) {
+                if (!patientIdVal) patientIdEl.style.borderColor = '#EF4444';
+                else patientIdEl.style.borderColor = '';
+
+                if (!patientNameVal) patientNameEl.style.borderColor = '#EF4444';
+                else patientNameEl.style.borderColor = '';
+
+                alert('❌ Missing Required Information:\n\nPlease enter both Patient Name and Patient ID before starting AI analysis.');
+                if (!patientIdVal) patientIdEl.focus();
+                else patientNameEl.focus();
+                return;
+            } else {
+                patientIdEl.style.borderColor = '';
+                patientNameEl.style.borderColor = '';
+            }
+
             if (!fileUpload.files || !fileUpload.files[0]) {
                 alert('Please upload a CT Scan image first.');
                 return;
             }
 
-            const patientIdVal = document.getElementById('patient_id').value.trim() || 'P-' + Math.floor(10000 + Math.random() * 90000);
             const scanDateVal = document.getElementById('scan_date').value || new Date().toISOString().split('T')[0];
 
             btnStart.disabled = true;
@@ -727,6 +847,7 @@
             const formData = new FormData();
             formData.append('image', fileUpload.files[0]);
             formData.append('patient_id', patientIdVal);
+            formData.append('patient_name', patientNameVal);
             formData.append('scan_date', scanDateVal);
 
             // Connects to local machine IP configured on XAMPP
@@ -780,19 +901,105 @@
                     document.getElementById('results_view').style.display = 'block';
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
-                    alert('Analysis failed: ' + (data.error || 'Unknown error'));
+                    alert('❌ Invalid Scan Image:\n\n' + (data.error || 'The uploaded file is not a Gallbladder CT Scan. Please upload a valid gallbladder scan.'));
                 }
             })
             .catch(err => {
-                console.warn('Backend API offline, running client AI CT scan analysis simulation:', err);
+                console.warn('Backend API offline, running client AI CT scan analysis validation & simulation:', err);
                 btnStart.disabled = false;
                 btnStart.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm1.61-4.91c-.43.2-.76.51-.98.88-.23.36-.35.79-.35 1.25h-2c0-.79.25-1.5.73-2.12.48-.62 1.15-1.09 1.95-1.39.56-.21 1.03-.49 1.4-.85.37-.36.56-.8.56-1.32 0-.61-.22-1.11-.64-1.48-.42-.37-1-.56-1.74-.56-.76 0-1.35.21-1.78.64-.42.42-.64 1.02-.64 1.79h-2c0-1.18.39-2.13 1.15-2.85C9.04 4.54 10.23 4.2 11.66 4.2c1.47 0 2.65.34 3.49 1.02.85.68 1.27 1.58 1.27 2.69 0 .61-.13 1.14-.38 1.58-.26.44-.65.85-1.17 1.23-.62.45-1.04.81-1.26 1.07z"/></svg>Start AI Analysis<svg style="margin-left:auto; margin-right:0" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
+
+                const validateGallbladderCtScanCanvas = function(img) {
+                    const canvas = document.createElement('canvas');
+                    const w = canvas.width = img.naturalWidth || img.width || 512;
+                    const h = canvas.height = img.naturalHeight || img.height || 512;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, w, h);
+
+                    const ratio = w / h;
+                    if (ratio < 0.65 || ratio > 1.6) {
+                        return { isValid: false, error: 'Invalid image aspect ratio. Uploaded image is not an abdominal CT scan frame.' };
+                    }
+
+                    const imgData = ctx.getImageData(0, 0, w, h);
+                    const data = imgData.data;
+
+                    let colorPixels = 0;
+                    let darkPerimeterPixels = 0;
+                    let totalSampled = 0;
+                    let perimeterSampled = 0;
+
+                    let ruqPixelSum = 0;
+                    let ruqSampled = 0;
+                    let lungPixelCount = 0;
+                    let skullRingPoints = 0;
+
+                    const stepX = Math.max(1, Math.floor(w / 40));
+                    const stepY = Math.max(1, Math.floor(h / 40));
+
+                    for (let x = 0; x < w; x += stepX) {
+                        for (let y = 0; y < h; y += stepY) {
+                            const idx = (y * w + x) * 4;
+                            const r = data[idx];
+                            const g = data[idx + 1];
+                            const b = data[idx + 2];
+                            const avg = (r + g + b) / 3.0;
+                            const variance = Math.abs(r - avg) + Math.abs(g - avg) + Math.abs(b - avg);
+
+                            if (variance > 35) colorPixels++;
+                            totalSampled++;
+
+                            const normX = x / w;
+                            const normY = y / h;
+
+                            if (normX < 0.08 || normX > 0.92 || normY < 0.08 || normY > 0.92) {
+                                perimeterSampled++;
+                                if (avg < 60) darkPerimeterPixels++;
+                                if (avg > 170) skullRingPoints++;
+                            }
+
+                            if (normX >= 0.2 && normX <= 0.8 && normY >= 0.25 && normY <= 0.75) {
+                                if (avg < 30) lungPixelCount++;
+                            }
+
+                            if (normX >= 0.25 && normX <= 0.55 && normY >= 0.25 && normY <= 0.55) {
+                                ruqPixelSum += avg;
+                                ruqSampled++;
+                            }
+                        }
+                    }
+
+                    if (totalSampled > 0 && (colorPixels / totalSampled) > 0.04) {
+                        return { isValid: false, error: 'Color photo/image detected. Only DICOM grayscale CT scans are accepted.' };
+                    }
+
+                    if (perimeterSampled > 0 && (darkPerimeterPixels / perimeterSampled) < 0.40) {
+                        return { isValid: false, error: 'Non-medical image format. Image lacks standard DICOM CT dark background perimeter.' };
+                    }
+
+                    const ruqAvg = ruqSampled > 0 ? (ruqPixelSum / ruqSampled) : 0;
+                    const lungRatio = totalSampled > 0 ? (lungPixelCount / totalSampled) : 0;
+                    const skullRatio = perimeterSampled > 0 ? (skullRingPoints / perimeterSampled) : 0;
+
+                    if (skullRatio > 0.35) {
+                        return { isValid: false, error: 'Uploaded image appears to be a Brain CT Scan. Only Gallbladder CT Scans are accepted.' };
+                    }
+                    if (lungRatio > 0.25) {
+                        return { isValid: false, error: 'Uploaded image appears to be a Chest CT Scan. Only Gallbladder CT Scans are accepted.' };
+                    }
+                    if (ruqAvg < 35 || ruqAvg > 175) {
+                        return { isValid: false, error: 'Uploaded scan is missing Right Upper Quadrant liver/gallbladder tissue profile. Appears to be a Kidney or lower abdominal scan.' };
+                    }
+
+                    return { isValid: true, error: '' };
+                };
 
                 const uploadedFile = fileUpload.files[0];
                 const renderResult = function(annotatedUrl) {
                     const mockData = {
                         status: 'success',
-                        patient_id: patientIdVal || '12345',
+                        patient_id: patientIdVal,
+                        patient_name: patientNameVal,
                         scan_date: scanDateVal || new Date().toISOString().split('T')[0],
                         annotated_image_url: annotatedUrl,
                         stone_count: 2,
@@ -872,71 +1079,33 @@
                     ctx.ellipse(w*0.44, h*0.46, 58, 40, 0.25, 0, Math.PI * 2);
                     ctx.fill();
 
-                    // Gallstones (High HU Hyperdense Calculi - Bright White/Yellow Acoustic Shadowing)
-                    // Stone 1
+                    // Gallstones (High HU Hyperdense Calculi)
                     ctx.fillStyle = '#ffffff';
                     ctx.shadowColor = '#ffffff';
                     ctx.shadowBlur = 15;
                     ctx.beginPath();
                     ctx.arc(w*0.42, h*0.47, 13, 0, Math.PI * 2);
                     ctx.fill();
-                    ctx.fillStyle = '#fef08a';
-                    ctx.beginPath();
-                    ctx.arc(w*0.42, h*0.47, 9, 0, Math.PI * 2);
-                    ctx.fill();
 
-                    // Stone 2
                     ctx.fillStyle = '#ffffff';
                     ctx.shadowColor = '#ffffff';
                     ctx.shadowBlur = 12;
                     ctx.beginPath();
                     ctx.arc(w*0.47, h*0.43, 10, 0, Math.PI * 2);
                     ctx.fill();
-                    ctx.fillStyle = '#fef08a';
-                    ctx.beginPath();
-                    ctx.arc(w*0.47, h*0.43, 7, 0, Math.PI * 2);
-                    ctx.fill();
 
                     ctx.shadowBlur = 0;
 
-                    // Red AI Detection Bounding Boxes & HUD Overlays
-                    // Box 1
+                    // Red AI Detection Bounding Boxes
                     const b1 = { x: Math.round(w*0.42 - 24), y: Math.round(h*0.47 - 24), w: 48, h: 48 };
                     ctx.strokeStyle = '#ef4444';
                     ctx.lineWidth = 3;
-                    ctx.shadowColor = '#ef4444';
-                    ctx.shadowBlur = 10;
                     ctx.strokeRect(b1.x, b1.y, b1.w, b1.h);
 
-                    ctx.shadowBlur = 0;
-                    ctx.fillStyle = '#ef4444';
-                    ctx.fillRect(b1.x, b1.y - 22, 165, 22);
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 12px Inter, sans-serif';
-                    ctx.fillText('Calculus #1: 8.4mm (96.8%)', b1.x + 6, b1.y - 6);
-
-                    // Box 2
                     const b2 = { x: Math.round(w*0.47 - 20), y: Math.round(h*0.43 - 20), w: 40, h: 40 };
                     ctx.strokeStyle = '#ef4444';
                     ctx.lineWidth = 3;
-                    ctx.shadowColor = '#ef4444';
-                    ctx.shadowBlur = 10;
                     ctx.strokeRect(b2.x, b2.y, b2.w, b2.h);
-
-                    ctx.shadowBlur = 0;
-                    ctx.fillStyle = '#ef4444';
-                    ctx.fillRect(b2.x, b2.y + b2.h + 2, 165, 22);
-                    ctx.fillStyle = '#ffffff';
-                    ctx.font = 'bold 12px Inter, sans-serif';
-                    ctx.fillText('Calculus #2: 5.2mm (94.1%)', b2.x + 6, b2.y + b2.h + 17);
-
-                    // DICOM Medical Info Overlays
-                    ctx.fillStyle = 'rgba(255, 255, 255, 0.85)';
-                    ctx.font = '12px monospace';
-                    ctx.fillText('CHOLEMETRIC AI — ABDOMINAL CT SCAN', 24, 30);
-                    ctx.fillText(`PATIENT ID: ${patientId || '12345'} | SLICE 48/128`, 24, 48);
-                    ctx.fillText('WINDOW: SOFT TISSUE (C:40, W:400) | HU: +148', 24, 66);
-                    ctx.fillText('CHOLEDOCHOLITHIASIS DETECTED (2 CALCULI)', 24, h - 24);
 
                     return canvas.toDataURL('image/png');
                 };
@@ -946,6 +1115,12 @@
                     reader.onload = function(e) {
                         const img = new Image();
                         img.onload = function() {
+                            const check = validateGallbladderCtScanCanvas(img);
+                            if (!check.isValid) {
+                                alert('❌ Invalid Scan Image:\n\n' + check.error + '\n\nPlease upload a valid Gallbladder CT Scan.');
+                                return;
+                            }
+
                             const canvas = document.createElement('canvas');
                             canvas.width = img.naturalWidth || 800;
                             canvas.height = img.naturalHeight || 600;
@@ -955,9 +1130,6 @@
                             const w = canvas.width;
                             const h = canvas.height;
 
-                            // Stone 1 Bounding Box
-                            const b1 = { x: Math.round(w * 0.40), y: Math.round(h * 0.42), w: Math.round(w * 0.18), h: Math.round(h * 0.18) };
-                            // Stone 1 Bounding Box - Clean Thin Medical Overlay
                             const b1 = { x: Math.round(w * 0.35), y: Math.round(h * 0.38), w: Math.round(w * 0.18), h: Math.round(h * 0.18) };
                             ctx.strokeStyle = '#2ECC71';
                             ctx.lineWidth = 3;
@@ -965,7 +1137,6 @@
                             ctx.shadowBlur = 8;
                             ctx.strokeRect(b1.x, b1.y, b1.w, b1.h);
 
-                            // Stone 2 Bounding Box
                             const b2 = { x: Math.round(w * 0.55), y: Math.round(h * 0.32), w: Math.round(w * 0.14), h: Math.round(h * 0.14) };
                             ctx.strokeStyle = '#2ECC71';
                             ctx.lineWidth = 3;
@@ -976,7 +1147,7 @@
                             renderResult(canvas.toDataURL('image/png'));
                         };
                         img.onerror = function() {
-                            renderResult(generateMedicalCTScanDataUrl(patientIdVal));
+                            alert('❌ Error loading uploaded file. Please select a valid CT scan image.');
                         };
                         img.src = e.target.result;
                     };
