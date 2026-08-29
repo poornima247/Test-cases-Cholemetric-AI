@@ -851,7 +851,7 @@
             formData.append('scan_date', scanDateVal);
 
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 1000);
+            const timeoutId = setTimeout(() => controller.abort(), 200);
 
             // Connects to local machine IP configured on XAMPP
             fetch(`${CholemetricSync.getApiBaseUrl()}/analyze.php`, {

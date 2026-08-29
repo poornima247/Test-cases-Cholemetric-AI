@@ -281,10 +281,16 @@
 <script>
         let allScans = [];
 
-        document.addEventListener("DOMContentLoaded", async function() {
-            CholemetricSync.checkAuthSession();
-            allScans = await CholemetricSync.syncPatientScans();
+        document.addEventListener("DOMContentLoaded", function() {
+            try { CholemetricSync.checkAuthSession(); } catch(e){}
+            allScans = CholemetricSync.getLocalAccountScans();
             renderScans(allScans);
+            CholemetricSync.syncPatientScans().then(scans => {
+                if (scans && scans.length > 0) {
+                    allScans = scans;
+                    renderScans(allScans);
+                }
+            }).catch(err => {});
 
             // Search Functionality
             document.getElementById('search_input').addEventListener('input', function(e) {
