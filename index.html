@@ -304,18 +304,28 @@
             if (e) { try { e.preventDefault(); e.stopPropagation(); } catch(err){} }
             const emailInput = document.getElementById('login_email');
             const passInput = document.getElementById('login_password');
-            let email = (emailInput ? emailInput.value : '').trim();
-            let password = (passInput ? passInput.value : '');
+            const email = (emailInput ? emailInput.value : '').trim();
+            const password = (passInput ? passInput.value : '');
 
             if (!email || !password) {
-                email = 'poornimadandu246@gmail.com';
-                password = 'poornima123';
-                if (emailInput) emailInput.value = email;
-                if (passInput) passInput.value = password;
+                if (!email && emailInput) emailInput.style.borderColor = '#EF4444';
+                if (!password && passInput) passInput.style.borderColor = '#EF4444';
+                alert('❌ Missing Credentials:\n\nPlease enter both Email Address and Password.');
+                if (!email && emailInput) emailInput.focus();
+                else if (!password && passInput) passInput.focus();
+                return;
+            } else {
+                if (emailInput) emailInput.style.borderColor = '';
+                if (passInput) passInput.style.borderColor = '';
             }
 
             if (typeof CholemetricSync !== 'undefined' && CholemetricSync.authenticateUser) {
-                CholemetricSync.authenticateUser(email, password);
+                const res = CholemetricSync.authenticateUser(email, password);
+                if (!res.success) {
+                    if (passInput) passInput.style.borderColor = '#EF4444';
+                    alert('❌ Access Denied:\n\n' + res.error);
+                    return;
+                }
             } else {
                 localStorage.setItem('doctor_email', email);
                 localStorage.setItem('user_name', 'Dr. Poornima Dandu');

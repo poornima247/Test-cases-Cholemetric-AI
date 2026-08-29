@@ -850,6 +850,11 @@
             formData.append('patient_name', patientNameVal);
             formData.append('scan_date', scanDateVal);
 
+            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+                runClientFallbackAnalysis(fileUpload.files[0], patientIdVal, patientNameVal, scanDateVal);
+                return;
+            }
+
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), 200);
 

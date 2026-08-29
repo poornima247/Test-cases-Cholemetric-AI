@@ -101,19 +101,9 @@ const CholemetricSync = (function () {
         let user = users.find(u => (u.email || '').toLowerCase() === cleanEmail);
 
         if (!user) {
-            // Auto-register new doctor account on the fly for seamless web sign in
-            const doctorName = 'Dr. ' + cleanEmail.split('@')[0].split('.').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            user = {
-                id: users.length + 1,
-                email: cleanEmail,
-                password: pass,
-                full_name: doctorName,
-                hospital: 'Cholemetric Diagnostics'
-            };
-            users.push(user);
-            saveRegisteredUsers(users);
+            return { success: false, error: 'Email address not registered. Please create an account or check your email.' };
         } else if (user.password !== pass) {
-            return { success: false, error: 'Wrong password. Please check your password.' };
+            return { success: false, error: 'Wrong password. Please check your password for ' + cleanEmail + '.' };
         }
 
         localStorage.setItem('doctor_email', cleanEmail);
