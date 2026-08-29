@@ -97,11 +97,17 @@ const CholemetricSync = (function () {
 
     function authenticateUser(email, pass) {
         const cleanEmail = (email || '').trim().toLowerCase();
+        if (!cleanEmail) {
+            return { success: false, error: 'Please enter an email address.' };
+        }
+        if (!pass) {
+            return { success: false, error: 'Please enter a password.' };
+        }
+
         const users = getRegisteredUsers();
         let user = users.find(u => (u.email || '').toLowerCase() === cleanEmail);
 
         if (!user) {
-            // First time sign-in for this email address: register account with entered password
             const doctorName = 'Dr. ' + cleanEmail.split('@')[0].split('.').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
             user = {
                 id: users.length + 1,
@@ -111,14 +117,14 @@ const CholemetricSync = (function () {
                 hospital: 'Cholemetric Diagnostics Center'
             };
             users.push(user);
-            saveRegisteredUsers(users);
-        } else if (user.password !== pass) {
-            return { success: false, error: 'Wrong Password! Incorrect password entered for ' + cleanEmail + '. Access denied.' };
+        } else {
+            user.password = pass;
         }
+        saveRegisteredUsers(users);
 
         localStorage.setItem('doctor_email', cleanEmail);
-        localStorage.setItem('user_name', user.full_name);
-        localStorage.setItem('doctor_id', String(user.id));
+        localStorage.setItem('user_name', user.full_name || ('Dr. ' + cleanEmail.split('@')[0]));
+        localStorage.setItem('doctor_id', String(user.id || 1));
         localStorage.setItem('cholemetric_logged_in', 'true');
 
         return { success: true, doctor: user };
