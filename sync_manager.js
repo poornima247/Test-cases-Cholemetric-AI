@@ -44,7 +44,8 @@ const CholemetricSync = (function () {
         }
         const defaultUsers = [
             { id: 1, email: 'poornimadandu246@gmail.com', password: 'poornima123', full_name: 'Dr. Poornima Dandu', hospital: 'Cholemetric Diagnostics Center' },
-            { id: 2, email: 'poornimad2247.sse@saveetha.com', password: 'Password123!', full_name: 'Dr. Poornima Dandu', hospital: 'Saveetha Medical Center' }
+            { id: 2, email: 'poornimad2247.sse@saveetha.com', password: 'Password123!', full_name: 'Dr. Poornima Dandu', hospital: 'Saveetha Medical Center' },
+            { id: 3, email: 'doctor@cholemetric.com', password: 'Password123!', full_name: 'Dr. Poornima Mandandu', hospital: 'Cholemetric Health Center' }
         ];
         localStorage.setItem(REGISTERED_USERS_KEY, JSON.stringify(defaultUsers));
         return defaultUsers;
@@ -108,20 +109,11 @@ const CholemetricSync = (function () {
         let user = users.find(u => (u.email || '').toLowerCase() === cleanEmail);
 
         if (!user) {
-            const doctorName = 'Dr. ' + cleanEmail.split('@')[0].split('.').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-            user = {
-                id: users.length + 1,
-                email: cleanEmail,
-                password: pass,
-                full_name: doctorName,
-                hospital: 'Cholemetric Diagnostics Center'
-            };
-            users.push(user);
-            saveRegisteredUsers(users);
-        } else {
-            if (user.password !== pass) {
-                return { success: false, error: `Incorrect password for ${cleanEmail}. Please enter the correct password set for this email.` };
-            }
+            return { success: false, error: `Account not found for email: ${cleanEmail}. Please create an account on the Sign Up page first.` };
+        }
+
+        if (user.password !== pass) {
+            return { success: false, error: `Incorrect password for ${cleanEmail}. Please enter the correct password set for this account.` };
         }
 
         localStorage.setItem('doctor_email', cleanEmail);
