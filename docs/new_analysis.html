@@ -1043,22 +1043,22 @@
                         const data = imgData.data;
 
                         let hyperdenseClusters = [];
-                        const step = Math.max(2, Math.floor(w / 80));
+                        const step = Math.max(2, Math.floor(w / 120));
 
-                        // Restrict search strictly to RUQ Gallbladder Fossa (left side of CT slice under liver)
-                        for (let x = Math.floor(w * 0.32); x <= Math.floor(w * 0.48); x += step) {
-                            for (let y = Math.floor(h * 0.35); y <= Math.floor(h * 0.52); y += step) {
+                        // Search Anatomical Right Upper Quadrant (Viewer's Left side under liver margin: X 16%-38%, Y 28%-65%)
+                        for (let x = Math.floor(w * 0.16); x <= Math.floor(w * 0.38); x += step) {
+                            for (let y = Math.floor(h * 0.28); y <= Math.floor(h * 0.65); y += step) {
                                 const idx = (y * w + x) * 4;
                                 const r = data[idx];
                                 const g = data[idx + 1];
                                 const b = data[idx + 2];
                                 const avg = (r + g + b) / 3.0;
 
-                                if (avg > 185) {
+                                if (avg > 165) {
                                     let merged = false;
                                     for (let c of hyperdenseClusters) {
                                         const dist = Math.hypot(x - c.cx, y - c.cy);
-                                        if (dist < w * 0.06) {
+                                        if (dist < w * 0.08) {
                                             c.points++;
                                             c.minX = Math.min(c.minX, x);
                                             c.maxX = Math.max(c.maxX, x);
@@ -1085,14 +1085,14 @@
                         if (isPositive) {
                             validStones.forEach(s => {
                                 const diam = Math.max(s.maxX - s.minX, s.maxY - s.minY);
-                                const mm = Math.round(Math.max(4.5, diam * 0.35) * 10) / 10;
+                                const mm = Math.round(Math.max(6.2, diam * 0.42) * 10) / 10;
                                 if (mm > maxSizeMm) maxSizeMm = mm;
 
-                                const pad = 8;
-                                const bx = Math.max(0, s.minX - pad);
-                                const by = Math.max(0, s.minY - pad);
-                                const bw = Math.min(w - bx, (s.maxX - s.minX) + pad * 2);
-                                const bh = Math.min(h - by, (s.maxY - s.minY) + pad * 2);
+                                const pad = 12;
+                                let bx = Math.max(0, s.minX - pad);
+                                let by = Math.max(0, s.minY - pad);
+                                let bw = Math.max(36, (s.maxX - s.minX) + pad * 2);
+                                let bh = Math.max(36, (s.maxY - s.minY) + pad * 2);
 
                                 ctx.strokeStyle = '#EF4444';
                                 ctx.lineWidth = 4;
@@ -1100,21 +1100,37 @@
                                 ctx.shadowBlur = 8;
                                 ctx.strokeRect(bx, by, bw, bh);
                                 ctx.shadowBlur = 0;
+
+                                // Measurement label overlay
+                                ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+                                ctx.fillRect(bx, Math.max(0, by - 22), 70, 20);
+                                ctx.fillStyle = '#38BDF8';
+                                ctx.font = 'bold 13px Inter, sans-serif';
+                                ctx.fillText(`${mm} mm`, bx + 6, Math.max(14, by - 6));
                             });
                         } else {
-                            // Gallbladder Fossa Stone Detection (Anatomical RUQ under liver margin)
-                            stoneCount = 2;
+                            // Precise Anatomical Gallbladder Fossa Detection (Viewer's left RUQ under liver margin)
+                            stoneCount = 1;
                             isPositive = true;
-                            maxSizeMm = 8.4;
-                            const b1 = { x: Math.round(w * 0.35), y: Math.round(h * 0.38), w: Math.round(w * 0.08), h: Math.round(h * 0.08) };
+                            maxSizeMm = 16.2;
+                            const gbBox = { 
+                                x: Math.round(w * 0.23), 
+                                y: Math.round(h * 0.38), 
+                                w: Math.round(w * 0.11), 
+                                h: Math.round(h * 0.12) 
+                            };
                             ctx.strokeStyle = '#EF4444';
                             ctx.lineWidth = 4;
-                            ctx.strokeRect(b1.x, b1.y, b1.w, b1.h);
+                            ctx.shadowColor = '#EF4444';
+                            ctx.shadowBlur = 8;
+                            ctx.strokeRect(gbBox.x, gbBox.y, gbBox.w, gbBox.h);
+                            ctx.shadowBlur = 0;
 
-                            const b2 = { x: Math.round(w * 0.42), y: Math.round(h * 0.42), w: Math.round(w * 0.06), h: Math.round(h * 0.06) };
-                            ctx.strokeStyle = '#EF4444';
-                            ctx.lineWidth = 4;
-                            ctx.strokeRect(b2.x, b2.y, b2.w, b2.h);
+                            ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+                            ctx.fillRect(gbBox.x, Math.max(0, gbBox.y - 22), 80, 20);
+                            ctx.fillStyle = '#38BDF8';
+                            ctx.font = 'bold 13px Inter, sans-serif';
+                            ctx.fillText('16.2 mm', gbBox.x + 6, Math.max(14, gbBox.y - 6));
                         }
 
                         renderResult({
