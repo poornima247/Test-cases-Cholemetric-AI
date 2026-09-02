@@ -340,17 +340,20 @@
             }
 
             const cleanEmail = email.toLowerCase();
-            localStorage.setItem('doctor_email', cleanEmail);
-            localStorage.setItem('user_name', 'Dr. ' + cleanEmail.split('@')[0]);
-            localStorage.setItem('doctor_id', '1');
-            localStorage.setItem('cholemetric_logged_in', 'true');
 
             if (typeof CholemetricSync !== 'undefined' && CholemetricSync.authenticateUser) {
-                try {
-                    CholemetricSync.authenticateUser(cleanEmail, password);
-                } catch(err) {
-                    console.warn('Sync manager authentication notice:', err);
+                const authResult = CholemetricSync.authenticateUser(cleanEmail, password);
+                if (!authResult.success) {
+                    if (passInput) passInput.style.borderColor = '#EF4444';
+                    alert('❌ Login Failed:\n\n' + authResult.error);
+                    if (passInput) passInput.focus();
+                    return;
                 }
+            } else {
+                localStorage.setItem('doctor_email', cleanEmail);
+                localStorage.setItem('user_name', 'Dr. ' + cleanEmail.split('@')[0]);
+                localStorage.setItem('doctor_id', '1');
+                localStorage.setItem('cholemetric_logged_in', 'true');
             }
 
             window.location.href = 'dashboard.html';

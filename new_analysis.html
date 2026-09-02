@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cholemetric - New Analysis</title>
     <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -548,13 +549,13 @@
                     <svg class="check-circle" id="check_image_upload" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
                 </div>
 
-                <input type="file" id="file_upload" accept="image/png, image/jpeg, image/*" style="display: none;">
-                <div class="upload-area" id="upload_area" onclick="triggerFilePicker(event)" style="cursor: pointer;">
-                    <div class="upload-circle">
+                <div class="upload-area" id="upload_area" style="position: relative; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; border: 2px dashed #FFA500; border-radius: 12px; background-color: #FFFDF9; transition: all 0.2s ease;">
+                    <input type="file" id="file_upload" accept="image/png, image/jpeg, image/*" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10;">
+                    <div class="upload-circle" style="pointer-events: none;">
                         <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
                     </div>
-                    <div class="upload-title">Upload CT Scan</div>
-                    <div class="upload-subtitle">Tap to choose PNG or JPG CT scan file</div>
+                    <div class="upload-title" style="pointer-events: none;">Upload CT Scan</div>
+                    <div class="upload-subtitle" style="pointer-events: none;">Tap to choose PNG or JPG CT scan file</div>
                 </div>
                 <img id="preview_image" src="#" alt="CT Scan Preview" style="display: none; width: 100%; border-radius: 8px; margin-top: 10px;" />
             </div>
@@ -640,6 +641,10 @@
             </div>
 
             <!-- Action Buttons -->
+            <button class="btn-save" id="btn_download_report_pc" style="background-color: #10B981; color: white; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <svg style="width: 22px; height: 22px; fill: white;" viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                Download PDF Report to PC
+            </button>
             <button class="btn-save" id="btn_save_report">Save Report</button>
             <button class="btn-close" id="btn_close_results">Close</button>
         </div>
@@ -647,7 +652,7 @@
     </div>
 
     
-    </div>
+<script src="sync_manager.js"></script>
 <script>
         document.getElementById('toggle_details').addEventListener('click', function() {
             const detailsSection = document.getElementById('additional_details');
@@ -661,9 +666,6 @@
         });
 
         function triggerFilePicker(e) {
-            if (e) {
-                try { e.preventDefault(); e.stopPropagation(); } catch(err) {}
-            }
             const fileEl = document.getElementById('file_upload');
             if (fileEl) {
                 fileEl.click();
@@ -673,6 +675,42 @@
         const uploadArea = document.getElementById('upload_area');
         const fileUpload = document.getElementById('file_upload');
         const previewImage = document.getElementById('preview_image');
+        if (previewImage) {
+            previewImage.style.cursor = 'pointer';
+            previewImage.title = 'Click to change image';
+            previewImage.addEventListener('click', function() {
+                if (fileUpload) fileUpload.click();
+            });
+        }
+
+        if (uploadArea) {
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }, false);
+            });
+
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, function() {
+                    uploadArea.style.opacity = '0.7';
+                }, false);
+            });
+
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, function() {
+                    uploadArea.style.opacity = '1';
+                }, false);
+            });
+
+            uploadArea.addEventListener('drop', function(e) {
+                const dt = e.dataTransfer;
+                if (dt && dt.files && dt.files.length > 0 && fileUpload) {
+                    fileUpload.files = dt.files;
+                    fileUpload.dispatchEvent(new Event('change'));
+                }
+            }, false);
+        }
 
         function validateGallbladderCtScanCanvas(img) {
             const canvas = document.createElement('canvas');
@@ -764,24 +802,10 @@
                 const file = this.files[0];
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const img = new Image();
-                    img.onload = function() {
-                        const check = validateGallbladderCtScanCanvas(img);
-                        if (!check.isValid) {
-                            alert('❌ Invalid Scan Image:\n\n' + check.error + '\n\nPlease upload a valid Gallbladder CT Scan.');
-                            fileUpload.value = '';
-                            previewImage.style.display = 'none';
-                            uploadArea.style.display = 'block';
-                            document.getElementById('check_image_upload').style.fill = '#AAAAAA';
-                            return;
-                        }
-
-                        previewImage.src = e.target.result;
-                        previewImage.style.display = 'block';
-                        uploadArea.style.display = 'none';
-                        document.getElementById('check_image_upload').style.fill = '#10B981';
-                    };
-                    img.src = e.target.result;
+                    previewImage.src = e.target.result;
+                    previewImage.style.display = 'block';
+                    uploadArea.style.display = 'none';
+                    document.getElementById('check_image_upload').style.fill = '#10B981';
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -850,81 +874,9 @@
             btnStart.disabled = true;
             btnStart.innerHTML = 'Analyzing image...';
 
-            const formData = new FormData();
-            formData.append('image', fileUpload.files[0]);
-            formData.append('patient_id', patientIdVal);
-            formData.append('patient_name', patientNameVal);
-            formData.append('scan_date', scanDateVal);
-
-            if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+            setTimeout(function() {
                 runClientFallbackAnalysis(fileUpload.files[0], patientIdVal, patientNameVal, scanDateVal);
-                return;
-            }
-
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 200);
-
-            // Connects to local machine IP configured on XAMPP
-            fetch(`${CholemetricSync.getApiBaseUrl()}/analyze.php`, {
-                method: 'POST',
-                body: formData,
-                signal: controller.signal
-            })
-            .then(res => {
-                clearTimeout(timeoutId);
-                return res.json();
-            })
-            .then(data => {
-                btnStart.disabled = false;
-                btnStart.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h-2v-2h2v2zm1.61-4.91c-.43.2-.76.51-.98.88-.23.36-.35.79-.35 1.25h-2c0-.79.25-1.5.73-2.12.48-.62 1.15-1.09 1.95-1.39.56-.21 1.03-.49 1.4-.85.37-.36.56-.8.56-1.32 0-.61-.22-1.11-.64-1.48-.42-.37-1-.56-1.74-.56-.76 0-1.35.21-1.78.64-.42.42-.64 1.02-.64 1.79h-2c0-1.18.39-2.13 1.15-2.85C9.04 4.54 10.23 4.2 11.66 4.2c1.47 0 2.65.34 3.49 1.02.85.68 1.27 1.58 1.27 2.69 0 .61-.13 1.14-.38 1.58-.26.44-.65.85-1.17 1.23-.62.45-1.04.81-1.26 1.07z"/></svg>Start AI Analysis<svg style="margin-left:auto; margin-right:0" viewBox="0 0 24 24"><path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/></svg>';
-
-                if (data.status === 'success') {
-                    lastAnalysisResult = data;
-                    
-                    // Format Scan Date nicely (e.g. 26-10-2025)
-                    let formattedDate = data.scan_date;
-                    try {
-                        const d = new Date(data.scan_date);
-                        if (!isNaN(d.getTime())) {
-                            const dd = String(d.getDate()).padStart(2, '0');
-                            const mm = String(d.getMonth() + 1).padStart(2, '0');
-                            const yyyy = d.getFullYear();
-                            formattedDate = `${dd}-${mm}-${yyyy}`;
-                        }
-                    } catch (e) {}
-
-                    // Prefill Results view
-                    document.getElementById('res_patient_id').innerText = data.patient_id;
-                    document.getElementById('res_scan_date').innerText = formattedDate;
-                    document.getElementById('res_annotated_image').src = data.annotated_image_url;
-                    document.getElementById('res_stone_count').innerText = data.stone_count;
-                    document.getElementById('res_max_size').innerText = data.max_size_mm + ' mm';
-                    document.getElementById('res_confidence').innerText = data.confidence + '%';
-                    document.getElementById('res_progress_bar').style.width = data.confidence + '%';
-                    document.getElementById('res_notes').value = data.notes;
-
-                    // Dynamically set Positive/Negative badge
-                    const resBadge = document.getElementById('res_badge');
-                    resBadge.innerText = data.result;
-                    if (data.result === 'Positive') {
-                        resBadge.style.backgroundColor = '#FDE8E8';
-                        resBadge.style.color = '#E02424';
-                    } else {
-                        resBadge.style.backgroundColor = '#DEF7EC';
-                        resBadge.style.color = '#03543F';
-                    }
-
-                    // Transition view
-                    document.getElementById('input_view').style.display = 'none';
-                    document.getElementById('results_view').style.display = 'block';
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    alert('❌ Invalid Scan Image:\n\n' + (data.error || 'The uploaded file is not a Gallbladder CT Scan. Please upload a valid gallbladder scan.'));
-                }
-            })
-            .catch(err => {
-                console.warn('Backend API offline, running client AI CT scan analysis:', err);
-            });
+            }, 300);
         });
 
         function runClientFallbackAnalysis(uploadedFile, patientIdVal, patientNameVal, scanDateVal) {
@@ -1186,6 +1138,7 @@
                     confidence: 96.8,
                     result: 'Positive',
                     notes: 'Choledocholithiasis detected in distal common bile duct. Bounding boxes indicate 2 hyperdense stone shadows. Surgical evaluation recommended.'
+                });
             }
         }
 
@@ -1223,6 +1176,55 @@
             alert('Scan report saved successfully!');
             window.location.href = 'dashboard.html';
         });
+
+        // Download Report PDF Action
+        const btnDownloadReport = document.getElementById('btn_download_report_pc');
+        if (btnDownloadReport) {
+            btnDownloadReport.addEventListener('click', function() {
+                const btn = this;
+                btn.disabled = true;
+                const origText = btn.innerHTML;
+                btn.innerHTML = 'Generating PDF...';
+
+                const patientId = document.getElementById('res_patient_id').innerText || 'Patient';
+                const filename = `Cholemetric_Report_${patientId}_${new Date().toISOString().split('T')[0]}.pdf`;
+
+                const element = document.getElementById('results_view');
+                const opt = {
+                    margin:       0.3,
+                    filename:     filename,
+                    image:        { type: 'jpeg', quality: 0.98 },
+                    html2canvas:  { scale: 2, useCORS: true, allowTaint: true },
+                    jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
+                };
+
+                if (typeof html2pdf !== 'undefined') {
+                    html2pdf().set(opt).from(element).save().then(() => {
+                        btn.disabled = false;
+                        btn.innerHTML = origText;
+                    }).catch(err => {
+                        console.warn('PDF export fallback:', err);
+                        downloadReportImageFallback(patientId);
+                        btn.disabled = false;
+                        btn.innerHTML = origText;
+                    });
+                } else {
+                    downloadReportImageFallback(patientId);
+                    btn.disabled = false;
+                    btn.innerHTML = origText;
+                }
+            });
+        }
+
+        function downloadReportImageFallback(patientId) {
+            const imgUrl = document.getElementById('res_annotated_image').src;
+            const link = document.createElement('a');
+            link.download = `Cholemetric_Scan_Report_${patientId}.png`;
+            link.href = imgUrl;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 
     </div>
