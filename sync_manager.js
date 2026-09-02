@@ -252,10 +252,12 @@ const CholemetricSync = (function () {
     function checkAuthSession() {
         let loggedIn = localStorage.getItem('cholemetric_logged_in');
         let email = localStorage.getItem('doctor_email');
-        const page = window.location.pathname.split('/').pop();
+        const path = window.location.pathname.toLowerCase();
+        const page = path.split('/').pop().split('?')[0].split('#')[0];
         const isPublicPage = (page === 'login_form.html' || page === 'signup.html' || page === 'forgot_password.html' || page === 'splash.html' || page === 'welcome.html' || page === 'index.html' || page === '');
 
         if (!isPublicPage) {
+            // Persist session on page reload & refresh unless user explicitly logged out
             if (loggedIn !== 'false') {
                 if (!email) {
                     email = 'doctor@cholemetric.com';
