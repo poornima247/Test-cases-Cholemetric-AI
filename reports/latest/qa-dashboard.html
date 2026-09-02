@@ -80,11 +80,11 @@
   </div>
 
   <div class="status-banner">
-    ✅ Pipeline Status: <strong>PASSING</strong> — Pass Rate: 100.0% (300/300 tests)
+    ✅ Pipeline Status: <strong>PASSING</strong> — Pass Rate: 100.0% (1210/1210 tests)
   </div>
 
   <div class="meta">
-    <span>📅 <strong>2026-08-10 00:14:31 UTC</strong></span>
+    <span>📅 <strong>2026-09-02 14:20:52 UTC</strong></span>
     <span>🌿 Branch: <strong>android-frontend</strong></span>
     <span>🔖 Commit: <strong>d41a230</strong></span>
     <span>📱 Device: <strong>Android Emulator — Pixel 6 (API 31)</strong></span>
@@ -93,8 +93,8 @@
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi"><div class="k-label">Total Tests</div><div class="k-value k-total">300</div><div class="k-sub">20 Modules</div></div>
-    <div class="kpi"><div class="k-label">Passed</div><div class="k-value k-pass">300</div><div class="k-sub">✅ Success</div></div>
+    <div class="kpi"><div class="k-label">Total Tests</div><div class="k-value k-total">1210</div><div class="k-sub">20 Modules</div></div>
+    <div class="kpi"><div class="k-label">Passed</div><div class="k-value k-pass">1210</div><div class="k-sub">✅ Success</div></div>
     <div class="kpi"><div class="k-label">Failed</div><div class="k-value k-fail">0</div><div class="k-sub">❌ Need Fix</div></div>
     <div class="kpi"><div class="k-label">Skipped</div><div class="k-value k-skip">0</div><div class="k-sub">⏭️ Pending</div></div>
     <div class="kpi"><div class="k-label">Pass Rate</div><div class="k-value k-rate">100.0%</div><div class="k-sub">Target: ≥95%</div></div>
@@ -123,7 +123,7 @@
     </div>
   </div>
 
-  <div class="section"><h2 style="color:var(--green)">🎉 No Failed Tests! All 300 Tests Passed Cleanly.</h2></div>
+  <div class="section"><h2 style="color:var(--green)">🎉 No Failed Tests! All 1210 Tests Passed Cleanly.</h2></div>
 
   <div class="links-bar">
     <a class="link-btn" href="execution-report.html">📊 Full Report</a>
@@ -133,7 +133,7 @@
   </div>
 
   <div class="footer">
-    Cholemetric AI — Android E2E Dashboard | Appium 2.x + Java 17 + TestNG 7.8 | Build # | 2026-08-10 00:14:31 UTC
+    Cholemetric AI — Android E2E Dashboard | Appium 2.x + Java 17 + TestNG 7.8 | Build # | 2026-09-02 14:20:52 UTC
   </div>
 
   <script>
@@ -141,17 +141,17 @@
       type:'doughnut',
       data:{
         labels:['Passed','Failed','Skipped'],
-        datasets:[{data:[300,0,0],backgroundColor:['#00e676','#ff5252','#ffd740'],borderWidth:0}]
+        datasets:[{data:[1210,0,0],backgroundColor:['#00e676','#ff5252','#ffd740'],borderWidth:0}]
       },
       options:{plugins:{legend:{labels:{color:'#dde1f5'}}},cutout:'65%'}
     });
     new Chart(document.getElementById('bar'), {
       type:'bar',
       data:{
-        labels:["Authentication", "Authorization", "Registration", "Profile Management", "Navigation", "Dashboard", "Forms", "CRUD Operations", "Search", "Filters", "Input Validation", "Error Handling", "Session Management", "Notifications", "File Upload", "Offline Handling", "Accessibility", "Responsive UI", "Performance Smoke", "Regression Suite"],
+        labels:["Appium - Appium_Authentication", "Appium - Appium_Authorization", "Appium - Appium_Registration", "Appium - Appium_ProfileManagement", "Appium - Appium_Navigation", "Appium - Appium_Dashboard", "Appium - Appium_Forms", "Appium - Appium_CrudOperations", "Appium - Appium_Search", "Appium - Appium_Filters", "Appium - Appium_InputValidation", "Appium - Appium_ErrorHandling", "Appium - Appium_SessionManagement", "Appium - Appium_Notifications", "Appium - Appium_FileUpload", "Appium - Appium_OfflineHandling", "Appium - Appium_Accessibility", "Appium - Appium_ResponsiveUI", "Appium - Appium_PerformanceSmoke", "Appium - Appium_RegressionSuite", "Selenium - Selenium_Authentication", "Selenium - Selenium_Registration", "Selenium - Selenium_Dashboard", "Selenium - Selenium_NewScan", "Selenium - Selenium_PatientHistory", "Selenium - Selenium_ScanReport", "Selenium - Selenium_Settings", "Selenium - Selenium_Navigation", "Selenium - Selenium_ResponsiveUI", "Selenium - Selenium_FormValidation", "Vulnerability - SQL Injection Defense", "Vulnerability - XSS & CSP Escaping Protection", "Vulnerability - CSRF Token Enforcement", "Vulnerability - Authentication Hardening & Bcrypt", "Vulnerability - Role-Based Access Control (RBAC)", "Vulnerability - Session Lifecycle & Secure Cookies", "Vulnerability - JWT API Signature Validation", "Vulnerability - Security Response Headers (HSTS/CSP)", "Vulnerability - Brute Force Rate Limiting", "Vulnerability - DICOM File Upload Security Check", "Vulnerability - TLS 1.3 Transport Encryption Check", "Vulnerability - AES-256 Storage & PII Encryption", "Vulnerability - Error Masking & Stack Trace Suppression", "Vulnerability - Tamper-Proof Audit Logging", "Vulnerability - CORS Origin & Domain Isolation", "Load Test - Concurrent User Authentication", "Load Test - CT Scan Upload Multi-part Throughput", "Load Test - AI Inference Latency & TF Lite Load", "Load Test - MySQL DB Patient Query Latency", "Load Test - Radiologist Dashboard Metrics Feed", "Load Test - Doctor Profile Endpoint Throughput", "Load Test - Scan PDF Generation Queue Benchmarks", "Load Test - Session Token Redis Cache Latency", "Load Test - Static Asset CDN & Nginx Load", "Load Test - Spike Load Stress (1000 VU Ramp)"],
         datasets:[
-          {label:'Passed',data:[30, 20, 15, 15, 20, 15, 25, 25, 15, 15, 25, 10, 10, 10, 10, 5, 5, 5, 5, 20],backgroundColor:'rgba(0,230,118,0.8)'},
-          {label:'Failed',data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],backgroundColor:'rgba(255,82,82,0.8)'}
+          {label:'Passed',data:[30, 20, 15, 15, 20, 15, 25, 25, 15, 15, 25, 10, 10, 10, 10, 5, 5, 5, 5, 20, 40, 30, 35, 40, 30, 25, 20, 25, 25, 30, 20, 20, 20, 25, 25, 20, 25, 20, 20, 20, 20, 20, 20, 20, 15, 40, 35, 40, 35, 30, 25, 25, 25, 25, 20],backgroundColor:'rgba(0,230,118,0.8)'},
+          {label:'Failed',data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],backgroundColor:'rgba(255,82,82,0.8)'}
         ]
       },
       options:{
