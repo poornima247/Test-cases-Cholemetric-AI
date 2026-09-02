@@ -671,6 +671,7 @@
                 fileEl.click();
             }
         }
+        window.triggerFilePicker = triggerFilePicker;
 
         const uploadArea = document.getElementById('upload_area');
         const fileUpload = document.getElementById('file_upload');
@@ -684,6 +685,11 @@
         }
 
         if (uploadArea) {
+            uploadArea.addEventListener('click', function(e) {
+                if (e.target !== fileUpload && fileUpload) {
+                    fileUpload.click();
+                }
+            });
             ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
                 uploadArea.addEventListener(eventName, function(e) {
                     e.preventDefault();
